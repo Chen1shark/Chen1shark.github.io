@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Java on Chen1shark 的技术博客</title>
-        <link>http://localhost:1313/categories/java/</link>
-        <description>Recent content in Java on Chen1shark 的技术博客</description>
+        <title>Java 算法刷题基础语法与常用工具类速查笔记 - Spring - Java on Chen1shark 的技术博客</title>
+        <link>http://localhost:1313/categories/java-%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E7%B1%BB%E9%80%9F%E6%9F%A5%E7%AC%94%E8%AE%B0---spring---java/</link>
+        <description>Recent content in Java 算法刷题基础语法与常用工具类速查笔记 - Spring - Java on Chen1shark 的技术博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>Chen1shark</copyright>
-        <lastBuildDate>Sat, 21 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/java/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 21 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/java-%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E4%B8%8E%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E7%B1%BB%E9%80%9F%E6%9F%A5%E7%AC%94%E8%AE%B0---spring---java/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Java基础用法</title>
-        <link>http://localhost:1313/p/java-basics/</link>
-        <pubDate>Sat, 21 Mar 2026 00:00:00 +0000</pubDate>
+        <link>http://localhost:1313/p/java%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/</link>
+        <pubDate>Fri, 13 Mar 2026 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/p/java-basics/</guid>
+        <guid>http://localhost:1313/p/java%E5%9F%BA%E7%A1%80%E7%94%A8%E6%B3%95/</guid>
         <description>&lt;h1 id=&#34;java-基础用法&#34;&gt;Java 基础用法
 &lt;/h1&gt;&lt;h2 id=&#34;一集合框架算法高频&#34;&gt;一、集合框架（算法高频）
 &lt;/h2&gt;&lt;h3 id=&#34;list-相关&#34;&gt;List 相关
 &lt;/h3&gt;&lt;h4 id=&#34;list排序&#34;&gt;List排序
-&lt;/h4&gt;&lt;p&gt;详见：&lt;a class=&#34;link&#34; href=&#34;#%e8%87%aa%e5%ae%9a%e4%b9%89%e6%af%94%e8%be%83%e5%99%a8%e6%b1%87%e6%80%bb&#34; &gt;自定义比较器汇总&lt;/a&gt;&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;详见：&lt;a class=&#34;link&#34; href=&#34;#comparator&#34; &gt;自定义比较器汇总&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;set-相关&#34;&gt;Set 相关
 &lt;/h3&gt;&lt;h3 id=&#34;map-相关&#34;&gt;Map 相关
 &lt;/h3&gt;&lt;h3 id=&#34;优先级队列priorityqueue&#34;&gt;优先级队列（PriorityQueue）
@@ -65,7 +65,7 @@
 &lt;/h2&gt;&lt;h3 id=&#34;数组常用操作&#34;&gt;数组常用操作
 &lt;/h3&gt;&lt;h3 id=&#34;二维数组常用操作&#34;&gt;二维数组常用操作
 &lt;/h3&gt;&lt;h3 id=&#34;数组排序含自定义比较器&#34;&gt;数组排序（含自定义比较器）
-&lt;/h3&gt;&lt;p&gt;详见：&lt;a class=&#34;link&#34; href=&#34;#%e8%87%aa%e5%ae%9a%e4%b9%89%e6%af%94%e8%be%83%e5%99%a8%e6%b1%87%e6%80%bb&#34; &gt;自定义比较器汇总&lt;/a&gt; 和 &lt;a class=&#34;link&#34; href=&#34;#arrays-%e5%b7%a5%e5%85%b7%e7%b1%bb&#34; &gt;Arrays工具类&lt;/a&gt;&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;详见：&lt;a class=&#34;link&#34; href=&#34;#comparator&#34; &gt;自定义比较器汇总&lt;/a&gt; 和 &lt;a class=&#34;link&#34; href=&#34;#arrays&#34; &gt;Arrays工具类&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;三链表&#34;&gt;三、链表
 &lt;/h2&gt;&lt;h3 id=&#34;链表节点定义模板&#34;&gt;链表节点定义（模板）
 &lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -269,8 +269,12 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;strong&gt;算法题中的核心区别&lt;/strong&gt;：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;正确做法&lt;/strong&gt;：一个虚拟头节点 + 多个工作指针，操作同一个链表&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;错误做法&lt;/strong&gt;：多个独立虚拟头节点，&lt;strong&gt;结果完全错误&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;正确做法&lt;/strong&gt;：一个虚拟头节点 + 多个工作指针，操作同一个链表&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;错误做法&lt;/strong&gt;：多个独立虚拟头节点，&lt;strong&gt;结果完全错误&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;⚠️ 方法二的致命问题&lt;/strong&gt;：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -299,19 +303,29 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;strong&gt;为什么方法二错误&lt;/strong&gt;:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;dummy2.next&lt;/code&gt; 固定指向原头节点，不知道交换后的新头节点&lt;/li&gt;
-&lt;li&gt;两两交换会改变头节点位置，但 &lt;code&gt;dummy2&lt;/code&gt; 无法感知这个变化&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;结果：返回错误的起始位置，导致链表截断&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;dummy2.next&lt;/code&gt; 固定指向原头节点，不知道交换后的新头节点&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;两两交换会改变头节点位置，但 &lt;code&gt;dummy2&lt;/code&gt; 无法感知这个变化&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;结果：返回错误的起始位置，导致链表截断&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;高频应用场景&lt;/strong&gt;：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;链表反转、两两交换、删除节点等&lt;/li&gt;
-&lt;li&gt;需要记录前驱节点时，用 &lt;code&gt;prev = dummy&lt;/code&gt; 而不是创建新的虚拟节点&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;链表反转、两两交换、删除节点等&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;需要记录前驱节点时，用 &lt;code&gt;prev = dummy&lt;/code&gt; 而不是创建新的虚拟节点&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;链表排序归并快排等&#34;&gt;链表排序（归并/快排等）
 &lt;/h3&gt;&lt;h3 id=&#34;链表高频技巧&#34;&gt;链表高频技巧
 &lt;/h3&gt;&lt;h2 id=&#34;四常用工具类--语法&#34;&gt;四、常用工具类 &amp;amp; 语法
-&lt;/h2&gt;&lt;h3 id=&#34;arrays-工具类&#34;&gt;Arrays 工具类
+&lt;/h2&gt;&lt;h3 id=&#34;arrays-工具类&#34;&gt;&lt;span id=&#34;arrays&#34;&gt;Arrays 工具类&lt;/span&gt;
 &lt;/h3&gt;&lt;h4 id=&#34;数组排序&#34;&gt;数组排序
 &lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -330,7 +344,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id=&#34;collections-工具类&#34;&gt;Collections 工具类
-&lt;/h3&gt;&lt;h4 id=&#34;自定义比较器汇总&#34;&gt;自定义比较器汇总
+&lt;/h3&gt;&lt;h4 id=&#34;自定义比较器汇总&#34;&gt;&lt;span id=&#34;comparator&#34;&gt;自定义比较器汇总&lt;/span&gt;
 &lt;/h4&gt;&lt;h5 id=&#34;lambda-vs-comparator-vs-comparing区别&#34;&gt;Lambda vs Comparator vs comparing区别
 &lt;/h5&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -399,7 +413,7 @@
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Comparable &amp;amp; compareTo（类内部默认排序）&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;类实现 &lt;code&gt;Comparable&amp;lt;T&amp;gt;&lt;/code&gt;，重写 &lt;code&gt;compareTo&lt;/code&gt;，定义&amp;quot;唯一默认排序&amp;quot;&lt;/li&gt;
+&lt;li&gt;类实现 &lt;code&gt;Comparable&amp;lt;T&amp;gt;&lt;/code&gt;，重写 &lt;code&gt;compareTo&lt;/code&gt;，定义“唯一默认排序”&lt;/li&gt;
 &lt;li&gt;调用方式：&lt;code&gt;a.compareTo(b)&lt;/code&gt;；常见于 &lt;code&gt;String&lt;/code&gt;、&lt;code&gt;Integer&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;适用：类有天然唯一顺序（如时间戳、ID、年龄），不需要多种排序&lt;/li&gt;
 &lt;li&gt;只有一个抽象方法：&lt;code&gt;compareTo(T o)&lt;/code&gt;（函数式接口）&lt;/li&gt;
@@ -411,14 +425,12 @@
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Person&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;implements&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Comparable&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Person&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;age&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;compareTo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Person&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;age&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;age&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Collections&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;sort&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;personList&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 按年龄升序&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
@@ -499,7 +511,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Integer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[]&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nums&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;List&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Integer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fixed&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Arrays&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;asList&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nums&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;              &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 长度固定，不可 add/remove&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;List&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Integer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mutable&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ArrayList&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Arrays&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;asList&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;nums&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 可变列表&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;List&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Integer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;immutable&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;List&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;of&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;                  &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// JDK9+ 不可变，add/remove会抛异常&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;List&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Integer&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;immutable&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;List&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;of&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;                  &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// JDK9+ 不可变，add/remove 会抛异常&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id=&#34;math-工具类&#34;&gt;Math 工具类

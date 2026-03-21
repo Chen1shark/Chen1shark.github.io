@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Java 基础用法 一、集合框架（算法高频） List 相关 List排序 详见：自定义比较器汇总\nSet 相关 Map 相关 优先级队列（PriorityQueue） 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 // 最小堆 PriorityQueue&lt;Integer&gt; minHeap = new PriorityQueue&lt;&gt;(); // 最大堆 PriorityQueue&lt;Integer&gt; maxHeap = new PriorityQueue&lt;&gt;((a, b) -&gt; b - a); // 自定义对象比较器 PriorityQueue&lt;Node&gt; pq = new PriorityQueue&lt;&gt;(new Comparator&lt;int[]&gt;() { @Override public int compare(int[] a, int[] b) { // 按数组的首位升序 return a[0] - b[0]; } }); // 或者用Lambda PriorityQueue&lt;Node&gt; pq = new PriorityQueue&lt;&gt;((a, b) -&gt; a.priority - b.priority); 二、数组 &amp; 二维数组 数组常用操作 二维数组常用操作 数组排序（含自定义比较器） 详见：自定义比较器汇总 和 Arrays工具类\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Spring 技术栈学习笔记">
 <title>Chen1shark 的技术博客</title>
 
 <link rel='canonical' href='http://localhost:1313/p/'>
 
 <link rel="stylesheet" href="/scss/style.min.86591c898bd806857815fbb8c47e8d3fed97c133b78e83d9bfc27b164dd0aa2b.css"><meta property='og:title' content="Chen1shark 的技术博客">
-<meta property='og:description' content="Java 基础用法 一、集合框架（算法高频） List 相关 List排序 详见：自定义比较器汇总\nSet 相关 Map 相关 优先级队列（PriorityQueue） 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 // 最小堆 PriorityQueue&lt;Integer&gt; minHeap = new PriorityQueue&lt;&gt;(); // 最大堆 PriorityQueue&lt;Integer&gt; maxHeap = new PriorityQueue&lt;&gt;((a, b) -&gt; b - a); // 自定义对象比较器 PriorityQueue&lt;Node&gt; pq = new PriorityQueue&lt;&gt;(new Comparator&lt;int[]&gt;() { @Override public int compare(int[] a, int[] b) { // 按数组的首位升序 return a[0] - b[0]; } }); // 或者用Lambda PriorityQueue&lt;Node&gt; pq = new PriorityQueue&lt;&gt;((a, b) -&gt; a.priority - b.priority); 二、数组 &amp; 二维数组 数组常用操作 二维数组常用操作 数组排序（含自定义比较器） 详见：自定义比较器汇总 和 Arrays工具类\n">
+<meta property='og:description' content="Spring 技术栈学习笔记">
 <meta property='og:url' content='http://localhost:1313/p/'>
 <meta property='og:site_name' content='Chen1shark 的技术博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-03-13T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-03-21T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="Chen1shark 的技术博客">
-<meta name="twitter:description" content="Java 基础用法 一、集合框架（算法高频） List 相关 List排序 详见：自定义比较器汇总\nSet 相关 Map 相关 优先级队列（PriorityQueue） 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 // 最小堆 PriorityQueue&lt;Integer&gt; minHeap = new PriorityQueue&lt;&gt;(); // 最大堆 PriorityQueue&lt;Integer&gt; maxHeap = new PriorityQueue&lt;&gt;((a, b) -&gt; b - a); // 自定义对象比较器 PriorityQueue&lt;Node&gt; pq = new PriorityQueue&lt;&gt;(new Comparator&lt;int[]&gt;() { @Override public int compare(int[] a, int[] b) { // 按数组的首位升序 return a[0] - b[0]; } }); // 或者用Lambda PriorityQueue&lt;Node&gt; pq = new PriorityQueue&lt;&gt;((a, b) -&gt; a.priority - b.priority); 二、数组 &amp; 二维数组 数组常用操作 二维数组常用操作 数组排序（含自定义比较器） 详见：自定义比较器汇总 和 Arrays工具类\n">
+<meta name="twitter:description" content="Spring 技术栈学习笔记">
     <link rel="shortcut icon" href="/favicon.ico" />
 
     </head>
@@ -323,6 +323,24 @@
 
     <div class="article-details">
     
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/spring/" style="background-color: hsl(116, 60%, 84%); color: hsl(116, 60%, 15%);">
+                Spring
+            </a>
+        
+            
+            
+            
+            <a href="/categories/java/" style="background-color: hsl(109, 60%, 84%); color: hsl(109, 60%, 15%);">
+                Java
+            </a>
+        
+    </header>
+    
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
@@ -330,11 +348,34 @@
         </h2>
     
         
+        <h3 class="article-subtitle">
+            Spring 技术栈学习笔记
+        </h3>
+        
     </div>
 
     
     
     
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-03-13T00:00:00Z'>2026-03-13</time>
+            </div>
+        
+
+        
+    </footer>
     
 
     
@@ -863,7 +904,19 @@
     <footer class="article-footer">
     
 
-    </footer>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2026-03-21
+        </span>
+    </section></footer>
 
 
     
@@ -872,6 +925,28 @@
     
 
     
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/spring/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Spring</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
 
      
     
