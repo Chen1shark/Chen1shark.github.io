@@ -8,14 +8,6 @@
         <language>en-us</language>
         <copyright>Chen1shark</copyright>
         <lastBuildDate>Sat, 21 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>Java</title>
-        <link>http://localhost:1313/categories/java/</link>
-        <pubDate>Sat, 21 Mar 2026 00:00:00 +0000</pubDate>
-        
-        <guid>http://localhost:1313/categories/java/</guid>
-        <description></description>
-        </item>
-        <item>
         <title>Spring</title>
         <link>http://localhost:1313/categories/spring/</link>
         <pubDate>Sat, 21 Mar 2026 00:00:00 +0000</pubDate>
@@ -24,11 +16,11 @@
         <description></description>
         </item>
         <item>
-        <title>算法</title>
-        <link>http://localhost:1313/categories/%E7%AE%97%E6%B3%95/</link>
-        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        <title>Java</title>
+        <link>http://localhost:1313/categories/java/</link>
+        <pubDate>Fri, 20 Mar 2026 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/categories/%E7%AE%97%E6%B3%95/</guid>
+        <guid>http://localhost:1313/categories/java/</guid>
         <description></description>
         </item>
         
