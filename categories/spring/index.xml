@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Spring on Chen1shark 的技术博客</title>
+        <link>http://localhost:1313/categories/spring/</link>
+        <description>Recent content in Spring on Chen1shark 的技术博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>Chen1shark</copyright>
+        <lastBuildDate>Fri, 21 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/spring/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Spring</title>
+        <link>http://localhost:1313/p/spring/</link>
+        <pubDate>Fri, 21 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/p/spring/</guid>
+        <description>&lt;h1 id=&#34;spring-体系&#34;&gt;Spring 体系
+&lt;/h1&gt;&lt;h2 id=&#34;spring-核心&#34;&gt;Spring 核心
+&lt;/h2&gt;&lt;h3 id=&#34;核心概念&#34;&gt;核心概念
+&lt;/h3&gt;&lt;h4 id=&#34;spring-bean-核心定义&#34;&gt;Spring Bean 核心定义
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;Spring Bean&lt;/strong&gt; 是指由 Spring IoC 容器负责生命周期管理的对象。这些对象通过配置（如注解 &lt;code&gt;@Component&lt;/code&gt;、&lt;code&gt;@Service&lt;/code&gt;，或 XML/JavaConfig）被注册到容器中，由容器完成实例化、依赖注入（DI）、初始化、使用和销毁的全过程。&lt;/p&gt;
+&lt;p&gt;所有业务组件，比如 Controller、Service、Repository 等，本质上都是 &lt;strong&gt;Spring Bean&lt;/strong&gt;。它们之间的依赖关系不是硬编码 &lt;code&gt;new&lt;/code&gt; 出来的，而是由容器自动装配，从而实现控制反转（IoC）和松耦合。&lt;/p&gt;
+&lt;p&gt;简单说：&lt;strong&gt;Bean = 对象 + 生命周期 + 依赖关系，全部交给 Spring 容器管理。&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;spring-bean-的核心特性&#34;&gt;Spring Bean 的核心特性
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;容器托管&lt;/strong&gt;：生命周期完全由 Spring IoC 容器控制，无需开发者手动创建和销毁&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;依赖注入&lt;/strong&gt;：Bean间依赖由容器自动装配，降低组件耦合度&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;配置灵活&lt;/strong&gt;：支持 注解、XML、JavaConfig等多种配置方式定义 Bean&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;可扩展&lt;/strong&gt;：支持生命周期回调、后置处理器等自定义扩展逻辑&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;bean-的生命周期&#34;&gt;Bean 的生命周期
+&lt;/h4&gt;&lt;h5 id=&#34;1-实例化&#34;&gt;1. 实例化
+&lt;/h5&gt;&lt;p&gt;容器通过反射创建 Bean 实例（调用构造方法）；&lt;/p&gt;
+&lt;h5 id=&#34;2-属性填充&#34;&gt;2. 属性填充
+&lt;/h5&gt;&lt;p&gt;为 Bean 注入依赖（如 &lt;code&gt;@Autowired&lt;/code&gt;、setter 注入、构造器注入）；&lt;/p&gt;
+&lt;h5 id=&#34;3-初始化核心阶段&#34;&gt;3. 初始化（核心阶段）
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;执行 Aware 接口方法（如 &lt;code&gt;BeanNameAware&lt;/code&gt;、&lt;code&gt;BeanFactoryAware&lt;/code&gt;）；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;执行 &lt;code&gt;BeanPostProcessor&lt;/code&gt; 前置处理（&lt;code&gt;postProcessBeforeInitialization&lt;/code&gt;）；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;执行初始化方法（&lt;code&gt;@PostConstruct&lt;/code&gt; → &lt;code&gt;InitializingBean.afterPropertiesSet()&lt;/code&gt; → 自定义 &lt;code&gt;init-method&lt;/code&gt;）；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;执行 &lt;code&gt;BeanPostProcessor&lt;/code&gt; 后置处理（&lt;code&gt;postProcessAfterInitialization&lt;/code&gt;）；&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;4-使用&#34;&gt;4. 使用
+&lt;/h5&gt;&lt;h5 id=&#34;5-销毁&#34;&gt;5. 销毁
+&lt;/h5&gt;&lt;p&gt;容器关闭时，执行销毁方法（&lt;code&gt;@PreDestroy&lt;/code&gt; → &lt;code&gt;DisposableBean.destroy()&lt;/code&gt; → 自定义 &lt;code&gt;destroy-method&lt;/code&gt;）。&lt;/p&gt;
+&lt;h3 id=&#34;ioc-容器&#34;&gt;IoC 容器
+&lt;/h3&gt;&lt;h3 id=&#34;面向切面编程&#34;&gt;面向切面编程
+&lt;/h3&gt;&lt;h2 id=&#34;springboot&#34;&gt;SpringBoot
+&lt;/h2&gt;&lt;h3 id=&#34;springboot-核心特性-三级标题&#34;&gt;SpringBoot 核心特性 （三级标题）
+&lt;/h3&gt;&lt;h4 id=&#34;自动配置autoconfiguration&#34;&gt;自动配置（AutoConfiguration）
+&lt;/h4&gt;&lt;h4 id=&#34;起步依赖starter&#34;&gt;起步依赖（Starter）
+&lt;/h4&gt;&lt;h4 id=&#34;嵌入式容器tomcatjetty&#34;&gt;嵌入式容器（Tomcat/Jetty）
+&lt;/h4&gt;&lt;h3 id=&#34;springboot-中-bean-的生命周期-三级标题结合boot的特殊点&#34;&gt;SpringBoot 中 Bean 的生命周期 （三级标题：结合Boot的特殊点）
+&lt;/h3&gt;&lt;h3 id=&#34;springboot-开发实战&#34;&gt;SpringBoot 开发实战
+&lt;/h3&gt;&lt;h4 id=&#34;快速搭建项目&#34;&gt;快速搭建项目
+&lt;/h4&gt;&lt;h4 id=&#34;配置文件applicationymlproperties&#34;&gt;配置文件（application.yml/properties）
+&lt;/h4&gt;</description>
+        </item>
+        
+    </channel>
+</rss>
