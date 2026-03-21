@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Java on Chen1shark 的一坨笔记</title>
-        <link>https://Chen1shark.github.io/categories/java/</link>
+        <link>http://localhost:1313/categories/java/</link>
         <description>Recent content in Java on Chen1shark 的一坨笔记</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>Chen1shark</copyright>
-        <lastBuildDate>Sat, 21 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://Chen1shark.github.io/categories/java/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 21 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/java/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Java基础用法</title>
-        <link>https://Chen1shark.github.io/p/java-basics/</link>
+        <link>http://localhost:1313/p/java-basics/</link>
         <pubDate>Sat, 21 Mar 2026 00:00:00 +0000</pubDate>
         
-        <guid>https://Chen1shark.github.io/p/java-basics/</guid>
+        <guid>http://localhost:1313/p/java-basics/</guid>
         <description>&lt;h1 id=&#34;java-基础用法&#34;&gt;Java 基础用法
 &lt;/h1&gt;&lt;h2 id=&#34;一集合框架算法高频&#34;&gt;一、集合框架（算法高频）
 &lt;/h2&gt;&lt;h3 id=&#34;list-相关&#34;&gt;List 相关

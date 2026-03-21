@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
-    <head><meta charset='utf-8'>
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Java 算法刷题基础语法与常用工具类速查笔记">
 <title>Java基础用法</title>
 
-<link rel='canonical' href='https://Chen1shark.github.io/p/java-basics/'>
+<link rel='canonical' href='http://localhost:1313/p/java-basics/'>
 
 <link rel="stylesheet" href="/scss/style.min.86591c898bd806857815fbb8c47e8d3fed97c133b78e83d9bfc27b164dd0aa2b.css"><meta property='og:title' content="Java基础用法">
 <meta property='og:description' content="Java 算法刷题基础语法与常用工具类速查笔记">
-<meta property='og:url' content='https://Chen1shark.github.io/p/java-basics/'>
+<meta property='og:url' content='http://localhost:1313/p/java-basics/'>
 <meta property='og:site_name' content='Chen1shark 的一坨笔记'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-03-21T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-03-21T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="Java基础用法">
@@ -946,7 +946,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.c922af694cc257bf1ecc41c0dd7b0430f9114ec280ccf67cd2c6ad55f5316c4e.js" defer></script>
+            </script><script type="text/javascript" src="/ts/main.23187c9e10e2dd8b5dcdf101dbaef779ec71560aa497dbe0c502c13aa0c3e22b.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');
@@ -958,6 +958,78 @@
         document.head.appendChild(customFont);
     }());
 </script>
+<script>
+    
 
+
+    
+    
+    const live2d_path = 'https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0-rc.6/dist/';
+    
+    const cssPath = "http://localhost:1313/waifu/waifu.css"
+    const tipsJsonPath = "http://localhost:1313/waifu/waifu-tips.json"
+
+    
+    
+    function loadExternalResource(url, type) {
+    return new Promise((resolve, reject) => {
+        let tag;
+
+        if (type === 'css') {
+        tag = document.createElement('link');
+        tag.rel = 'stylesheet';
+        tag.href = url;
+        }
+        else if (type === 'js') {
+        tag = document.createElement('script');
+        tag.type = 'module';
+        tag.src = url;
+        }
+        if (tag) {
+        tag.onload = () => resolve(url);
+        tag.onerror = () => reject(url);
+        document.head.appendChild(tag);
+        }
+    });
+    }
+
+    (async () => {
+    
+    
+    
+
+    
+    
+    const OriginalImage = window.Image;
+    window.Image = function(...args) {
+        const img = new OriginalImage(...args);
+        img.crossOrigin = "anonymous";
+        return img;
+    };
+    window.Image.prototype = OriginalImage.prototype;
+    
+    
+    await Promise.all([
+        loadExternalResource(cssPath, 'css'),
+        loadExternalResource(live2d_path + 'waifu-tips.js', 'js')
+    ]);
+    
+    
+    initWidget({
+        waifuPath: tipsJsonPath,
+        
+        cubism2Path: live2d_path + 'live2d.min.js',
+        cubism5Path: 'https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js',
+        tools: ['hitokoto', 'asteroids', 'switch-model', 'switch-texture', 'photo', 'info', 'quit'],
+        logLevel: 'warn',
+        drag: false,
+    });
+    })();
+
+    console.log(`\n%cLive2D%cWidget%c\n`, 'padding: 8px; background: #cd3e45; font-weight: bold; font-size: large; color: white;', 'padding: 8px; background: #ff5450; font-size: large; color: #eee;', '');
+
+    
+
+</script>
     </body>
 </html>
