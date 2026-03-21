@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>Spring on Chen1shark 的技术博客</title>
+        <title>Spring on Chen1shark 的一坨笔记</title>
         <link>https://Chen1shark.github.io/categories/spring/</link>
-        <description>Recent content in Spring on Chen1shark 的技术博客</description>
+        <description>Recent content in Spring on Chen1shark 的一坨笔记</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>Chen1shark</copyright>
