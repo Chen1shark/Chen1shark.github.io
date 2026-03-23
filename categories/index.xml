@@ -7,10 +7,18 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>Chen1shark</copyright>
-        <lastBuildDate>Mon, 23 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 24 Mar 2026 00:00:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Recruitment</title>
+        <link>http://localhost:1313/categories/recruitment/</link>
+        <pubDate>Tue, 24 Mar 2026 00:00:00 +0800</pubDate>
+        
+        <guid>http://localhost:1313/categories/recruitment/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Java</title>
         <link>http://localhost:1313/categories/java/</link>
-        <pubDate>Sat, 21 Mar 2026 00:00:00 +0000</pubDate>
+        <pubDate>Sat, 21 Mar 2026 00:00:00 +0800</pubDate>
         
         <guid>http://localhost:1313/categories/java/</guid>
         <description></description>
@@ -18,7 +26,7 @@
         <item>
         <title>Spring</title>
         <link>http://localhost:1313/categories/spring/</link>
-        <pubDate>Sat, 21 Mar 2026 00:00:00 +0000</pubDate>
+        <pubDate>Sat, 21 Mar 2026 00:00:00 +0800</pubDate>
         
         <guid>http://localhost:1313/categories/spring/</guid>
         <description></description>

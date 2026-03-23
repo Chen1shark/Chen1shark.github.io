@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="后端一面面试总结，重点涵盖 Java 线程池参数与优化、String 不可变性、泛型擦除机制、本地缓存与 Redis 对比，以及常用的 Linux 网络检测指令。">
+<title>后端一面_线程池_String_泛型_缓存_Linux</title>
+
+<link rel='canonical' href='http://localhost:1313/p/backend-interview-threadpool-string-generics-cache-linux/'>
+
+<link rel="stylesheet" href="/scss/style.min.900a64d3a36c9f33519ef1058ebc84ab68513b898835839f0f8ea080d6eeb5b7.css"><meta property='og:title' content="后端一面_线程池_String_泛型_缓存_Linux">
+<meta property='og:description' content="后端一面面试总结，重点涵盖 Java 线程池参数与优化、String 不可变性、泛型擦除机制、本地缓存与 Redis 对比，以及常用的 Linux 网络检测指令。">
+<meta property='og:url' content='http://localhost:1313/p/backend-interview-threadpool-string-generics-cache-linux/'>
+<meta property='og:site_name' content='Chen1shark 的一坨笔记'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-03-24T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2026-03-24T00:00:00&#43;08:00'/>
+<meta name="twitter:title" content="后端一面_线程池_String_泛型_缓存_Linux">
+<meta name="twitter:description" content="后端一面面试总结，重点涵盖 Java 线程池参数与优化、String 不可变性、泛型擦除机制、本地缓存与 Redis 对比，以及常用的 Linux 网络检测指令。">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_43a4d95c40a44c26.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Chen1shark 的一坨笔记</a></h1>
+            <h2 class="site-description">欢迎来到我的技术博客</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/Chen1shark/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/categories/java/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-coffee"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 14c.83 .642 2.077 1.017 3.5 1c1.423 .017 2.67 -.358 3.5 -1c.83 -.642 2.077 -1.017 3.5 -1c1.423 -.017 2.67 .358 3.5 1" /><path d="M8 3a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2" /><path d="M12 3a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2" /><path d="M3 10h14v5a6 6 0 0 1 -6 6h-2a6 6 0 0 1 -6 -6v-5" /><path d="M16.746 16.726a3 3 0 1 0 .252 -5.555" /></svg>
+                
+                <span>Java</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/categories/spring/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-leaf"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 21c.5 -4.5 2.5 -8 7 -10" /><path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0" /></svg>
+                
+                <span>Spring</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/categories/recruitment/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-writing-sign"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 19c3.333 -2 5 -4 5 -6c0 -3 -1 -3 -2 -3s-2.032 1.085 -2 3c.034 2.048 1.658 2.877 2.5 4c1.5 2 2.5 2.5 3.5 1c.667 -1 1.167 -1.833 1.5 -2.5c1 2.333 2.333 3.5 4 3.5h2.5" /><path d="M20 17v-12c0 -1.121 -.879 -2 -2 -2s-2 .879 -2 2v12l2 2l2 -2" /><path d="M16 7h4" /></svg>
+                
+                <span>Recruitment</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#java-相关">Java 相关</a>
+      <ol>
+        <li><a href="#线程池">线程池</a>
+          <ol>
+            <li><a href="#线程池-7-个核心参数">线程池 7 个核心参数</a></li>
+            <li><a href="#线程池任务堆积队列过大的解决方式">线程池任务堆积、队列过大的解决方式</a></li>
+            <li><a href="#扩大内存能否解决线程池问题">扩大内存能否解决线程池问题</a></li>
+            <li><a href="#如何让线程池任务运行更快">如何让线程池任务运行更快</a></li>
+          </ol>
+        </li>
+        <li><a href="#string-相关">String 相关</a>
+          <ol>
+            <li><a href="#string-为什么不可变">String 为什么不可变</a></li>
+            <li><a href="#string-能通过反射获取并修改底层数组吗">String 能通过反射获取并修改底层数组吗</a></li>
+          </ol>
+        </li>
+        <li><a href="#泛型">泛型</a>
+          <ol>
+            <li><a href="#泛型擦除">泛型擦除</a></li>
+            <li><a href="#泛型在编译和运行阶段的处理">泛型在编译和运行阶段的处理</a></li>
+          </ol>
+        </li>
+        <li><a href="#缓存相关">缓存相关</a>
+          <ol>
+            <li><a href="#使用-hashmap-实现本地缓存">使用 HashMap 实现本地缓存</a></li>
+            <li><a href="#本地缓存与-redis-缓存优缺点对比">本地缓存与 Redis 缓存优缺点对比</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#linux-相关">Linux 相关</a>
+      <ol>
+        <li><a href="#网络检测指令">网络检测指令</a>
+          <ol>
+            <li><a href="#查看网络接口与-ip-信息">查看网络接口与 IP 信息</a></li>
+            <li><a href="#测试网络连通性">测试网络连通性</a></li>
+            <li><a href="#查看端口与连接状态">查看端口与连接状态</a></li>
+            <li><a href="#跟踪网络路由">跟踪网络路由</a></li>
+            <li><a href="#检测-dns-解析">检测 DNS 解析</a></li>
+            <li><a href="#监控带宽占用">监控带宽占用</a></li>
+            <li><a href="#查看防火墙规则">查看防火墙规则</a></li>
+            <li><a href="#其他实用指令">其他实用指令</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/recruitment/" style="background-color: hsl(353, 60%, 84%); color: hsl(353, 60%, 15%);">
+                Recruitment
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/backend-interview-threadpool-string-generics-cache-linux/">后端一面_线程池_String_泛型_缓存_Linux</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            后端一面面试总结，重点涵盖 Java 线程池参数与优化、String 不可变性、泛型擦除机制、本地缓存与 Redis 对比，以及常用的 Linux 网络检测指令。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-03-24T00:00:00&#43;08:00'>2026-03-24</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="java-相关">Java 相关
+</h2><h3 id="线程池">线程池
+</h3><h4 id="线程池-7-个核心参数">线程池 7 个核心参数
+</h4><ol>
+<li><code>corePoolSize</code>：核心线程数。</li>
+<li><code>maximumPoolSize</code>：最大线程数。</li>
+<li><code>keepAliveTime</code>：非核心线程的闲置超时时间。</li>
+<li><code>unit</code>：<code>keepAliveTime</code> 的时间单位。</li>
+<li><code>workQueue</code>：任务阻塞队列。</li>
+<li><code>threadFactory</code>：用于创建线程的工厂。</li>
+<li><code>handler</code>：拒绝策略，当任务队列已满且线程数达到最大时执行。</li>
+</ol>
+<h4 id="线程池任务堆积队列过大的解决方式">线程池任务堆积、队列过大的解决方式
+</h4><ul>
+<li><strong>扩容线程池</strong>：适当调大 <code>maximumPoolSize</code>（需结合 CPU 核心数，避免线程过多导致上下文切换开销）。</li>
+<li><strong>优化队列</strong>：使用有界队列（如 <code>ArrayBlockingQueue</code>）并设置合理容量，配合合适的拒绝策略（如 <code>CallerRunsPolicy</code>，让提交者线程自己执行任务，从而减慢任务提交速度）。</li>
+<li><strong>任务降级</strong>：在任务量过大时，非核心任务可以降级处理，例如记录日志后续补偿，而不是直接进入线程池。</li>
+<li><strong>优化任务处理效率</strong>：简化任务逻辑，将 IO 密集型操作异步化，减少单个任务的执行时间。</li>
+<li><strong>监控告警</strong>：实时监控队列长度、任务执行耗时等指标，超过阈值时触发告警或动态扩容。</li>
+</ul>
+<h4 id="扩大内存能否解决线程池问题">扩大内存能否解决线程池问题
+</h4><p>扩大内存<strong>不能</strong>从根本上解决线程池任务执行慢和堆积问题。</p>
+<ul>
+<li><strong>任务执行慢</strong>：核心原因通常是线程资源不足、任务本身耗时（如 IO 阻塞、CPU 密集型计算）或依赖的外部服务响应慢，这与内存大小无直接关系。</li>
+<li><strong>任务堆积</strong>：本质是任务提交速度超过处理速度。扩大内存仅能让阻塞队列容纳更多任务，治标不治本，最终仍会耗尽内存或触发拒绝策略。</li>
+</ul>
+<p><strong>正确思路</strong>：应从优化任务效率（异步化、减少锁竞争）、合理配置线程池参数（如根据任务类型调整核心/最大线程数）、引入限流削峰等角度解决。</p>
+<h4 id="如何让线程池任务运行更快">如何让线程池任务运行更快
+</h4><p>核心是提升<strong>单任务执行效率</strong>和<strong>优化线程池资源利用率</strong>。</p>
+<ul>
+<li><strong>优化任务本身</strong>
+<ul>
+<li>减少任务内阻塞，如使用 NIO 或异步 IO 替代同步阻塞 IO。</li>
+<li>避免或优化锁竞争，如缩小锁粒度、使用 <code>ConcurrentHashMap</code> 或 <code>CAS</code> 操作替代 <code>synchronized</code>。</li>
+<li>将长任务拆分为多个并行的短任务。</li>
+</ul>
+</li>
+<li><strong>提升线程利用率</strong>
+<ul>
+<li>按任务类型隔离线程池，例如将 CPU 密集型和 IO 密集型任务分配到不同的线程池，避免互相影响。</li>
+<li>合理设置 <code>keepAliveTime</code>，避免线程频繁创建和销毁。</li>
+<li>使用 <code>ThreadLocal</code> 缓存线程私有资源（如 <code>SimpleDateFormat</code>），减少重复创建开销。</li>
+</ul>
+</li>
+<li><strong>利用硬件资源</strong>
+<ul>
+<li>对于计算密集型任务，可适当增加线程数以利用多核 CPU。</li>
+<li>使用本地缓存（如 Caffeine、Guava Cache）减少重复计算或远程调用。</li>
+</ul>
+</li>
+</ul>
+<h3 id="string-相关">String 相关
+</h3><h4 id="string-为什么不可变">String 为什么不可变
+</h4><p><code>String</code> 被设计为不可变（Immutable）主要是为了<strong>效率</strong>和<strong>安全</strong>。</p>
+<ul>
+<li><strong>字符串常量池（String Pool）</strong>：Java 中大量 <code>String</code> 对象可以被复用。如果 <code>String</code> 可变，修改一个 <code>String</code> 会影响所有引用它的地方，常量池将失去意义。</li>
+<li><strong>线程安全</strong>：不可变对象天然是线程安全的，无需额外同步措施即可在多线程环境中共享。</li>
+<li><strong>适用于 <code>HashMap</code> 的 Key</strong>：<code>String</code> 常被用作 <code>HashMap</code> 的键。如果 <code>String</code> 可变，其 <code>hashCode()</code> 值可能改变，导致无法在 <code>HashMap</code> 中正确定位到原来的值。</li>
+<li><strong>安全性</strong>：在网络连接、文件路径等场景，如果 <code>String</code> 可变，可能在安全校验通过后被恶意修改，引发安全漏洞。</li>
+</ul>
+<h4 id="string-能通过反射获取并修改底层数组吗">String 能通过反射获取并修改底层数组吗
+</h4><p><strong>可以</strong>。尽管 <code>String</code> 的底层数组（JDK 9 前为 <code>char[]</code>，后为 <code>byte[]</code>）是 <code>private final</code> 的，但通过反射可以绕过这些限制。</p>
+<ol>
+<li><strong>获取 <code>value</code> 字段</strong>：使用 <code>String.class.getDeclaredField(&quot;value&quot;)</code> 获取私有字段。</li>
+<li><strong>破解访问限制</strong>：调用 <code>field.setAccessible(true)</code> 来允许访问私有成员。</li>
+<li><strong>修改数组内容</strong>：获取底层数组引用后，直接修改其元素。这会导致所有共享该 <code>String</code> 对象的地方（包括字符串常量池）都受到影响。</li>
+</ol>
+
+<blockquote class="alert alert-caution">
+  <p>这种行为严重破坏了 <code>String</code> 的不可变性设计，可能导致整个应用出现无法预料的错误，<strong>严禁在生产代码中使用</strong>。</p>
+</blockquote>
+
+<h3 id="泛型">泛型
+</h3><h4 id="泛型擦除">泛型擦除
+</h4><p>泛型擦除是 Java 泛型的一种实现机制。它指的是在<strong>编译阶段</strong>，泛型的类型参数信息会被擦除，替换为其原始类型（Raw Type），以兼容 JDK 5 之前的代码。</p>
+<ul>
+<li><strong>编译时</strong>：编译器会检查泛型的类型约束。例如，<code>List&lt;String&gt;</code> 中只能添加 <code>String</code>。同时，编译器会将类型参数 <code>T</code> 替换为它的上界（如 <code>T extends Number</code> 替换为 <code>Number</code>），如果没有指定上界则替换为 <code>Object</code>。</li>
+<li><strong>运行时</strong>：JVM 看到的是不带类型参数的原始类型。例如，<code>List&lt;String&gt;</code> 和 <code>List&lt;Integer&gt;</code> 在运行时都被看作是 <code>List</code> 类型。</li>
+</ul>
+<p><strong>带来的影响</strong>：</p>
+<ul>
+<li>编译器会在读取泛型对象的地方自动插入强制类型转换代码，以保证类型安全。</li>
+<li>为了解决类型擦除后多态方法签名不匹配的问题，编译器会生成<strong>桥接方法</strong>（Bridge Method）。</li>
+<li>基本类型（如 <code>int</code>）不能作为泛型参数，必须使用其包装类（如 <code>Integer</code>）。</li>
+</ul>
+<h4 id="泛型在编译和运行阶段的处理">泛型在编译和运行阶段的处理
+</h4><p>简单来说，泛型是 “<strong>编译时很具体，运行时很模糊</strong>”。</p>
+<ul>
+<li><strong>编译阶段</strong>：编译器严格执行类型检查。当你写 <code>List&lt;String&gt; list = new ArrayList&lt;&gt;();</code> 并尝试 <code>list.add(123);</code> 时，编译器会报错。</li>
+<li><strong>编译后</strong>：泛型信息被擦除，<code>List&lt;String&gt;</code> 变成 <code>List</code>。同时，编译器会在 <code>list.get(0)</code> 这类读取操作处自动插入 <code>(String)</code> 强制转换。</li>
+<li><strong>运行阶段</strong>：JVM 只知道这是一个 <code>List</code>，但由于编译器已经保证了存入的都是 <code>String</code>，并且在读取时进行了类型转换，因此在功能上是类型安全的。</li>
+</ul>
+<h3 id="缓存相关">缓存相关
+</h3><h4 id="使用-hashmap-实现本地缓存">使用 HashMap 实现本地缓存
+</h4><p>直接使用 <code>HashMap</code> 作为本地缓存是最简单的方式，但功能非常有限，存在明显缺点：</p>
+<ul>
+<li><strong>无过期策略</strong>：缓存项会永久存储在内存中，除非手动移除，否则可能导致内存泄漏（OOM）。</li>
+<li><strong>无淘汰策略</strong>：当缓存达到容量上限时，无法自动淘汰旧的或不常用的缓存项。</li>
+<li><strong>线程不安全</strong>：在多线程环境下直接使用 <code>HashMap</code> 会有并发问题，需要使用 <code>ConcurrentHashMap</code> 代替。</li>
+</ul>
+
+<blockquote class="alert alert-tip">
+  <p>在生产环境中，推荐使用成熟的本地缓存框架，如 <strong>Caffeine</strong> 或 <strong>Guava Cache</strong>。它们提供了丰富的过期策略（基于时间、大小、引用）、淘汰算法（如 LRU、LFU）和统计功能。</p>
+</blockquote>
+
+<h4 id="本地缓存与-redis-缓存优缺点对比">本地缓存与 Redis 缓存优缺点对比
+</h4><h5 id="本地缓存local-cache">本地缓存（Local Cache）
+</h5><ul>
+<li><strong>优点</strong>
+<ul>
+<li><strong>极致性能</strong>：数据在应用进程内存中，无网络 IO，延迟极低（微秒级）。</li>
+<li><strong>实现简单</strong>：无需部署额外服务，易于集成。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>
+<ul>
+<li><strong>存储受限</strong>：受单个应用实例的内存限制，无法缓存大量数据。</li>
+<li><strong>数据不一致</strong>：在分布式环境中，各实例的缓存独立，难以保证数据一致性。</li>
+<li><strong>缺乏分布式特性</strong>：不支持跨服务共享、分布式锁等功能。</li>
+</ul>
+</li>
+</ul>
+<h5 id="redis-缓存分布式缓存">Redis 缓存（分布式缓存）
+</h5><ul>
+<li><strong>优点</strong>
+<ul>
+<li><strong>分布式共享</strong>：作为独立服务，可被多应用实例共享，保证数据一致性。</li>
+<li><strong>大容量存储</strong>：可独立扩容，支持海量数据存储。</li>
+<li><strong>功能丰富</strong>：支持持久化、多种数据结构、发布订阅、分布式锁等高级功能。</li>
+<li><strong>高可用</strong>：可通过主从、哨兵、集群模式实现高可用。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>
+<ul>
+<li><strong>性能开销</strong>：依赖网络 IO，访问延迟比本地缓存高（毫秒级）。</li>
+<li><strong>部署维护成本</strong>：需要独立部署和监控，增加了系统复杂度。</li>
+</ul>
+</li>
+</ul>
+<h2 id="linux-相关">Linux 相关
+</h2><h3 id="网络检测指令">网络检测指令
+</h3><h4 id="查看网络接口与-ip-信息">查看网络接口与 IP 信息
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ip addr show              <span class="c1"># 显示所有网络接口及 IP 配置（推荐）</span>
+</span></span><span class="line"><span class="cl">hostname -I               <span class="c1"># 快速列出本机所有 IP 地址</span>
+</span></span><span class="line"><span class="cl">ifconfig                  <span class="c1"># 查看所有网卡信息（部分系统需安装 net-tools）</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="测试网络连通性">测试网络连通性
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ping baidu.com            <span class="c1"># 检测与目标的连通性</span>
+</span></span><span class="line"><span class="cl">ping -c <span class="m">4</span> baidu.com       <span class="c1"># 发送 4 个包后停止</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="查看端口与连接状态">查看端口与连接状态
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ss -tulnp                 <span class="c1"># 查看所有监听的 TCP/UDP 端口及进程（推荐）</span>
+</span></span><span class="line"><span class="cl">netstat -tulnp            <span class="c1"># 功能类似 ss，旧工具</span>
+</span></span><span class="line"><span class="cl">lsof -i :8080             <span class="c1"># 查看指定端口（如 8080）的占用情况</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="跟踪网络路由">跟踪网络路由
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">traceroute baidu.com      <span class="c1"># 追踪到目标的路由路径</span>
+</span></span><span class="line"><span class="cl">mtr baidu.com             <span class="c1"># 结合了 ping 和 traceroute 的功能，持续监控</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="检测-dns-解析">检测 DNS 解析
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">nslookup github.com       <span class="c1"># 查询域名对应的 IP</span>
+</span></span><span class="line"><span class="cl">dig www.baidu.com         <span class="c1"># 提供详细的 DNS 解析信息</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="监控带宽占用">监控带宽占用
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">iftop                     <span class="c1"># 实时显示各连接的带宽使用（需安装）</span>
+</span></span><span class="line"><span class="cl">nload eth0                <span class="c1"># 图形化显示指定网卡的实时流量（需安装）</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="查看防火墙规则">查看防火墙规则
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># CentOS/RHEL 系统</span>
+</span></span><span class="line"><span class="cl">firewall-cmd --list-all
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Ubuntu/Debian 系统</span>
+</span></span><span class="line"><span class="cl">ufw status
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 通用底层规则</span>
+</span></span><span class="line"><span class="cl">iptables -L -n
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="其他实用指令">其他实用指令
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl http://localhost:8080  <span class="c1"># 测试 HTTP 服务是否可访问</span>
+</span></span><span class="line"><span class="cl">telnet 192.168.1.1 <span class="m">22</span>       <span class="c1"># 测试指定 IP 和端口是否可达</span>
+</span></span><span class="line"><span class="cl">ip route                    <span class="c1"># 查看路由表（推荐）</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/2025-exam-java-os-algorithm-database-linux/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">2025_笔试总结_Java_操作系统_算法_数据库_Linux</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2026 Chen1shark
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.2">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.23187c9e10e2dd8b5dcdf101dbaef779ec71560aa497dbe0c502c13aa0c3e22b.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<script>
+    
+
+
+    
+    
+    const live2d_path = 'https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0-rc.6/dist/';
+    
+    const cssPath = "/waifu/waifu.css"
+    const tipsJsonPath = "/waifu/waifu-tips.json"
+
+    
+    
+    function loadExternalResource(url, type) {
+    return new Promise((resolve, reject) => {
+        let tag;
+
+        if (type === 'css') {
+        tag = document.createElement('link');
+        tag.rel = 'stylesheet';
+        tag.href = url;
+        }
+        else if (type === 'js') {
+        tag = document.createElement('script');
+        tag.type = 'module';
+        tag.src = url;
+        }
+        if (tag) {
+        tag.onload = () => resolve(url);
+        tag.onerror = () => reject(url);
+        document.head.appendChild(tag);
+        }
+    });
+    }
+
+    (async () => {
+    
+    
+    if (screen.width < 768) return;
+
+    
+    
+    const OriginalImage = window.Image;
+    window.Image = function(...args) {
+        const img = new OriginalImage(...args);
+        img.crossOrigin = "anonymous";
+        return img;
+    };
+    window.Image.prototype = OriginalImage.prototype;
+    
+    
+    await Promise.all([
+        loadExternalResource(cssPath, 'css'),
+        loadExternalResource(live2d_path + 'waifu-tips.js', 'js')
+    ]);
+    
+    
+    initWidget({
+        waifuPath: tipsJsonPath,
+        
+        cubism2Path: live2d_path + 'live2d.min.js',
+        cubism5Path: 'https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js',
+        tools: ['hitokoto', 'asteroids', 'switch-model', 'switch-texture', 'photo', 'info', 'quit'],
+        logLevel: 'warn',
+        drag: false,
+    });
+    })();
+
+    console.log(`\n%cLive2D%cWidget%c\n`, 'padding: 8px; background: #cd3e45; font-weight: bold; font-size: large; color: white;', 'padding: 8px; background: #ff5450; font-size: large; color: #eee;', '');
+
+    
+
+   
+</script>
+    </body>
+</html>

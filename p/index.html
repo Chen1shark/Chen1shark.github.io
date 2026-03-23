@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="\rtitle: Spring description: Spring 技术栈学习笔记 date: 2026-03-21 lastmod: 2026-03-23 categories: - Spring slug: spring-notes Spring 核心 Spring Bean 核心定义 Spring Bean 是指由 Spring IoC 容器负责生命周期管理的对象。这些对象通过配置（如注解 @Component、@Service，或 XML/JavaConfig）被注册到容器中，由容器完成实例化、依赖注入（DI）、初始化、使用和销毁的全过程。\n">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="操作系统 进程 进程运行态转就绪态 虚拟内存和物理内存 页 页框 页表 ::页是页表的管理对象:: 这里的页特指虚拟页，它是进程虚拟地址空间的最小划分单位。页表不是为某一个虚拟页单独存在，而是为整个进程的虚拟地址空间服务，其核心功能就是记录进程中需要映射的虚拟页，分别对应哪一个物理页框。只有存在映射需求的虚拟页，才会在页表中拥有对应的页表项；未使用或被换出的虚拟页，在页表中无有效页表项或标记为无效状态。 ::页表是虚拟页与物理页框的映射桥梁:: 虚拟页本身不对应实际物理存储，必须通过页表的页表项，才能建立与物理页框的关联。页表项中存储的物理页框号，是虚拟页能够被 CPU 访问的关键；同时页表项中的权限位、有效位等字段，还会直接管控虚拟页的访问规则（如可读可写、只读）和映射状态（如已映射、换出到磁盘）。\n">
 <title>Chen1shark 的一坨笔记</title>
 
 <link rel='canonical' href='http://localhost:1313/p/'>
 
-<link rel="stylesheet" href="/scss/style.min.86591c898bd806857815fbb8c47e8d3fed97c133b78e83d9bfc27b164dd0aa2b.css"><meta property='og:title' content="Chen1shark 的一坨笔记">
-<meta property='og:description' content="\rtitle: Spring description: Spring 技术栈学习笔记 date: 2026-03-21 lastmod: 2026-03-23 categories: - Spring slug: spring-notes Spring 核心 Spring Bean 核心定义 Spring Bean 是指由 Spring IoC 容器负责生命周期管理的对象。这些对象通过配置（如注解 @Component、@Service，或 XML/JavaConfig）被注册到容器中，由容器完成实例化、依赖注入（DI）、初始化、使用和销毁的全过程。\n">
+<link rel="stylesheet" href="/scss/style.min.900a64d3a36c9f33519ef1058ebc84ab68513b898835839f0f8ea080d6eeb5b7.css"><meta property='og:title' content="Chen1shark 的一坨笔记">
+<meta property='og:description' content="操作系统 进程 进程运行态转就绪态 虚拟内存和物理内存 页 页框 页表 ::页是页表的管理对象:: 这里的页特指虚拟页，它是进程虚拟地址空间的最小划分单位。页表不是为某一个虚拟页单独存在，而是为整个进程的虚拟地址空间服务，其核心功能就是记录进程中需要映射的虚拟页，分别对应哪一个物理页框。只有存在映射需求的虚拟页，才会在页表中拥有对应的页表项；未使用或被换出的虚拟页，在页表中无有效页表项或标记为无效状态。 ::页表是虚拟页与物理页框的映射桥梁:: 虚拟页本身不对应实际物理存储，必须通过页表的页表项，才能建立与物理页框的关联。页表项中存储的物理页框号，是虚拟页能够被 CPU 访问的关键；同时页表项中的权限位、有效位等字段，还会直接管控虚拟页的访问规则（如可读可写、只读）和映射状态（如已映射、换出到磁盘）。\n">
 <meta property='og:url' content='http://localhost:1313/p/'>
 <meta property='og:site_name' content='Chen1shark 的一坨笔记'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' />
 <meta name="twitter:title" content="Chen1shark 的一坨笔记">
-<meta name="twitter:description" content="\rtitle: Spring description: Spring 技术栈学习笔记 date: 2026-03-21 lastmod: 2026-03-23 categories: - Spring slug: spring-notes Spring 核心 Spring Bean 核心定义 Spring Bean 是指由 Spring IoC 容器负责生命周期管理的对象。这些对象通过配置（如注解 @Component、@Service，或 XML/JavaConfig）被注册到容器中，由容器完成实例化、依赖注入（DI）、初始化、使用和销毁的全过程。\n">
+<meta name="twitter:description" content="操作系统 进程 进程运行态转就绪态 虚拟内存和物理内存 页 页框 页表 ::页是页表的管理对象:: 这里的页特指虚拟页，它是进程虚拟地址空间的最小划分单位。页表不是为某一个虚拟页单独存在，而是为整个进程的虚拟地址空间服务，其核心功能就是记录进程中需要映射的虚拟页，分别对应哪一个物理页框。只有存在映射需求的虚拟页，才会在页表中拥有对应的页表项；未使用或被换出的虚拟页，在页表中无有效页表项或标记为无效状态。 ::页表是虚拟页与物理页框的映射桥梁:: 虚拟页本身不对应实际物理存储，必须通过页表的页表项，才能建立与物理页框的关联。页表项中存储的物理页框号，是虚拟页能够被 CPU 访问的关键；同时页表项中的权限位、有效位等字段，还会直接管控虚拟页的访问规则（如可读可写、只读）和映射状态（如已映射、换出到磁盘）。\n">
     <link rel="shortcut icon" href="/favicon.ico" />
-
-
-  <link rel="stylesheet" href="/css/custom.css">
 
     </head>
     <body class="
@@ -144,6 +141,18 @@
             </a>
         </li>
         
+        
+        <li >
+            <a href='/categories/recruitment/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-writing-sign"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 19c3.333 -2 5 -4 5 -6c0 -3 -1 -3 -2 -3s-2.032 1.085 -2 3c.034 2.048 1.658 2.877 2.5 4c1.5 2 2.5 2.5 3.5 1c.667 -1 1.167 -1.833 1.5 -2.5c1 2.333 2.333 3.5 4 3.5h2.5" /><path d="M20 17v-12c0 -1.121 -.879 -2 -2 -2s-2 .879 -2 2v12l2 2l2 -2" /><path d="M16 7h4" /></svg>
+                
+                <span>Recruitment</span>
+            </a>
+        </li>
+        
         <li class="menu-bottom-section">
             <ol class="menu">
 
@@ -195,47 +204,173 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#slug-spring-notes">title: Spring
-description: Spring 技术栈学习笔记
-date: 2026-03-21
-lastmod: 2026-03-23
-categories:
-- Spring
-slug: spring-notes</a></li>
-    <li><a href="#spring-核心">Spring 核心</a>
+    <li><a href="#进程">进程</a>
       <ol>
-        <li><a href="#spring-bean-核心定义">Spring Bean 核心定义</a></li>
-        <li><a href="#spring-bean-的核心特性">Spring Bean 的核心特性</a></li>
-        <li><a href="#bean-的生命周期">Bean 的生命周期</a>
-          <ol>
-            <li><a href="#实例化">实例化</a></li>
-            <li><a href="#属性填充">属性填充</a></li>
-            <li><a href="#三种依赖注入方式对比">三种依赖注入方式对比</a></li>
-            <li><a href="#初始化核心阶段">初始化（核心阶段）</a></li>
-            <li><a href="#使用">使用</a></li>
-            <li><a href="#销毁">销毁</a></li>
-          </ol>
-        </li>
-        <li><a href="#ioc-容器">IoC 容器</a></li>
-        <li><a href="#面向切面编程">面向切面编程</a></li>
+        <li><a href="#进程运行态转就绪态">进程运行态转就绪态</a></li>
       </ol>
     </li>
-    <li><a href="#springboot">SpringBoot</a>
+    <li><a href="#虚拟内存和物理内存">虚拟内存和物理内存</a>
       <ol>
-        <li><a href="#springboot-核心特性">SpringBoot 核心特性</a>
-          <ol>
-            <li><a href="#自动配置autoconfiguration">自动配置（AutoConfiguration）</a></li>
-            <li><a href="#起步依赖starter">起步依赖（Starter）</a></li>
-            <li><a href="#嵌入式容器tomcatjetty">嵌入式容器（Tomcat/Jetty）</a></li>
-          </ol>
-        </li>
-        <li><a href="#springboot-中-bean-的生命周期">SpringBoot 中 Bean 的生命周期</a></li>
-        <li><a href="#springboot-开发实战">SpringBoot 开发实战</a>
-          <ol>
-            <li><a href="#快速搭建项目">快速搭建项目</a></li>
-            <li><a href="#配置文件applicationymlproperties">配置文件（application.yml/properties）</a></li>
-          </ol>
-        </li>
+        <li><a href="#页-页框-页表">页 页框 页表</a></li>
+      </ol>
+    </li>
+    <li><a href="#内存空间分配">内存空间分配</a>
+      <ol>
+        <li><a href="#已知有100mb空间a操作使用了30mb然后b操作使用了35mb然后删除了a操作的占用然后c操作使用了45mb然后删除了b操作的占用求最大空闲空间">已知有100MB空间，A操作使用了30MB，然后B操作使用了35MB，然后删除了A操作的占用，然后C操作使用了45MB，然后删除了B操作的占用，求最大空闲空间</a></li>
+      </ol>
+    </li>
+    <li><a href="#windows相关">Windows相关</a>
+      <ol>
+        <li><a href="#本地安全与域安全策略">本地安全与域安全策略</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#java基础">Java基础</a>
+      <ol>
+        <li><a href="#类变量和静态变量">类变量和静态变量</a></li>
+        <li><a href="#类变量作用域">类变量作用域</a></li>
+        <li><a href="#异常处理参数作用域">异常处理参数作用域</a></li>
+        <li><a href="#list中有重复数据使用setaddalllist">list中有重复数据，使用set.addAll(list)</a></li>
+        <li><a href="#list为string类型listaddtrue结果">list为String类型，list.add(true)结果</a></li>
+        <li><a href="#字符串string由哪两个包定义">字符串String由哪两个包定义</a></li>
+        <li><a href="#小程序一定要继承什么类不重要">小程序一定要继承什么类（不重要）</a></li>
+        <li><a href="#static相关处理">static相关处理</a></li>
+        <li><a href="#java标识符命名规范">Java标识符命名规范</a></li>
+        <li><a href="#applet类java11已废除">Applet类（java11已废除）</a></li>
+      </ol>
+    </li>
+    <li><a href="#设计原则">设计原则</a>
+      <ol>
+        <li><a href="#里氏代换原则lsp">里氏代换原则(LSP)</a></li>
+      </ol>
+    </li>
+    <li><a href="#springboot和开发相关">Springboot和开发相关</a>
+      <ol>
+        <li><a href="#ioc自动装配方式">IOC自动装配方式</a></li>
+        <li><a href="#切入点aop相关">切入点（AOP相关）</a></li>
+        <li><a href="#httpsessiongetattributestring">HttpSession.getAttribute(String)</a></li>
+        <li><a href="#阻塞任务队列的线程池对应工作队列">阻塞任务队列的线程池（对应工作队列）</a></li>
+      </ol>
+    </li>
+    <li><a href="#io相关">IO相关</a>
+      <ol>
+        <li><a href="#流的传递方式">流的传递方式</a></li>
+        <li><a href="#字节流和文本文件">字节流和文本文件</a></li>
+        <li><a href="#文件处理自定义场景">文件处理（自定义场景）</a></li>
+        <li><a href="#数据量大或想文件写很多小数据用带缓冲区的输出流">数据量大或想文件写很多小数据，用带缓冲区的输出流</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#时间复杂度">时间复杂度</a>
+      <ol>
+        <li><a href="#tn--2tn2--n-求o">T(n) = 2T(n/2) + n 求O()</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#linux相关">Linux相关</a>
+      <ol>
+        <li><a href="#x86-64linux">x86-64Linux</a></li>
+        <li><a href="#符号链接和硬链接">符号链接和硬链接</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#传输加密算法">传输加密算法</a>
+      <ol>
+        <li><a href="#对称加密和非对称加密">对称加密和非对称加密</a></li>
+      </ol>
+    </li>
+    <li><a href="#文件处理">文件处理</a>
+      <ol>
+        <li><a href="#文件格式为project_version1_version2要求project为msd358且version1和version2均为6位数字version1version2">文件格式为PROJECT_VERSION1_VERSION2，要求PROJECT为MSD358，且VERSION1和VERSION2均为6位数字，VERSION1&lt;VERSION2</a></li>
+      </ol>
+    </li>
+    <li><a href="#算法题">算法题</a>
+      <ol>
+        <li><a href="#3x7点数只往右或者下走有多少走法">3x7点数，只往右或者下走有多少走法</a></li>
+        <li><a href="#回溯空间树方法">回溯空间树方法</a></li>
+        <li><a href="#哈夫曼编码">哈夫曼编码</a></li>
+      </ol>
+    </li>
+  </ol>
+
+  <ol>
+    <li><a href="#hashmap">HashMap</a>
+      <ol>
+        <li><a href="#负载因子">负载因子</a></li>
+      </ol>
+    </li>
+    <li><a href="#java相关">Java相关</a>
+      <ol>
+        <li><a href="#ceil和floor">ceil和floor</a></li>
+      </ol>
+    </li>
+    <li><a href="#mysql相关">MySQL相关</a>
+      <ol>
+        <li><a href="#修改sc表的media字段权限给zhao">修改sc表的media字段权限给ZHAO</a></li>
+        <li><a href="#sql语句评判">SQL语句评判</a></li>
+      </ol>
+    </li>
+    <li><a href="#linux相关-1">Linux相关</a>
+      <ol>
+        <li><a href="#aquotauser相关">aquota.user相关</a></li>
+        <li><a href="#www服务器对应的linux文件">www服务器对应的Linux文件</a></li>
+      </ol>
+    </li>
+    <li><a href="#计算机网络">计算机网络</a>
+      <ol>
+        <li><a href="#路由器和交换机的区别">路由器和交换机的区别</a></li>
+      </ol>
+    </li>
+    <li><a href="#前端">前端</a>
+      <ol>
+        <li><a href="#col-sm">col-sm</a></li>
+      </ol>
+    </li>
+    <li><a href="#操作系统-2">操作系统</a>
+      <ol>
+        <li><a href="#mbr">MBR</a></li>
+      </ol>
+    </li>
+    <li><a href="#算法-2">算法</a>
+      <ol>
+        <li><a href="#给一串数字判断是否为堆">给一串数字判断是否为堆</a></li>
+        <li><a href="#算法具备输入输出和解决问题的有限运算步骤">算法具备输入，输出和解决问题的有限运算步骤</a></li>
+        <li><a href="#给n个数取k个数求最小贪心">给n个数，取k个数，求&amp;最小（贪心）</a></li>
+      </ol>
+    </li>
+    <li><a href="#java相关-1">Java相关</a>
+      <ol>
+        <li><a href="#map和unordered_map">map和unordered_map</a></li>
+        <li><a href="#文件内public">文件内public</a></li>
+        <li><a href="#threadlocal和thread关系">ThreadLocal和thread关系</a></li>
+        <li><a href="#并发编程同步器">并发编程同步器</a></li>
+        <li><a href="#thread类方法">Thread类方法</a></li>
+        <li><a href="#intstring">int+String</a></li>
+        <li><a href="#接口和抽象类区别保护和重载相关">接口和抽象类区别（保护和重载相关）</a></li>
+        <li><a href="#内部类和接口的关系">内部类和接口的关系</a></li>
+        <li><a href="#类复制">类复制</a></li>
+        <li><a href="#继承相关输出题">继承相关输出题</a></li>
+        <li><a href="#隐藏hide">隐藏（hide）</a></li>
+        <li><a href="#多类型参数和多类型返回值">多类型参数和多类型返回值</a></li>
+        <li><a href="#bug的生命周期">Bug的生命周期</a></li>
+      </ol>
+    </li>
+    <li><a href="#linux相关-2">Linux相关</a>
+      <ol>
+        <li><a href="#765权限位标记">765权限位标记</a></li>
+      </ol>
+    </li>
+    <li><a href="#算法-3">算法</a>
+      <ol>
+        <li><a href="#给n个数取部分数的和为k的倍数要求数最大">给n个数，取部分数的和为k的倍数，要求数最大</a></li>
       </ol>
     </li>
   </ol>
@@ -276,286 +411,1002 @@ slug: spring-notes</a></li>
     <section class="article-content">
     
     
-    <style>
-  /* 测试背景变粉 */
-  body { background-color: pink !important; }
-  
-  /* 你的蓝色框样式 */
-  blockquote.alert-note, div.alert-note, .alert.alert-note {
-    background-color: #cce5ff !important;
-    color: #004085 !important;
-    border-left: 5px solid #007bff !important;
-    padding: 1rem;
-    margin: 1.5rem 0;
-    border-radius: 4px;
-  }
-</style>
-<hr>
-<h2 id="slug-spring-notes">title: Spring
-description: Spring 技术栈学习笔记
-date: 2026-03-21
-lastmod: 2026-03-23
-categories:
-- Spring
-slug: spring-notes
-</h2><h2 id="spring-核心">Spring 核心
-</h2><h3 id="spring-bean-核心定义">Spring Bean 核心定义
-</h3><p><strong>Spring Bean</strong> 是指由 Spring IoC 容器负责生命周期管理的对象。这些对象通过配置（如注解 <code>@Component</code>、<code>@Service</code>，或 XML/JavaConfig）被注册到容器中，由容器完成实例化、依赖注入（DI）、初始化、使用和销毁的全过程。</p>
-<p>所有业务组件，比如 Controller、Service、Repository 等，本质上都是 <strong>Spring Bean</strong>。它们之间的依赖关系不是硬编码 <code>new</code> 出来的，而是由容器自动装配，从而实现控制反转（IoC）和松耦合。</p>
-<p>简单说：<strong>Bean = 对象 + 生命周期 + 依赖关系，全部交给 Spring 容器管理。</strong></p>
-<h3 id="spring-bean-的核心特性">Spring Bean 的核心特性
-</h3><ul>
-<li><strong>容器托管</strong>：生命周期完全由 Spring IoC 容器控制，无需开发者手动创建和销毁</li>
-<li><strong>依赖注入</strong>：Bean 间依赖由容器自动装配，降低组件耦合度</li>
-<li><strong>配置灵活</strong>：支持注解、XML、JavaConfig 等多种配置方式定义 Bean</li>
-<li><strong>可扩展</strong>：支持生命周期回调、后置处理器等自定义扩展逻辑</li>
-</ul>
-<h3 id="bean-的生命周期">Bean 的生命周期
-</h3><h4 id="实例化">实例化
-</h4><p>容器通过反射创建 Bean 实例（调用构造方法）</p>
-<p><strong>实例化时机</strong>：</p>
+    <h1 id="操作系统">操作系统
+</h1><h2 id="进程">进程
+</h2><h3 id="进程运行态转就绪态">进程运行态转就绪态
+</h3><p><img src="/6940fe83ebc75a0000000103/6940fe83ebc75a0000000102.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image"
+	
+	
+></p>
+<h2 id="虚拟内存和物理内存">虚拟内存和物理内存
+</h2><h3 id="页-页框-页表">页 页框 页表
+</h3><p><img src="/6940ffdfebc75a0000000119/6940ffdfebc75a0000000118.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image"
+	
+	
+>
+::页是页表的管理对象::
+这里的页特指虚拟页，它是进程虚拟地址空间的最小划分单位。页表不是为某一个虚拟页单独存在，而是为整个进程的虚拟地址空间服务，其核心功能就是记录进程中需要映射的虚拟页，分别对应哪一个物理页框。只有存在映射需求的虚拟页，才会在页表中拥有对应的页表项；未使用或被换出的虚拟页，在页表中无有效页表项或标记为无效状态。
+::页表是虚拟页与物理页框的映射桥梁::
+虚拟页本身不对应实际物理存储，必须通过页表的页表项，才能建立与物理页框的关联。页表项中存储的物理页框号，是虚拟页能够被 CPU 访问的关键；同时页表项中的权限位、有效位等字段，还会直接管控虚拟页的访问规则（如可读可写、只读）和映射状态（如已映射、换出到磁盘）。</p>
+<h2 id="内存空间分配">内存空间分配
+</h2><h3 id="已知有100mb空间a操作使用了30mb然后b操作使用了35mb然后删除了a操作的占用然后c操作使用了45mb然后删除了b操作的占用求最大空闲空间">已知有100MB空间，A操作使用了30MB，然后B操作使用了35MB，然后删除了A操作的占用，然后C操作使用了45MB，然后删除了B操作的占用，求最大空闲空间
+</h3><p>关键步骤：C操作时，连续内存不够用，被分成了B操作前面的30MB和B操作后的15，因此最后总空间位55MB，最大空闲连续空间位35MB</p>
+<h2 id="windows相关">Windows相关
+</h2><h3 id="本地安全与域安全策略">本地安全与域安全策略
+</h3><p>::核心定位与作用范围关系::
+Windows 本地安全策略与域安全策略是层级互补的安全管控体系，本地安全策略作用于单台计算机，管控本地账户与单机安全规则，适配工作组等分散环境；域安全策略以域控制器为核心，可集中管控域内所有成员设备的安全配置，适配中大型企业的统一管理需求。二者仅在计算机加入域时产生交互，未加入域的设备仅受本地安全策略约束。
+::优先级与执行规则关系::
+二者的核心执行原则是域安全策略优先于本地安全策略：计算机加入域后，若两套策略存在冲突，域策略会覆盖本地策略并锁定相关配置项；若策略无冲突，则会合并生效。同时，域策略不会完全替代本地策略，未被域策略定义的本地安全规则仍可生效，可作为域策略的补充满足单台设备的个性化安全需求；而域控制器的本地策略会升级为域控制器安全策略，优先级高于普通域安全策略。
+<del>::域策略的优先级更高，是为了实现 “全局统一管控”，而不是因为范围大小；同层级的策略里，才遵循 “小范围优先于大范围” 的逻辑。::</del></p>
+<h1 id="java">Java
+</h1><h2 id="java基础">Java基础
+</h2><h3 id="类变量和静态变量">类变量和静态变量
+</h3><p>实际为同一概念
+::静态变量::：通过static关键字修饰的变量（语法层面的定义）；
+::类变量::：属于 “类本身” 而非类的实例对象的变量（语义层面的定义）。</p>
+<h3 id="类变量作用域">类变量作用域
+</h3><p>::误区 1::：“类变量作用域和实例绑定”❌ 错误：类变量不归属于实例，哪怕没有创建任何对象，只要类加载完成，就可通过类名.变量名访问（比如Math.PI，无需 new Math ()）；✅ 正确：作用域是 “类本身”，实例仅能间接访问，而非决定作用域。
+::误区 2::：“静态方法能访问所有类的变量”❌ 错误：静态方法可访问「当前类的类变量」，但访问「其他类的类变量」仍受访问修饰符约束（比如其他类的 private 静态变量无法访问）；✅ 正确：静态方法的访问权限 ≠ 类变量的作用域，作用域最终由变量自身的修饰符决定。
+::误区 3::：“类变量作用域随方法执行结束消失”❌ 错误：类变量存储在方法区，生命周期和类绑定，而非方法；哪怕所有方法执行完毕，类变量仍存在（除非类被卸载）。</p>
+<h3 id="异常处理参数作用域">异常处理参数作用域
+</h3><p>一、异常抛出的作用域：由方法 / 代码块的可见性 + 声明约束
+::检查型异常::（如 IOException）：抛出范围受throws声明约束，仅能在声明了该异常的方法 / 子类重写方法中抛出（<del>子类重写时不能抛出父类未声明的检查型异常，符合里氏代换原则</del>）；
+::运行时异常::（如 NullPointerException）：无显式声明约束，可在任意代码块（方法、循环、分支）中抛出，作用域覆盖当前执行的代码路径；
+::异常的传播作用域::：未捕获的异常会沿调用栈向上传播（从当前方法→调用方方法→上层调用方），直到被捕获或终止线程，传播范围不跨线程（线程内独立传播）。
+二、异常捕获的作用域：仅覆盖「try 代码块内的执行逻辑」
+基础规则：catch块仅能捕获对应try块内执行过程中抛出的、匹配异常类型（或子类类型）的异常，try块外的异常无法被该catch捕获；
+示例：
+java
+运行
+public void test() {
+int a = 1;
+try {
+int b = a / 0; // try块内异常可被捕获
+} catch (ArithmeticException e) {
+e.printStackTrace();
+}
+int c = a / 0; // try块外异常无法被上述catch捕获，直接抛出
+}
+多 catch 块的作用域优先级：子类异常的 catch 块需放在父类异常之前（如先 catch NullPointerException，再 catch Exception），否则子类异常会被父类 catch 块覆盖，失去针对性处理的意义；
+finally 的作用域：finally 块无论 try 块是否抛出异常、catch 是否捕获，都会执行（除非 JVM 终止），作用域是 try-catch 流程的收尾，常用于释放资源（如关闭流、连接），其执行不受异常处理结果影响。</p>
+<h3 id="list中有重复数据使用setaddalllist">list中有重复数据，使用set.addAll(list)
+</h3><p>::结果去重::</p>
+<h3 id="list为string类型listaddtrue结果">list为String类型，list.add(true)结果
+</h3><p>::编译报错::</p>
+<h3 id="字符串string由哪两个包定义">字符串String由哪两个包定义
+</h3><p>::String 类的核心定义包::
+Java 中String类的唯一定义包是java.lang.String，该包是 Java 核心基础包，无需手动导入即可直接使用String类，其所有核心属性（如存储字符的value数组）、核心方法（如equals()、substring()）均在此包中实现，是String类存在的基础。
+::String 类的核心关联包::
+不存在第二个定义String类的包，但java.nio.charset是String功能的核心关联包 ——String的编码、解码能力（如getBytes(Charset)、通过字符集构造String）完全依赖该包的Charset类，是处理String字符编码场景的关键支撑，也因此常被混淆为 “第二个定义包”。
+三、异常处理后的影响作用域：局部生效，不跨上下文
+::方法内处理::：catch 块内的修复逻辑（如赋值、重试）仅作用于当前方法的局部变量 / 执行流程，不会影响其他方法的变量或线程；
+::全局处理::（如 Thread.setUncaughtExceptionHandler）：仅作用于当前线程，不同线程的未捕获异常需单独配置处理器，无法跨线程生效；
+::类级别的异常处理::（如 Spring 的 @ControllerAdvice）：作用域覆盖指定包 / 类下的所有控制器方法，超出该范围的非控制器方法异常无法被处理。</p>
+<h3 id="小程序一定要继承什么类不重要">小程序一定要继承什么类（不重要）
+</h3><p>Java Swing 开发的桌面小程序（GUI 程序），核心组件需继承对应的 Swing 基类，其中：
+顶层窗口小程序（如窗口式小程序）：必须继承 javax.swing.JFrame 类（JFrame 是 Swing 的顶层窗口容器，所有桌面小程序的窗口都基于此类扩展）；
+轻量级面板小程序（如内嵌面板）：继承 javax.swing.JPanel 类（JPanel 是无边界的容器，用于组合按钮、文本框等组件）；
+简易小程序（Applet，早期浏览器小程序）：必须继承 java.applet.Applet 类（或 Swing 版的 javax.swing.JApplet），是早期 Java 浏览器小程序的强制基类。</p>
+<h3 id="static相关处理">static相关处理
+</h3><p>public class Test {
+static int a;
+static int b = 0;
+public Test(){
+a = 1;
+b = 2;
+}
+public static void f(){
+System.out.println(a);
+System.out.println(b);
+}
+}
+public class Main {
+public static void main(String[] args) {
+Test test = new Test();
+Test.f();
+}
+}
+::输出1 2::</p>
+<h3 id="java标识符命名规范">Java标识符命名规范
+</h3><p>Java 标识符命名需同时遵守语法强制规则和编码约定规范：语法上，标识符只能由字母（A-Z/a-z）、数字（0-9）、下划线（_）、美元符（$）组成，不能以数字开头，不能使用 Java 关键字（如 int class）或保留字（如 goto const），且区分大小写；编码约定上，包名采用全小写多级结构（如 com.example.demo），类名和接口名用大驼峰命名法（每个单词首字母大写，如 UserService），方法名和变量名用小驼峰命名法（首单词小写、后续单词首字母大写，如 getUserName orderId），常量名需全大写且单词间用下划线分隔（如 MAX_AGE），枚举类名用大驼峰、枚举值全大写，注解名推荐大驼峰命名。此外，语法上允许使用中文但编码规范严格禁止，美元符仅限自动生成代码使用，手动编码应避免。</p>
+<h3 id="applet类java11已废除">Applet类（java11已废除）
+</h3><h2 id="设计原则">设计原则
+</h2><h3 id="里氏代换原则lsp">里氏代换原则(LSP)
+</h3><p>::子类必须能够替换掉其父类，且不影响程序的正确性::
+遵循里氏代换原则的核心好处是，以子类可安全替换父类且不破坏程序原有逻辑为基础，既保障了程序的稳定性与行为可预测性，避免因子类篡改父类契约引发隐蔽 bug；又能提升父类通用逻辑的复用率，减少冗余开发；同时还能支撑开闭原则，让新增子类时无需修改原有代码，降低系统扩展与维护成本，也能简化团队协作中对继承体系的理解与使用门槛。</p>
+<h2 id="springboot和开发相关">Springboot和开发相关
+</h2><h3 id="ioc自动装配方式">IOC自动装配方式
+</h3><p>::一、按名称装配（byName）::
+按属性名匹配容器中同名 Bean，XML 配置autowire=&ldquo;byName&rdquo;，注解常用@Resource(name=&ldquo;bean名&rdquo;)或@Autowired+@Qualifier，匹配精准，避免同类型 Bean 冲突。
+::二、按类型装配（byType）::
+按属性类型匹配同类型 Bean，XML 配置autowire=&ldquo;byType&rdquo;，注解直接用@Autowired，简化配置，但要求同类型 Bean 唯一，否则需用@Qualifier指定名称。
+::三、构造器装配（Constructor）::
+通过构造器注入依赖，XML 配置autowire=&ldquo;constructor&rdquo;，注解可省略@Autowired，优先按参数类型匹配，保证依赖不可变，是 Spring 推荐方式。
+::四、方法装配（Method）::
+通过方法调用注入，含 Setter 方法（@Autowired标注 setXxx ()）、工厂方法、@Bean方法（Spring Boot 主流）三种形式，灵活适配自定义 Bean 装配场景。
+::构造器方法用@lazy，其他三个方法均可三级缓存解决循环依赖::</p>
+<h3 id="切入点aop相关">切入点（AOP相关）
+</h3><p><img src="/69415c49ebc75a0000000469/69415c49ebc75a0000000468.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image"
+	
+	
+>
+<img src="/69415c54ebc75a0000000472/69415c54ebc75a0000000471.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image"
+	
+	
+>
+<img src="/69415c5bebc75a000000047b/69415c5bebc75a000000047a.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image"
+	
+	
+></p>
+<h3 id="httpsessiongetattributestring">HttpSession.getAttribute(String)
+</h3><p><img src="/69415edcebc75a000000048f/69415edcebc75a000000048e.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image"
+	
+	
+></p>
+<h3 id="阻塞任务队列的线程池对应工作队列">阻塞任务队列的线程池（对应工作队列）
+</h3><p>::使用有界阻塞队列::
+线程 A 调用put()，发现队列满 → 执行notFull.await()；
+线程 A释放锁，从 “运行状态” 变为 “等待状态”，退出 CPU 调度（不占资源）；
+线程 B 调用take()取出元素，队列空闲 → 执行notFull.signal()；
+线程 A 被唤醒，重新竞争锁 → 拿到锁后重新校验队列是否真的空闲（while 循环）；
+若队列空闲，线程 A 入队元素；若仍满（虚假唤醒），则再次进入 await ()。
+::非阻塞入队offer，拒绝策略进行阻塞入队put::</p>
+<h2 id="io相关">IO相关
+</h2><h3 id="流的传递方式">流的传递方式
+</h3><p>一、核心维度：流传递的 5 大分类（按特征划分）
+::按传输方向（基础）::：
+输入流：数据从外部载体（文件、网络、硬件）流向程序 / 内存（如FileInputStream、BufferedReader）；
+输出流：数据从程序 / 内存流向外部载体（如FileOutputStream、BufferedWriter）；
+单个流对象均为单向传输，双向传输需同时创建输入 + 输出流。
+::按传输粒度（最小单元）::：
+字节流：以 8 位byte为单元，适配所有数据（二进制文件、图片、视频、文本），如InputStream/OutputStream体系；
+字符流：以 16 位char为单元，专为文本优化（自动处理编码），是字节流 + 编码转换的封装，如Reader/Writer体系（字符传递是其核心场景）。
+::按传输模式（是否阻塞::）：
+同步流：调用读写方法后线程阻塞，直到传输完成（默认方式，如FileReader.read()），逻辑简单但高并发易卡顿；
+异步流：调用后线程不阻塞，通过回调 / 事件接收结果（如 Java NIO 的AsynchronousFileChannel），适配大文件 / 高并发场景。
+::按传输载体（应用场景）：::
+文件流：磁盘与内存间传输（如FileInputStream）；
+网络流：基于 Socket 的网络节点间传输（TCP 为有序字节流，UDP 为无连接数据报流）；
+内存流：内存缓冲区内部传输（如ByteArrayInputStream），无 IO 开销；
+管道流：进程 / 线程间通信（如PipedReader）；
+压缩流：边传输边压缩 / 解压（如GZIPInputStream）。
+::按优化方式（是否缓冲）::：
+非缓冲流：直接读写底层载体，每次操作触发 IO，效率低（如FileReader）；
+缓冲流：先批量读取到内存缓冲区，减少 IO 次数（如BufferedReader），是最常用的优化方式。
+二、通用规则：所有流传递的共性特征
+::顺序性::：多数流为 “顺序流”，按写入 / 读取顺序传输，随机访问需特殊实现（如RandomAccessFile）；
+::资源释放::：流关联底层资源（文件句柄、网络连接），需手动 / 自动（try-with-resources）关闭，避免泄漏；
+::关联性::：字符流是字节流的封装，缓冲流是普通流的包装，可多层嵌套优化传输（如BufferedReader包装FileReader）。</p>
+<h3 id="字节流和文本文件">字节流和文本文件
+</h3><p>字节流字符流都可以读取
+<img src="/69411ffcebc75a0000000325/69411ffcebc75a0000000324.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image"
+	
+	
+></p>
+<h3 id="文件处理自定义场景">文件处理（自定义场景）
+</h3><p>::读取文件，以空白为分隔符::
+String filePath = &ldquo;f:/java_file/algorithm/xxx.txt&rdquo;;
+try(BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))){
+String line = bufferedReader.readLine();
+String[] lines = line.split(&quot;\s+&quot;);
+for(String str: lines){
+System.out.println(str);
+}</p>
+<pre><code>    }catch (IOException ioException){
+        ioException.printStackTrace();
+    }
+</code></pre>
+<p>::向文件写入内容::
+String filePath = &ldquo;f:/java_file/algorithm/xxx.txt&rdquo;;
+try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filePath, true))) {// true为文件追加
+String line = &ldquo;test\n&rdquo;;  // 添加换行符
+bufferedWriter.write(line);
+System.out.println(&ldquo;内容已成功追加到文件&rdquo;);
+} catch (IOException ioException) {
+System.err.println(&ldquo;写入文件时出错: &quot; + ioException.getMessage());
+}</p>
+<h3 id="数据量大或想文件写很多小数据用带缓冲区的输出流">数据量大或想文件写很多小数据，用带缓冲区的输出流
+</h3><h1 id="算法">算法
+</h1><h2 id="时间复杂度">时间复杂度
+</h2><h3 id="tn--2tn2--n-求o">T(n) = 2T(n/2) + n 求O()
+</h3><h1 id="操作系统-1">操作系统
+</h1><h2 id="linux相关">Linux相关
+</h2><h3 id="x86-64linux">x86-64Linux
+</h3><p><img src="/6933a295ebc75a000000010b/6933a295ebc75a000000010a.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image"
+	
+	
+></p>
+<h3 id="符号链接和硬链接">符号链接和硬链接
+</h3><p>::硬链接::：多个文件名（指针）直接指向同一个文件本体（inode + 数据块）系统里的文件本体是通过 inode 标识的，文件名只是给用户看的 “访问入口”。创建硬链接，就是新增一个 “入口”（文件名），和原文件名共用同一个文件本体。所以这些文件名之间没有主次之分，删除其中一个，只是少了一个入口，文件本体只要还有其他入口（链接计数 &gt; 0）就不会消失。
+::符号链接::：一个文件名（指针）指向另一个文件名（指针）符号链接本身是一个独立的小文件，里面只存了目标文件的路径字符串。当你访问符号链接时，系统会先根据这个路径找到目标文件名，再通过目标文件名找到文件本体。这就是为什么删除目标文件后，符号链接会变成 “悬空链接”—— 它指向的那个 “指针”（目标文件名）没了，自然找不到文件本体。</p>
+<h1 id="算法-1">算法
+</h1><h2 id="传输加密算法">传输加密算法
+</h2><h3 id="对称加密和非对称加密">对称加密和非对称加密
+</h3><p>::非对称加密::
+<img src="/693668a0ebc75a0000000160/693668a0ebc75a000000015f.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image"
+	
+	
+>
+::对称加密::
+<img src="/693668f5ebc75a0000000178/693668f5ebc75a0000000177.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image"
+	
+	
+>
+::对称加密通常比非对称加密快一到两个数量级::
+<img src="/693669dfebc75a0000000181/693669dfebc75a0000000180.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image"
+	
+	
+></p>
+<h2 id="文件处理">文件处理
+</h2><h3 id="文件格式为project_version1_version2要求project为msd358且version1和version2均为6位数字version1version2">文件格式为PROJECT_VERSION1_VERSION2，要求PROJECT为MSD358，且VERSION1和VERSION2均为6位数字，VERSION1&lt;VERSION2
+</h3><p>/**</p>
 <ul>
-<li><strong>容器启动时</strong>：默认情况下，Spring 容器启动时会立即创建所有 singleton 作用域的 Bean 实例</li>
-<li><strong>首次使用时</strong>：如果设置了 <code>@Lazy</code> 注解，Bean 会在第一次被使用时才创建实例</li>
-<li><strong>BeanFactory</strong>：使用 BeanFactory 时，默认采用懒加载，首次获取时才实例化</li>
+<li>
+<p>验证文件名是否符合格式要求：PROJECT_VERSION1_VERSION2</p>
+</li>
+<li>
+<p>其中 PROJECT 固定为 MSD358，VERSION1和VERSION2均为6位数字，且VERSION1 &lt; VERSION2
+*</p>
+</li>
+<li>
+<p>@param fileName 需要验证的文件名</p>
+</li>
+<li>
+<p>@return 验证通过返回true，否则返回false
+*/
+public static boolean isValidFileName(String fileName) {
+// 1. 空值校验
+::// .trim()去除字符串首尾的所有空白字符::
+if (fileName == null || fileName.trim().isEmpty()) {
+return false;
+}
+// 2. 按下划线分割，检查分割后的部分数量是否为3
+::// 若不做空值校验，fileName为null时，这行直接抛异常::
+String[] parts = fileName.split(&rdquo;_&quot;);
+if (parts.length != 3) {
+return false;
+}</p>
+<p>// 3. 校验PROJECT部分是否为MSD358
+if (!&ldquo;MSD358&rdquo;.equals(parts[0])) {
+return false;
+}</p>
+<p>// 4. 校验VERSION1和VERSION2是否为6位纯数字
+::// ^匹配的开头，$匹配的结尾，\d数字，\转义字符，{6}恰好六位::
+::// 这题也可只判断六位即可，因为后面数字有抛异常::
+String sixDigitPattern = &ldquo;^\d{6}$&rdquo;;
+if (!parts[1].matches(sixDigitPattern) || !parts[2].matches(sixDigitPattern)) {
+return false;
+}</p>
+<p>// 5. 转换为长整型并校验VERSION1 &lt; VERSION2
+long version1;
+long version2;
+try {
+version1 = Long.parseLong(parts[1]);
+version2 = Long.parseLong(parts[2]);
+} catch (NumberFormatException e) {
+return false;
+}
+return version1 &lt; version2;
+}</p>
+</li>
 </ul>
-<p><strong>实例化次数</strong>：</p>
-<ul>
-<li><strong>Singleton（单例）</strong>：整个容器生命周期中只创建一次，所有请求共享同一个实例</li>
-<li><strong>Prototype（原型）</strong>：每次注入或通过 <code>getBean()</code> 获取时都会创建新实例</li>
-<li><strong>Request</strong>：每个 HTTP 请求创建一个实例（Web 应用）</li>
-<li><strong>Session</strong>：每个 HTTP Session 创建一个实例（Web 应用）</li>
-</ul>
-<blockquote class="alert alert-note">
-  <p>这是一个提示内容的段落。</p>
-<ul>
-<li>列表项第一点</li>
-<li>列表项第二点</li>
-</ul>
-</blockquote>
-<blockquote>
-<p><strong>Singleton vs Prototype 核心区别</strong>：</p>
-<ul>
-<li><strong>内存占用</strong>：Singleton 只有一个实例，内存占用少；Prototype 每次都创建新实例，内存占用多</li>
-<li><strong>线程安全</strong>：Singleton 需要考虑线程安全问题；Prototype 每个线程都有自己的实例，天然线程安全</li>
-<li><strong>性能</strong>：Singleton 创建一次，后续获取性能高；Prototype 每次都要创建，性能相对较低</li>
-<li><strong>状态管理</strong>：Singleton 适合无状态服务；Prototype 适合有状态对象
-{.alert .alert-note}</li>
-</ul>
-</blockquote>
-<p><strong>选择建议</strong>：</p>
-<ul>
-<li><strong>默认使用 Singleton</strong>：大部分业务场景（Service、Repository、Controller）</li>
-<li><strong>使用 Prototype</strong>：需要保持对象状态的场景（如表单对象、临时计算对象）</li>
-</ul>
-<p><strong>示例</strong>：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Service</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="nd">@Scope</span><span class="p">(</span><span class="s">&#34;singleton&#34;</span><span class="p">)</span><span class="w">  </span><span class="c1">// 默认，整个容器只创建一次</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SingletonService</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 构造方法在容器启动时调用</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="nd">@Service</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="nd">@Scope</span><span class="p">(</span><span class="s">&#34;prototype&#34;</span><span class="p">)</span><span class="w">   </span><span class="c1">// 每次获取都创建新实例</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PrototypeService</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 构造方法在每次获取时调用</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="nd">@Service</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="nd">@Lazy</span><span class="w">  </span><span class="c1">// 懒加载，首次使用时才创建</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">LazyService</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 构造方法在第一次使用时调用</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><h4 id="属性填充">属性填充
-</h4><p>为 Bean 注入依赖（如 <code>@Autowired</code>、setter 注入、构造器注入）</p>
-<h4 id="三种依赖注入方式对比">三种依赖注入方式对比
-</h4><h5 id="字段注入field-injection">字段注入（Field Injection）
-</h5><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Service</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Autowired</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UserRepository</span><span class="w"> </span><span class="n">userRepository</span><span class="p">;</span><span class="w">  </span><span class="c1">// 直接在字段上注入</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">getUser</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">userRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>特点</strong>：</p>
-<ul>
-<li>简洁直观，代码量少</li>
-<li>但违反了单一职责原则，难以测试</li>
-<li>不支持 final 字段</li>
-</ul>
-<h5 id="setter-注入">Setter 注入
-</h5><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Service</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UserRepository</span><span class="w"> </span><span class="n">userRepository</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nd">@Autowired</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setUserRepository</span><span class="p">(</span><span class="n">UserRepository</span><span class="w"> </span><span class="n">userRepository</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">userRepository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userRepository</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">getUser</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">userRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>特点</strong>：</p>
-<ul>
-<li>可以在 setter 方法中添加额外逻辑</li>
-<li>支持可选依赖（@Autowired(required = false)）</li>
-<li>相对构造器注入，依赖可能为 null</li>
-</ul>
-<h5 id="构造器注入推荐">构造器注入（推荐）
-</h5><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Service</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UserService</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">UserRepository</span><span class="w"> </span><span class="n">userRepository</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// Spring 4.3+ 单构造器可省略 @Autowired</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">UserService</span><span class="p">(</span><span class="n">UserRepository</span><span class="w"> </span><span class="n">userRepository</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">userRepository</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">userRepository</span><span class="p">;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">User</span><span class="w"> </span><span class="nf">getUser</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">userRepository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">);</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
-</span></span></span></code></pre></td></tr></table>
-</div>
-</div><p><strong>特点</strong>：</p>
-<ul>
-<li><strong>推荐使用</strong>：依赖不可变（final 字段）</li>
-<li>保证依赖不为 null，对象创建时就完整</li>
-<li>更容易进行单元测试</li>
-<li>符合单一职责原则</li>
-</ul>
-<h5 id="对比总结">对比总结
-</h5><div class="table-wrapper"><table>
-  <thead>
-      <tr>
-          <th>注入方式</th>
-          <th>优点</th>
-          <th>缺点</th>
-          <th>适用场景</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>字段注入</td>
-          <td>简洁</td>
-          <td>难测试、违反封装</td>
-          <td>快速原型开发</td>
-      </tr>
-      <tr>
-          <td>Setter 注入</td>
-          <td>灵活、可选依赖</td>
-          <td>依赖可能为 null</td>
-          <td>可选依赖配置</td>
-      </tr>
-      <tr>
-          <td>构造器注入</td>
-          <td>不可变、易测试</td>
-          <td>代码稍多</td>
-          <td><strong>生产环境推荐</strong></td>
-      </tr>
-  </tbody>
-</table></div>
-<h4 id="初始化核心阶段">初始化（核心阶段）
-</h4><ul>
-<li>执行 Aware 接口方法（如 <code>BeanNameAware</code>、<code>BeanFactoryAware</code>）</li>
-<li>执行 <code>BeanPostProcessor</code> 前置处理（<code>postProcessBeforeInitialization</code>）</li>
-<li>执行初始化方法（<code>@PostConstruct</code> → <code>InitializingBean.afterPropertiesSet()</code> → 自定义 <code>init-method</code>）</li>
-<li>执行 <code>BeanPostProcessor</code> 后置处理（<code>postProcessAfterInitialization</code>）</li>
-</ul>
-<h4 id="使用">使用
-</h4><p>Bean 实例已准备就绪，可以正常使用。</p>
-<h4 id="销毁">销毁
-</h4><p>容器关闭时，执行销毁方法（<code>@PreDestroy</code> → <code>DisposableBean.destroy()</code> → 自定义 <code>destroy-method</code>）</p>
-<h3 id="ioc-容器">IoC 容器
-</h3><h3 id="面向切面编程">面向切面编程
-</h3><h2 id="springboot">SpringBoot
-</h2><h3 id="springboot-核心特性">SpringBoot 核心特性
-</h3><h4 id="自动配置autoconfiguration">自动配置（AutoConfiguration）
-</h4><h4 id="起步依赖starter">起步依赖（Starter）
-</h4><h4 id="嵌入式容器tomcatjetty">嵌入式容器（Tomcat/Jetty）
-</h4><h3 id="springboot-中-bean-的生命周期">SpringBoot 中 Bean 的生命周期
-</h3><h3 id="springboot-开发实战">SpringBoot 开发实战
-</h3><h4 id="快速搭建项目">快速搭建项目
-</h4><h4 id="配置文件applicationymlproperties">配置文件（application.yml/properties）
-</h4>
+<h2 id="算法题">算法题
+</h2><h3 id="3x7点数只往右或者下走有多少走法">3x7点数，只往右或者下走有多少走法
+</h3><p>八步中找两步向下，组合数C(8,2)=28</p>
+<h3 id="回溯空间树方法">回溯空间树方法
+</h3><p><img src="/6936720debc75a000000024f/6936720debc75a000000024e.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image"
+	
+	
+></p>
+<h3 id="哈夫曼编码">哈夫曼编码
+</h3><p>::高频字符用短码，低频字符用长码::
+<a class="link" href="https://blog.csdn.net/Young_IT/article/details/106730343"  target="_blank" rel="noopener"
+    >https://blog.csdn.net/Young_IT/article/details/106730343</a></p>
+<h1 id="java基础-1">Java基础
+</h1><h2 id="hashmap">HashMap
+</h2><h3 id="负载因子">负载因子
+</h3><p>::负载因子是静态参数::：它是 HashMap 初始化时设定的固定比值（默认 0.75），是触发扩容的阈值标准，不会随元素数量变化而改变。
+::饱和程度是动态状态::：指 HashMap 当前元素数量与数组容量的实际比值，反映容器的填充情况。</p>
+<h2 id="java相关">Java相关
+</h2><h3 id="ceil和floor">ceil和floor
+</h3><p>public class CeilFloorExample {
+public static void main(String[] args) {
+// 正数示例
+double positiveNum = 3.14;
+System.out.println(&ldquo;Math.floor(3.14) = &quot; + Math.floor(positiveNum)); // 输出 3.0
+System.out.println(&ldquo;Math.ceil(3.14) = &quot; + Math.ceil(positiveNum));   // 输出 4.0</p>
+<pre><code>    // 负数示例
+    double negativeNum = -2.5;
+    System.out.println(&quot;Math.floor(-2.5) = &quot; + Math.floor(negativeNum)); // 输出 -3.0
+    System.out.println(&quot;Math.ceil(-2.5) = &quot; + Math.ceil(negativeNum));   // 输出 -2.0
+
+    // 整数示例
+    double integerNum = 5.0;
+    System.out.println(&quot;Math.floor(5.0) = &quot; + Math.floor(integerNum));   // 输出 5.0
+    System.out.println(&quot;Math.ceil(5.0) = &quot; + Math.ceil(integerNum));     // 输出 5.0
+}
+</code></pre>
+<p>}</p>
+<h2 id="mysql相关">MySQL相关
+</h2><h3 id="修改sc表的media字段权限给zhao">修改sc表的media字段权限给ZHAO
+</h3><p>&ndash; 授予 SELECT 权限
+GRANT SELECT(media) ON sc TO ZHAO;</p>
+<p>&ndash; 授予 UPDATE 权限
+GRANT UPDATE(media) ON sc TO ZHAO;</p>
+<p>&ndash; 同时授予 SELECT 和 UPDATE 权限
+GRANT SELECT(media), UPDATE(media) ON sc TO ZHAO;</p>
+<h3 id="sql语句评判">SQL语句评判
+</h3><p>::select <em>, sum(English) from score::：聚合函数（sum）与普通字段（</em>）混合查询时，必须使用 GROUP BY 分组，否则语法错误。
+select stuid, sum(English) as total_english from score group by stuid;
+::select sum(Math), avg(Chinese) from score::：正确
+::delete * from score::：DELETE 语句不需要 *，直接删除整行记录即可
+&ndash; 删除所有记录（保留表结构）
+delete from score;
+&ndash; 或更高效的清空表（自增ID重置，不可回滚）
+truncate table score;
+::select stu_id, sum(Math) from score::：包含非聚合字段（stuid）和聚合函数（sum），必须通过 GROUP BY 分组。
+select stuid, sum(Math) as total_math from score group by stuid;</p>
+<h2 id="linux相关-1">Linux相关
+</h2><h3 id="aquotauser相关">aquota.user相关
+</h3><p>quota.user 是 Linux 等系统中用于管理用户级磁盘 / 存储配额的核心配置文件，存储在开启配额的文件系统根目录，默认权限为 rw&mdash;&mdash;-（600）、属主为 root（仅 root 可读写），系统默认未启用配额，需手动通过 quotacheck 创建文件、edquota 设置资源限制（软 / 硬限制默认无约束）并在挂载参数中添加 usrquota 生效，其核心作用是记录并限制用户磁盘空间、inode 数量等资源使用上限，避免个别用户过度占用资源以保障存储公平分配。</p>
+<h3 id="www服务器对应的linux文件">www服务器对应的Linux文件
+</h3><p>Linux 中 WWW 服务器（主流为 Nginx/Apache）的核心文件集中在三类路径：
+::配置文件::（Nginx 主配置 /etc/nginx/nginx.conf 及 conf.d/ 虚拟主机目录，Apache 主配置 /etc/httpd/conf/httpd.conf 及 conf.d/ 模块配置目录）
+::网站根目录::（Nginx 默认 /usr/share/nginx/html/、Apache 默认 /var/www/html/，可自定义）
+::日志文件::（两者均存于 /var/log/ 下，分别为 nginx/ 或 httpd/ 目录下的 access.log 访问日志与 error.log 错误日志）
+此外还包含 /var/www/ 网站文件存储目录、服务器启停脚本及 /etc/hosts 本地解析文件，共同支撑 Web 服务的配置、资源存储与运行监控。</p>
+<h2 id="计算机网络">计算机网络
+</h2><h3 id="路由器和交换机的区别">路由器和交换机的区别
+</h3><p><a class="link" href="https://blog.csdn.net/Luckiers/article/details/123844211"  target="_blank" rel="noopener"
+    >https://blog.csdn.net/Luckiers/article/details/123844211</a></p>
+<h2 id="前端">前端
+</h2><h3 id="col-sm">col-sm
+</h3><p><img src="/692506d2ebc75a0000000100/692506d2ebc75a00000000ff.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image"
+	
+	
+></p>
+<h2 id="操作系统-2">操作系统
+</h2><h3 id="mbr">MBR
+</h3><p><a class="link" href="https://blog.csdn.net/u010783226/article/details/106069699"  target="_blank" rel="noopener"
+    >https://blog.csdn.net/u010783226/article/details/106069699</a></p>
+<h2 id="算法-2">算法
+</h2><h3 id="给一串数字判断是否为堆">给一串数字判断是否为堆
+</h3><p>完全二叉树，满足最大堆或最小堆</p>
+<h3 id="算法具备输入输出和解决问题的有限运算步骤">算法具备输入，输出和解决问题的有限运算步骤
+</h3><p>核心对应算法特性：题干考查算法的三大核心必备要素（输入、输出、确定性+有穷性 + 可行性的统一表述），选项中 “解决问题的有限运算步骤” 直接对应算法的有穷性（有限步骤终止）和可行性（步骤可实现），是算法的本质特征。
+其他选项排除：
+计算方法：仅为算法的局部实现手段，非必备属性；
+排序方法：是特定类型算法（排序算法），并非所有算法都需排序；
+程序设计方法：是编程层面的技巧，与算法的定义无关。</p>
+<h3 id="给n个数取k个数求最小贪心">给n个数，取k个数，求&amp;最小（贪心）
+</h3><p>public class MinBitwiseAndForLargeNumbers {</p>
+<pre><code>/**
+ * 从数组中选取k个数，使得它们的按位与结果最小（支持2^60范围内的数字）
+ * @param nums 输入的数字数组（使用long类型）
+ * @param k 需要选取的数字个数
+ * @return 最小的按位与结果
+ */
+public static long findMinBitwiseAnd(long[] nums, int k) {
+    // 处理边界情况
+    if (k &lt;= 0 || k &gt; nums.length) {
+        return 0;
+    }
+    
+    long resultMask = 0L;
+    
+    // 从最高位（第60位）到最低位（第0位）尝试构建掩码
+    for (int bit = 60; bit &gt;= 0; bit--) {
+        // 尝试将当前位设置为1
+        long candidateMask = resultMask | (1L &lt;&lt; bit);
+        int count = 0;
+        
+        // 统计有多少个数满足 (num &amp; candidateMask) == candidateMask
+        for (long num : nums) {
+            if ((num &amp; candidateMask) == candidateMask) {
+                count++;
+            }
+        }
+        
+        // 如果有足够多的数满足条件，更新掩码
+        if (count &gt;= k) {
+            resultMask = candidateMask;
+        }
+    }
+    
+    // 计算最小的按位与结果：所有不在resultMask中的位都置1
+    // 注意：这里只处理0~60位，避免高位干扰
+    long minResult = 0L;
+    for (int bit = 60; bit &gt;= 0; bit--) {
+        if ((resultMask &amp; (1L &lt;&lt; bit)) == 0) {
+            minResult |= (1L &lt;&lt; bit);
+        }
+    }
+    
+    return minResult;
+}
+
+public static void main(String[] args) {
+    // 测试示例1：包含大数的情况
+    long[] nums1 = {1L &lt;&lt; 50, 1L &lt;&lt; 55, (1L &lt;&lt; 50) | (1L &lt;&lt; 55), 123456789L};
+    int k1 = 2;
+    System.out.println(&quot;数组中选取 2 个数的最小按位与结果: &quot; 
+                       + findMinBitwiseAnd(nums1, k1));
+    
+    // 测试示例2：常规数字
+    long[] nums2 = {3L, 6L, 7L, 9L, 12L};
+    int k2 = 2;
+    System.out.println(&quot;数组 [3, 6, 7, 9, 12] 中选取 2 个数的最小按位与结果: &quot; 
+                       + findMinBitwiseAnd(nums2, k2));
+}
+</code></pre>
+<p>}</p>
+<h2 id="java相关-1">Java相关
+</h2><h3 id="map和unordered_map">map和unordered_map
+</h3><p>c++的unordered_map对应java的TreeMap
+Java 中 HashMap 基于哈希表（JDK1.8 为数组 + 链表 + 红黑树）实现，无序、允许 1 个 null 键和多个 null 值，平均增删查效率 O (1)，适用于追求高性能、无需有序性的场景；TreeMap 基于红黑树实现，支持键的自然排序或自定义排序，不允许 null 键、允许 null 值，增删查效率稳定 O (log n)，适用于需按键排序或范围查询的场景，核心选择依据是是否需要有序性。
+<img src="/69281665ebc75a0000000083/69281665ebc75a0000000082.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image"
+	
+	
+></p>
+<h3 id="文件内public">文件内public
+</h3><p>::最多只能有一个 public 类::：
+这是 Java 语言的硬性规定。
+如果文件中包含一个 public 类，那么文件名必须与这个 public 类的类名完全一致（包括大小写）。
+::可以有多个非 public 类::：
+一个文件中可以包含任意数量的 default（包访问权限）、protected 或 private 类（内部类）。</p>
+<h3 id="threadlocal和thread关系">ThreadLocal和thread关系
+</h3><p>ThreadLocal 并非 Thread 类的子类，二者不存在继承关系 ——ThreadLocal 是独立的工具类，直接继承自 Object，而 Thread 类实现了 Runnable 接口。它实现线程隔离的核心逻辑是：每个 Thread 对象内部维护着一个 ThreadLocalMap 成员变量，ThreadLocal 实例作为 “键”，通过操作这个与线程绑定的 ThreadLocalMap，让不同线程借助同一个 ThreadLocal 实例，存取各自独立的数据副本，从而实现线程局部变量的隔离效果，而非依赖继承 Thread 类。</p>
+<h3 id="并发编程同步器">并发编程同步器
+</h3><p>Java 并发编程中的同步器是java.util.concurrent包下解决线程协作与资源竞争的工具集，既包含专注互斥访问的锁（如ReentrantLock），也涵盖侧重线程协调的工具（如CountDownLatch、Semaphore等）；它们通过不同机制实现线程间的同步控制 —— 锁保证临界区的排他性执行，CountDownLatch/CyclicBarrier实现线程间的等待协作，Semaphore控制并发访问数量，Phaser支持多阶段任务同步，最终从 “互斥” 和 “协作” 两个维度保障并发程序的安全性与有序性
+import java.util.concurrent.CyclicBarrier;</p>
+<p>public class CyclicBarrierExample {
+public static void main(String[] args) {
+// 创建 CyclicBarrier，指定3个线程参与，设置屏障动作
+CyclicBarrier barrier = new CyclicBarrier(3, () -&gt;
+System.out.println(&quot;===== 所有线程到达屏障，执行屏障动作 =====&rdquo;));</p>
+<pre><code>    // 创建并启动3个线程
+    for (int i = 1; i &lt;= 3; i++) {
+        final int threadNum = i;
+        new Thread(() -&gt; {
+            try {
+                System.out.println(&quot;线程&quot; + threadNum + &quot;开始执行任务&quot;);
+                Thread.sleep(1000); // 模拟任务执行
+                System.out.println(&quot;线程&quot; + threadNum + &quot;到达屏障&quot;);
+                
+                // 等待其他线程到达屏障
+                barrier.await();
+                
+                System.out.println(&quot;线程&quot; + threadNum + &quot;继续执行后续任务&quot;);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+}
+</code></pre>
+<p>}
+::Phaser::维护一个全局阶段号，若后加入可能跳过阶段
+import java.util.concurrent.Phaser;</p>
+<p>public class PhaserDynamicExample {
+public static void main(String[] args) {
+// 初始只注册1个参与者（主线程）
+Phaser phaser = new Phaser(1) {
+@Override
+protected boolean onAdvance(int phase, int registeredParties) {
+System.out.println(&quot;\n===== 阶段&rdquo; + phase + &ldquo;完成，当前参与者数：&rdquo; + registeredParties + &quot; =====&quot;);
+// 阶段2后终止
+return phase &gt;= 2;
+}
+};</p>
+<pre><code>    System.out.println(&quot;初始参与者数：&quot; + phaser.getRegisteredParties());
+
+    // 阶段0：动态添加3个线程
+    System.out.println(&quot;\n进入阶段0&quot;);
+    for (int i = 1; i &lt;= 3; i++) {
+        final int threadNum = i;
+        // 注册新参与者（动态增加）
+        phaser.register();
+        new Thread(() -&gt; {
+            System.out.println(&quot;线程&quot; + threadNum + &quot;加入，执行阶段0任务&quot;);
+            phaser.arriveAndAwaitAdvance(); // 等待阶段0完成
+
+            System.out.println(&quot;线程&quot; + threadNum + &quot;执行阶段1任务&quot;);
+            phaser.arriveAndAwaitAdvance(); // 等待阶段1完成
+
+            // 线程2在阶段1后退出（动态减少）
+            if (threadNum == 2) {
+                System.out.println(&quot;线程2退出，注销自己&quot;);
+                phaser.arriveAndDeregister();
+                return;
+            }
+
+            System.out.println(&quot;线程&quot; + threadNum + &quot;执行阶段2任务&quot;);
+            phaser.arriveAndAwaitAdvance(); // 等待阶段2完成
+        }).start();
+    }
+
+    // 主线程等待阶段0完成
+    phaser.arriveAndAwaitAdvance();
+    
+    // 阶段1：当前参与者数是4（主线程+3个子线程）
+    System.out.println(&quot;\n进入阶段1&quot;);
+    phaser.arriveAndAwaitAdvance();
+    
+    // 阶段2：线程2已注销，参与者数变为3
+    System.out.println(&quot;\n进入阶段2&quot;);
+    phaser.arriveAndAwaitAdvance();
+
+    System.out.println(&quot;\n所有阶段完成，Phaser终止&quot;);
+}
+</code></pre>
+<p>}</p>
+<h3 id="thread类方法">Thread类方法
+</h3><p><img src="/6929097cebc75a00000000e5/6929097cebc75a00000000e4.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image"
+	
+	
+></p>
+<h3 id="intstring">int+String
+</h3><p>public class Main { // 补充类定义，使代码完整
+public static void main(String[] args) {
+// 错误原因：成员内部类Test依赖外部类实例，不能直接new Test()
+// 修正：先创建外部类实例，再通过外部类实例创建内部类对象
+Main mainObj = new Main();
+Main.Test test = mainObj.new Test();
+// 调用内部类方法，查看输出
+test.f();
+}
+public class Test {
+private int a; // 成员变量，默认值0
+private int b; // 成员变量，默认值0
+String c;      // 成员变量，默认值null
+public void f() {
+System.out.println(a + b + c);//0null
+System.out.println(c + a + b);//null00
+}
+}
+}
+::成员变量会编译错误，因为没有默认值::</p>
+<h3 id="接口和抽象类区别保护和重载相关">接口和抽象类区别（保护和重载相关）
+</h3><p>::接口：不能定义protected方法::
+Java 中接口的方法有严格的访问修饰符限制：
+接口中的方法默认是public abstract（即使不写public，编译器也会自动加上）；
+不允许使用protected、private等修饰符，只能是public。
+如果强行写protected void method()，会直接编译报错。
+::抽象类：能定义protected方法::
+抽象类兼具类的特性，对方法的修饰符没有接口的限制：
+可以自由使用public、protected、private或默认修饰符；
+protected方法表示 “只能被本类、子类或同包类访问”，抽象类中定义protected的抽象方法或普通方法都是合法的。
+::接口：::
+实现类必须重写接口中所有抽象方法（除非实现类也是抽象类）。
+接口方法默认public，实现类重写时必须保持public。
+::抽象类：::
+子类必须重写抽象类中所有抽象方法（除非子类也是抽象类）。
+抽象类中的非抽象方法（已实现的方法），子类可选择是否重写（若方法用final修饰则不能重写）。
+重写时访问修饰符不能更严格（如抽象类中protected方法，子类不能改为private）。</p>
+<h3 id="内部类和接口的关系">内部类和接口的关系
+</h3><p><img src="/692947d7ebc75a00000001fb/692947d7ebc75a00000001fa.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="image"
+	
+	
+></p>
+<h3 id="类复制">类复制
+</h3><p>::引用复制（指向同一个内存对象）::
+class Person {
+String name;
+int age;
+}
+Person p1 = new Person();
+Person p2 = p1; // 引用赋值，不是复制
+::浅复制::
+// 实现 Cloneable 接口进行浅复制
+class Person implements Cloneable {
+String name; // 引用类型
+int age;     // 基本类型
+@Override
+protected Object clone() throws CloneNotSupportedException {
+return super.clone(); // 浅复制
+}
+}
+Person p1 = new Person();
+p1.name = &ldquo;Alice&rdquo;;
+Person p2 = (Person) p1.clone(); // 浅复制
+<del>本质</del>：p2 是新对象，但 p2.name 和 p1.name 指向同一个字符串对象（引用类型共享）；
+<del>结果</del>：修改 p2.age（基本类型），p1.age 不变；但如果 name 是可变对象（如 StringBuilder），修改 p2.name 会影响 p1.name。<del>但是String的改变是指向新对象不会影响</del>
+::深复制::
+// 深复制需要手动处理引用类型
+class Person implements Cloneable {
+StringBuilder name; // 可变引用类型</p>
+<pre><code>@Override
+protected Object clone() throws CloneNotSupportedException {
+    Person clone = (Person) super.clone();
+    clone.name = new StringBuilder(this.name); // 复制引用类型成员
+    return clone;
+}
+</code></pre>
+<p>}
+::基本类型传递的是 “值”，引用类型传递的是 “对象地址”。::</p>
+<h3 id="继承相关输出题">继承相关输出题
+</h3><p>class A {
+static {
+System.out.println(&ldquo;A的静态代码块&rdquo;);
+}</p>
+<pre><code>{
+    System.out.println(&quot;A的构造代码块&quot;);
+}
+
+public A() {
+    System.out.println(&quot;A的构造方法&quot;);
+    show(); // 调用的是子类重写的show方法
+}
+
+public void show() {
+    System.out.println(&quot;A的show方法&quot;);
+}
+</code></pre>
+<p>}</p>
+<p>class B extends A {
+static {
+System.out.println(&ldquo;B的静态代码块&rdquo;);
+}</p>
+<pre><code>{
+    System.out.println(&quot;B的构造代码块&quot;);
+}
+
+public B() {
+    System.out.println(&quot;B的构造方法&quot;);
+}
+
+@Override
+public void show() {
+    System.out.println(&quot;B的show方法&quot;);
+}
+</code></pre>
+<p>}
+public class Test {
+public static void main(String[] args) {
+new B();
+}
+}</p>
+<p><del>A的静态代码块</del>
+<del>B的静态代码块</del>
+<del>A的构造代码块</del>
+<del>A的构造方法</del>
+<del>B的show方法</del>
+<del>B的构造代码块</del>
+<del>B的构造方法</del>
+::静态代码块::：父类→子类（只执行一次，类加载时执行）；
+::构造代码块::：父类→子类（每次创建对象时执行，在构造方法前）；
+::构造方法::：父类构造方法→子类构造方法（子类构造默认调用super()）；
+::方法重写::：<del>父类构造中调用的show()是子类重写后的方法（多态）</del>。</p>
+<p>class Father {
+int num = 10;</p>
+<pre><code>public void show() {
+    System.out.println(&quot;Father show: &quot; + num);
+}
+</code></pre>
+<p>}</p>
+<p>class Son extends Father {
+int num = 20;</p>
+<pre><code>@Override
+public void show() {
+    System.out.println(&quot;Son show: &quot; + num);
+}
+
+public void printNum() {
+    System.out.println(&quot;Son num: &quot; + num);
+    System.out.println(&quot;Father num: &quot; + super.num);
+}
+</code></pre>
+<p>}</p>
+<p>public class Test {
+public static void main(String[] args) {
+Father f = new Son();
+System.out.println(f.num); // 成员变量不具备多态性
+f.show(); // 方法具备多态性</p>
+<pre><code>    Son s = (Son) f;
+    s.printNum();
+}
+</code></pre>
+<p>}
+10
+Son show: 20
+Son num: 20
+Father num: 10
+::成员变量::：不具备多态性，编译和运行都看引用类型（Father）；
+::成员方法::：具备多态性，编译看引用类型，运行看对象类型（Son）；
+::super 关键字::：子类中通过super访问父类的成员变量 / 方法。</p>
+<p>class Parent {
+public static void staticMethod() {
+System.out.println(&ldquo;Parent静态方法&rdquo;);
+}</p>
+<pre><code>public void instanceMethod() {
+    System.out.println(&quot;Parent实例方法&quot;);
+}
+</code></pre>
+<p>}</p>
+<p>class Child extends Parent {
+public static void staticMethod() {
+System.out.println(&ldquo;Child静态方法&rdquo;);
+}</p>
+<pre><code>@Override
+public void instanceMethod() {
+    System.out.println(&quot;Child实例方法&quot;);
+}
+</code></pre>
+<p>}</p>
+<p>public class Test {
+public static void main(String[] args) {
+Parent p = new Child();
+p.staticMethod(); // 静态方法无多态
+p.instanceMethod(); // 实例方法有多态
+}
+}
+Parent静态方法
+Child实例方法
+::静态方法::：属于类，无多态性，调用看引用类型；
+::实例方法::：属于对象，有多态性，调用看对象类型</p>
+<h3 id="隐藏hide">隐藏（hide）
+</h3><p>::静态方法的隐藏::
+class Parent {
+public static void staticMethod() {
+System.out.println(&ldquo;Parent&rsquo;s static method&rdquo;);
+}
+}
+class Child extends Parent {
+// 隐藏父类的静态方法
+public static void staticMethod() {
+System.out.println(&ldquo;Child&rsquo;s static method&rdquo;);
+}
+}
+public class HideTest {
+public static void main(String[] args) {
+Parent parent1 = new Parent();
+Parent parent2 = new Child(); // 父类引用指向子类对象
+Child child = new Child();</p>
+<pre><code>    parent1.staticMethod(); // 输出: Parent's static method
+    parent2.staticMethod(); // 输出: Parent's static method (关键！看引用类型)
+    child.staticMethod();   // 输出: Child's static method
+}
+</code></pre>
+<p>}
+::成员变量的隐藏:: ::静态变量的隐藏::
+class Parent {
+String name = &ldquo;Parent&rdquo;;
+static String type = &ldquo;ParentType&rdquo;;
+}</p>
+<p>class Child extends Parent {
+String name = &ldquo;Child&rdquo;; // 隐藏父类实例变量
+static String type = &ldquo;ChildType&rdquo;; // 隐藏父类静态变量
+}</p>
+<p>public class HideTest2 {
+public static void main(String[] args) {
+Parent p = new Child();</p>
+<pre><code>    System.out.println(p.name); // 输出: Parent (看引用类型)
+    System.out.println(p.type); // 输出: ParentType (看引用类型)
+    
+    Child c = (Child) p;
+    System.out.println(c.name); // 输出: Child
+    System.out.println(c.type); // 输出: ChildType
+}
+</code></pre>
+<p>}</p>
+<h3 id="多类型参数和多类型返回值">多类型参数和多类型返回值
+</h3><p>public Object getValueBasedOnCondition(Object type) {
+// 判断传入的 type 对象是否为 String 类型
+if (type instanceof String) {
+String typeStr = (String) type;</p>
+<pre><code>    if (typeStr.equals(&quot;integer&quot;)) {
+        return 100; // 返回 Integer 类型
+    } else if (typeStr.equals(&quot;string&quot;)) {
+        return &quot;Hello, World&quot;; // 返回 String 类型
+    } else if (typeStr.equals(&quot;boolean&quot;)) {
+        return true; // 返回 Boolean 类型
+    }
+}
+// 如果不是 String 类型，或者不匹配任何条件，返回 null
+return null;
+</code></pre>
+<p>}</p>
+<h3 id="bug的生命周期">Bug的生命周期
+</h3><p>Bug 完整生命周期（各阶段详细说明）
+::新建（New）::新建是 Bug 生命周期的起点，指测试人员、开发人员或用户发现软件异常后，在缺陷管理工具（如 Jira、Bugzilla）中提交 Bug 单的阶段。提交时需完整记录 Bug 的核心信息，包括复现步骤、测试环境、预期结果与实际结果、截图 / 日志等，确保 Bug 描述清晰可追溯；此时 Bug 状态为 “新建”，等待专人审核，若信息不全可能被打回补充，这是后续所有处理环节的基础。
+::确认（Verified/Confirmed）::确认阶段由 Bug 负责人（如测试组长、开发负责人）对新建的 Bug 进行审核验证，核心是判断 Bug 是否为真实存在的问题：若验证后确认是代码缺陷、逻辑错误等有效问题，将状态转为 “确认”；若判定为需求理解偏差、操作失误、环境问题等无效 Bug，会直接标记为 “关闭 - 无效”，并备注原因反馈给提交人；这一阶段能过滤无效 Bug，避免开发资源浪费。
+::分配（Assigned）::分配阶段是将确认后的有效 Bug 定向指派给对应的开发人员，明确修复责任人。负责人需根据 Bug 所属模块、业务范围或代码归属，精准分配给相关开发工程师，同时可标注 Bug 优先级（高 / 中 / 低）和严重程度（致命 / 严重 / 一般 / 轻微），让开发人员清晰知晓修复优先级；若分配错误，可重新调整责任人，确保 Bug 能被对应领域的开发人员处理。
+::修复中（In Progress/Fixing）::修复中阶段是开发人员接手已分配的 Bug 后，开展问题定位、分析根因并编写修复代码的过程。开发人员需先复现 Bug，通过日志、调试工具等排查问题根源（如逻辑漏洞、参数错误、兼容性问题等），再制定修复方案并修改代码；期间可更新 Bug 备注，记录修复思路、遇到的难点等，若需延期修复，需标注原因和预计完成时间，确保进度可追踪。
+::已修复（Fixed/Resolved::）已修复阶段是开发人员完成代码修改、自测验证 Bug 已解决后，将 Bug 状态更新为 “已修复” 的环节。此时需附带修复相关信息，如代码提交记录、自测结果、修复范围等，同时将 Bug 回传给测试人员；若修复过程中发现 Bug 无法复现或无需修复（如需求变更），也可在该阶段标注 “已解决 - 无需修复”，并说明具体原因。
+::回归测试（Retest/Reopened）::回归测试阶段由测试人员针对修复后的版本，按照原复现步骤验证 Bug 是否真正解决。若测试后 Bug 未复现，说明修复有效，将状态转为 “验证通过”；若 Bug 仍存在、复现步骤不变，或修复后引入新问题，会将 Bug 状态打回 “重新打开（Reopened）”，并备注未修复的原因或新问题的表现，Bug 会再次回到 “分配” 阶段，进入新一轮修复流程。
+::关闭（Closed）::关闭是 Bug 生命周期的最终闭环阶段，仅在回归测试通过后执行：测试人员确认 Bug 完全修复，且无衍生问题，将 Bug 标记为 “关闭”，并归档留存；若 Bug 因特殊原因无法修复（如兼容成本过高、业务调整无需修复），也可标注 “关闭 - 无法修复”“关闭 - 需求变更” 等具体原因后归档；关闭后的 Bug 若后续复现，可重新激活，再次进入生命周期流程。</p>
+<h2 id="linux相关-2">Linux相关
+</h2><h3 id="765权限位标记">765权限位标记
+</h3><p>-rwxrw-r-x</p>
+<h2 id="算法-3">算法
+</h2><h3 id="给n个数取部分数的和为k的倍数要求数最大">给n个数，取部分数的和为k的倍数，要求数最大
+</h3><p>public class Main {
+/**
+* 找到和为k的倍数的最大和值
+* @param nums 输入数组
+* @param k 目标倍数
+* @return 满足条件的最大和值（无满足条件的子集返回0）
+<em>/
+/</em>*
+* 找到数组中选取若干数，使其和为k的倍数的最大和值
+* @param nums 输入的整数数组
+* @param k 目标倍数
+* @return 满足条件的最大和值（若无满足条件的非空子集则返回0）
+*/
+public static int findMaxSumMultiple(int[] nums, int k) {
+// dp[i]：表示选取某些数后，它们的和对k取模等于i时的最大和值
+// 数组大小为k，对应余数0到k-1的所有可能情况
+int[] dp = new int[k];</p>
+<pre><code>    // 初始化dp数组：将所有余数状态初始化为Integer.MIN_VALUE，表示初始时不可达
+    // 这是为了区分&quot;和为0&quot;（余数0且和为0）和&quot;不可达&quot;（余数i无法实现）
+    for (int i = 0; i &lt; k; i++) {
+        dp[i] = Integer.MIN_VALUE;
+    }
+
+    // 初始状态：选取0个数时，和为0，余数为0，所以dp[0] = 0
+    // 这是动态规划的起点
+    dp[0] = 0;
+
+    // 遍历数组中的每一个数字，逐个考虑是否选取该数字
+    for (int num : nums) {
+        // 关键：创建dp数组的副本temp，用于存储更新后的状态
+        // 这样可以避免在同一轮迭代中重复使用当前数字多次
+       ::int[] temp = dp.clone();::
+
+        // 遍历所有可能的余数状态（0到k-1）
+        for (int i = 0; i &lt; k; i++) {
+            // 如果当前余数状态i是可达的（不是初始的MIN_VALUE）
+            if (dp[i] != Integer.MIN_VALUE) {
+                // 计算当前数字num对k取模的余数
+                // (num % k + k) % k 是为了处理num为负数的情况，确保余数非负
+                int remainder = (num % k + k) % k;
+
+                // 计算加入当前数字后新的余数：(当前余数i + 数字余数remainder) % k
+                int newMod = (i + remainder) % k;
+
+                // 计算加入当前数字后的新和值：当前和值dp[i] + 当前数字num
+                int newSum = dp[i] + num;
+
+                // 如果新和值比temp中记录的newMod状态的和值更大，则更新
+                // 这保证了每个余数状态存储的都是最大的可能和值
+                if (newSum &gt; temp[newMod]) {
+                    temp[newMod] = newSum;
+                }
+            }
+        }
+
+        // 将更新后的temp数组赋值给dp，完成一轮状态转移
+        dp = temp;
+    }
+
+    // 最终结果：dp[0]存储的是和为k的倍数（余数0）的最大和值
+    // 如果dp[0] &gt; 0，返回该值；否则返回0（表示只有空集满足条件）
+    return dp[0] &gt; 0 ? dp[0] : 0;
+}
+
+public static void main(String[] args) {
+    // 测试用例1
+    int[] nums1 = {3, 1, 2, 4, 5};
+    int k1 = 3;
+    System.out.println(&quot;测试用例1:&quot;);
+    System.out.println(&quot;数组: [3, 1, 2, 4, 5], k = 3&quot;);
+    System.out.println(&quot;最大和值: &quot; + findMaxSumMultiple(nums1, k1)); // 输出: 15 (3+1+2+4+5=15)
+    System.out.println();
+
+    // 测试用例2
+    int[] nums2 = {5, 7, 9, 11, 13};
+    int k2 = 4;
+    System.out.println(&quot;测试用例2:&quot;);
+    System.out.println(&quot;数组: [5, 7, 9, 11, 13], k = 4&quot;);
+    System.out.println(&quot;最大和值: &quot; + findMaxSumMultiple(nums2, k2)); // 输出: 40 (5+7+9+11+8? 实际是7+9+11+13=40)
+    System.out.println();
+
+    // 测试用例3
+    int[] nums3 = {2, 3, 5, 7};
+    int k3 = 5;
+    System.out.println(&quot;测试用例3:&quot;);
+    System.out.println(&quot;数组: [2, 3, 5, 7], k = 5&quot;);
+    System.out.println(&quot;最大和值: &quot; + findMaxSumMultiple(nums3, k3)); // 输出: 15 (2+3+5+5? 实际是2+3+5+5? 正确是2+3+5+5不存在，实际是2+3+5+5? 正确是2+3+5+5? 实际是5+2+3+5? 正确是2+3+5+5? 实际是2+3+5+5? 正确是15)
+}
+</code></pre>
+<p>}</p>
+
 </section>
 
 

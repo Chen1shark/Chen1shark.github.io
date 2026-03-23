@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Recruitment on Chen1shark 的一坨笔记</title>
+        <link>http://localhost:1313/categories/recruitment/</link>
+        <description>Recent content in Recruitment on Chen1shark 的一坨笔记</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>Chen1shark</copyright>
+        <lastBuildDate>Tue, 24 Mar 2026 00:00:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/recruitment/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>后端一面_线程池_String_泛型_缓存_Linux</title>
+        <link>http://localhost:1313/p/backend-interview-threadpool-string-generics-cache-linux/</link>
+        <pubDate>Tue, 24 Mar 2026 00:00:00 +0800</pubDate>
+        
+        <guid>http://localhost:1313/p/backend-interview-threadpool-string-generics-cache-linux/</guid>
+        <description>&lt;h2 id=&#34;java-相关&#34;&gt;Java 相关
+&lt;/h2&gt;&lt;h3 id=&#34;线程池&#34;&gt;线程池
+&lt;/h3&gt;&lt;h4 id=&#34;线程池-7-个核心参数&#34;&gt;线程池 7 个核心参数
+&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;corePoolSize&lt;/code&gt;：核心线程数。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;maximumPoolSize&lt;/code&gt;：最大线程数。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;keepAliveTime&lt;/code&gt;：非核心线程的闲置超时时间。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;unit&lt;/code&gt;：&lt;code&gt;keepAliveTime&lt;/code&gt; 的时间单位。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;workQueue&lt;/code&gt;：任务阻塞队列。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;threadFactory&lt;/code&gt;：用于创建线程的工厂。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;handler&lt;/code&gt;：拒绝策略，当任务队列已满且线程数达到最大时执行。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;线程池任务堆积队列过大的解决方式&#34;&gt;线程池任务堆积、队列过大的解决方式
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;扩容线程池&lt;/strong&gt;：适当调大 &lt;code&gt;maximumPoolSize&lt;/code&gt;（需结合 CPU 核心数，避免线程过多导致上下文切换开销）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;优化队列&lt;/strong&gt;：使用有界队列（如 &lt;code&gt;ArrayBlockingQueue&lt;/code&gt;）并设置合理容量，配合合适的拒绝策略（如 &lt;code&gt;CallerRunsPolicy&lt;/code&gt;，让提交者线程自己执行任务，从而减慢任务提交速度）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;任务降级&lt;/strong&gt;：在任务量过大时，非核心任务可以降级处理，例如记录日志后续补偿，而不是直接进入线程池。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;优化任务处理效率&lt;/strong&gt;：简化任务逻辑，将 IO 密集型操作异步化，减少单个任务的执行时间。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;监控告警&lt;/strong&gt;：实时监控队列长度、任务执行耗时等指标，超过阈值时触发告警或动态扩容。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;扩大内存能否解决线程池问题&#34;&gt;扩大内存能否解决线程池问题
+&lt;/h4&gt;&lt;p&gt;扩大内存&lt;strong&gt;不能&lt;/strong&gt;从根本上解决线程池任务执行慢和堆积问题。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;任务执行慢&lt;/strong&gt;：核心原因通常是线程资源不足、任务本身耗时（如 IO 阻塞、CPU 密集型计算）或依赖的外部服务响应慢，这与内存大小无直接关系。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;任务堆积&lt;/strong&gt;：本质是任务提交速度超过处理速度。扩大内存仅能让阻塞队列容纳更多任务，治标不治本，最终仍会耗尽内存或触发拒绝策略。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;正确思路&lt;/strong&gt;：应从优化任务效率（异步化、减少锁竞争）、合理配置线程池参数（如根据任务类型调整核心/最大线程数）、引入限流削峰等角度解决。&lt;/p&gt;
+&lt;h4 id=&#34;如何让线程池任务运行更快&#34;&gt;如何让线程池任务运行更快
+&lt;/h4&gt;&lt;p&gt;核心是提升&lt;strong&gt;单任务执行效率&lt;/strong&gt;和&lt;strong&gt;优化线程池资源利用率&lt;/strong&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;优化任务本身&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;减少任务内阻塞，如使用 NIO 或异步 IO 替代同步阻塞 IO。&lt;/li&gt;
+&lt;li&gt;避免或优化锁竞争，如缩小锁粒度、使用 &lt;code&gt;ConcurrentHashMap&lt;/code&gt; 或 &lt;code&gt;CAS&lt;/code&gt; 操作替代 &lt;code&gt;synchronized&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;将长任务拆分为多个并行的短任务。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提升线程利用率&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;按任务类型隔离线程池，例如将 CPU 密集型和 IO 密集型任务分配到不同的线程池，避免互相影响。&lt;/li&gt;
+&lt;li&gt;合理设置 &lt;code&gt;keepAliveTime&lt;/code&gt;，避免线程频繁创建和销毁。&lt;/li&gt;
+&lt;li&gt;使用 &lt;code&gt;ThreadLocal&lt;/code&gt; 缓存线程私有资源（如 &lt;code&gt;SimpleDateFormat&lt;/code&gt;），减少重复创建开销。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;利用硬件资源&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;对于计算密集型任务，可适当增加线程数以利用多核 CPU。&lt;/li&gt;
+&lt;li&gt;使用本地缓存（如 Caffeine、Guava Cache）减少重复计算或远程调用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;string-相关&#34;&gt;String 相关
+&lt;/h3&gt;&lt;h4 id=&#34;string-为什么不可变&#34;&gt;String 为什么不可变
+&lt;/h4&gt;&lt;p&gt;&lt;code&gt;String&lt;/code&gt; 被设计为不可变（Immutable）主要是为了&lt;strong&gt;效率&lt;/strong&gt;和&lt;strong&gt;安全&lt;/strong&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;字符串常量池（String Pool）&lt;/strong&gt;：Java 中大量 &lt;code&gt;String&lt;/code&gt; 对象可以被复用。如果 &lt;code&gt;String&lt;/code&gt; 可变，修改一个 &lt;code&gt;String&lt;/code&gt; 会影响所有引用它的地方，常量池将失去意义。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;线程安全&lt;/strong&gt;：不可变对象天然是线程安全的，无需额外同步措施即可在多线程环境中共享。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;适用于 &lt;code&gt;HashMap&lt;/code&gt; 的 Key&lt;/strong&gt;：&lt;code&gt;String&lt;/code&gt; 常被用作 &lt;code&gt;HashMap&lt;/code&gt; 的键。如果 &lt;code&gt;String&lt;/code&gt; 可变，其 &lt;code&gt;hashCode()&lt;/code&gt; 值可能改变，导致无法在 &lt;code&gt;HashMap&lt;/code&gt; 中正确定位到原来的值。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;安全性&lt;/strong&gt;：在网络连接、文件路径等场景，如果 &lt;code&gt;String&lt;/code&gt; 可变，可能在安全校验通过后被恶意修改，引发安全漏洞。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;string-能通过反射获取并修改底层数组吗&#34;&gt;String 能通过反射获取并修改底层数组吗
+&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;可以&lt;/strong&gt;。尽管 &lt;code&gt;String&lt;/code&gt; 的底层数组（JDK 9 前为 &lt;code&gt;char[]&lt;/code&gt;，后为 &lt;code&gt;byte[]&lt;/code&gt;）是 &lt;code&gt;private final&lt;/code&gt; 的，但通过反射可以绕过这些限制。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;获取 &lt;code&gt;value&lt;/code&gt; 字段&lt;/strong&gt;：使用 &lt;code&gt;String.class.getDeclaredField(&amp;quot;value&amp;quot;)&lt;/code&gt; 获取私有字段。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;破解访问限制&lt;/strong&gt;：调用 &lt;code&gt;field.setAccessible(true)&lt;/code&gt; 来允许访问私有成员。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;修改数组内容&lt;/strong&gt;：获取底层数组引用后，直接修改其元素。这会导致所有共享该 &lt;code&gt;String&lt;/code&gt; 对象的地方（包括字符串常量池）都受到影响。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote class=&#34;alert alert-caution&#34;&gt;
+  &lt;p&gt;这种行为严重破坏了 &lt;code&gt;String&lt;/code&gt; 的不可变性设计，可能导致整个应用出现无法预料的错误，&lt;strong&gt;严禁在生产代码中使用&lt;/strong&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&#34;泛型&#34;&gt;泛型
+&lt;/h3&gt;&lt;h4 id=&#34;泛型擦除&#34;&gt;泛型擦除
+&lt;/h4&gt;&lt;p&gt;泛型擦除是 Java 泛型的一种实现机制。它指的是在&lt;strong&gt;编译阶段&lt;/strong&gt;，泛型的类型参数信息会被擦除，替换为其原始类型（Raw Type），以兼容 JDK 5 之前的代码。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;编译时&lt;/strong&gt;：编译器会检查泛型的类型约束。例如，&lt;code&gt;List&amp;lt;String&amp;gt;&lt;/code&gt; 中只能添加 &lt;code&gt;String&lt;/code&gt;。同时，编译器会将类型参数 &lt;code&gt;T&lt;/code&gt; 替换为它的上界（如 &lt;code&gt;T extends Number&lt;/code&gt; 替换为 &lt;code&gt;Number&lt;/code&gt;），如果没有指定上界则替换为 &lt;code&gt;Object&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;运行时&lt;/strong&gt;：JVM 看到的是不带类型参数的原始类型。例如，&lt;code&gt;List&amp;lt;String&amp;gt;&lt;/code&gt; 和 &lt;code&gt;List&amp;lt;Integer&amp;gt;&lt;/code&gt; 在运行时都被看作是 &lt;code&gt;List&lt;/code&gt; 类型。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;带来的影响&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;编译器会在读取泛型对象的地方自动插入强制类型转换代码，以保证类型安全。&lt;/li&gt;
+&lt;li&gt;为了解决类型擦除后多态方法签名不匹配的问题，编译器会生成&lt;strong&gt;桥接方法&lt;/strong&gt;（Bridge Method）。&lt;/li&gt;
+&lt;li&gt;基本类型（如 &lt;code&gt;int&lt;/code&gt;）不能作为泛型参数，必须使用其包装类（如 &lt;code&gt;Integer&lt;/code&gt;）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;泛型在编译和运行阶段的处理&#34;&gt;泛型在编译和运行阶段的处理
+&lt;/h4&gt;&lt;p&gt;简单来说，泛型是 “&lt;strong&gt;编译时很具体，运行时很模糊&lt;/strong&gt;”。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;编译阶段&lt;/strong&gt;：编译器严格执行类型检查。当你写 &lt;code&gt;List&amp;lt;String&amp;gt; list = new ArrayList&amp;lt;&amp;gt;();&lt;/code&gt; 并尝试 &lt;code&gt;list.add(123);&lt;/code&gt; 时，编译器会报错。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;编译后&lt;/strong&gt;：泛型信息被擦除，&lt;code&gt;List&amp;lt;String&amp;gt;&lt;/code&gt; 变成 &lt;code&gt;List&lt;/code&gt;。同时，编译器会在 &lt;code&gt;list.get(0)&lt;/code&gt; 这类读取操作处自动插入 &lt;code&gt;(String)&lt;/code&gt; 强制转换。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;运行阶段&lt;/strong&gt;：JVM 只知道这是一个 &lt;code&gt;List&lt;/code&gt;，但由于编译器已经保证了存入的都是 &lt;code&gt;String&lt;/code&gt;，并且在读取时进行了类型转换，因此在功能上是类型安全的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;缓存相关&#34;&gt;缓存相关
+&lt;/h3&gt;&lt;h4 id=&#34;使用-hashmap-实现本地缓存&#34;&gt;使用 HashMap 实现本地缓存
+&lt;/h4&gt;&lt;p&gt;直接使用 &lt;code&gt;HashMap&lt;/code&gt; 作为本地缓存是最简单的方式，但功能非常有限，存在明显缺点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;无过期策略&lt;/strong&gt;：缓存项会永久存储在内存中，除非手动移除，否则可能导致内存泄漏（OOM）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;无淘汰策略&lt;/strong&gt;：当缓存达到容量上限时，无法自动淘汰旧的或不常用的缓存项。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;线程不安全&lt;/strong&gt;：在多线程环境下直接使用 &lt;code&gt;HashMap&lt;/code&gt; 会有并发问题，需要使用 &lt;code&gt;ConcurrentHashMap&lt;/code&gt; 代替。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote class=&#34;alert alert-tip&#34;&gt;
+  &lt;p&gt;在生产环境中，推荐使用成熟的本地缓存框架，如 &lt;strong&gt;Caffeine&lt;/strong&gt; 或 &lt;strong&gt;Guava Cache&lt;/strong&gt;。它们提供了丰富的过期策略（基于时间、大小、引用）、淘汰算法（如 LRU、LFU）和统计功能。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&#34;本地缓存与-redis-缓存优缺点对比&#34;&gt;本地缓存与 Redis 缓存优缺点对比
+&lt;/h4&gt;&lt;h5 id=&#34;本地缓存local-cache&#34;&gt;本地缓存（Local Cache）
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;优点&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;极致性能&lt;/strong&gt;：数据在应用进程内存中，无网络 IO，延迟极低（微秒级）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;实现简单&lt;/strong&gt;：无需部署额外服务，易于集成。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;缺点&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;存储受限&lt;/strong&gt;：受单个应用实例的内存限制，无法缓存大量数据。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;数据不一致&lt;/strong&gt;：在分布式环境中，各实例的缓存独立，难以保证数据一致性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;缺乏分布式特性&lt;/strong&gt;：不支持跨服务共享、分布式锁等功能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;redis-缓存分布式缓存&#34;&gt;Redis 缓存（分布式缓存）
+&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;优点&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;分布式共享&lt;/strong&gt;：作为独立服务，可被多应用实例共享，保证数据一致性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;大容量存储&lt;/strong&gt;：可独立扩容，支持海量数据存储。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;功能丰富&lt;/strong&gt;：支持持久化、多种数据结构、发布订阅、分布式锁等高级功能。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;高可用&lt;/strong&gt;：可通过主从、哨兵、集群模式实现高可用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;缺点&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;性能开销&lt;/strong&gt;：依赖网络 IO，访问延迟比本地缓存高（毫秒级）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;部署维护成本&lt;/strong&gt;：需要独立部署和监控，增加了系统复杂度。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;linux-相关&#34;&gt;Linux 相关
+&lt;/h2&gt;&lt;h3 id=&#34;网络检测指令&#34;&gt;网络检测指令
+&lt;/h3&gt;&lt;h4 id=&#34;查看网络接口与-ip-信息&#34;&gt;查看网络接口与 IP 信息
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ip addr show              &lt;span class=&#34;c1&#34;&gt;# 显示所有网络接口及 IP 配置（推荐）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hostname -I               &lt;span class=&#34;c1&#34;&gt;# 快速列出本机所有 IP 地址&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ifconfig                  &lt;span class=&#34;c1&#34;&gt;# 查看所有网卡信息（部分系统需安装 net-tools）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;测试网络连通性&#34;&gt;测试网络连通性
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ping baidu.com            &lt;span class=&#34;c1&#34;&gt;# 检测与目标的连通性&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ping -c &lt;span class=&#34;m&#34;&gt;4&lt;/span&gt; baidu.com       &lt;span class=&#34;c1&#34;&gt;# 发送 4 个包后停止&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;查看端口与连接状态&#34;&gt;查看端口与连接状态
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ss -tulnp                 &lt;span class=&#34;c1&#34;&gt;# 查看所有监听的 TCP/UDP 端口及进程（推荐）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;netstat -tulnp            &lt;span class=&#34;c1&#34;&gt;# 功能类似 ss，旧工具&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;lsof -i :8080             &lt;span class=&#34;c1&#34;&gt;# 查看指定端口（如 8080）的占用情况&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;跟踪网络路由&#34;&gt;跟踪网络路由
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;traceroute baidu.com      &lt;span class=&#34;c1&#34;&gt;# 追踪到目标的路由路径&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mtr baidu.com             &lt;span class=&#34;c1&#34;&gt;# 结合了 ping 和 traceroute 的功能，持续监控&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;检测-dns-解析&#34;&gt;检测 DNS 解析
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nslookup github.com       &lt;span class=&#34;c1&#34;&gt;# 查询域名对应的 IP&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;dig www.baidu.com         &lt;span class=&#34;c1&#34;&gt;# 提供详细的 DNS 解析信息&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;监控带宽占用&#34;&gt;监控带宽占用
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iftop                     &lt;span class=&#34;c1&#34;&gt;# 实时显示各连接的带宽使用（需安装）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nload eth0                &lt;span class=&#34;c1&#34;&gt;# 图形化显示指定网卡的实时流量（需安装）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;查看防火墙规则&#34;&gt;查看防火墙规则
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# CentOS/RHEL 系统&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;firewall-cmd --list-all
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Ubuntu/Debian 系统&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ufw status
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 通用底层规则&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;iptables -L -n
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;其他实用指令&#34;&gt;其他实用指令
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;curl http://localhost:8080  &lt;span class=&#34;c1&#34;&gt;# 测试 HTTP 服务是否可访问&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;telnet 192.168.1.1 &lt;span class=&#34;m&#34;&gt;22&lt;/span&gt;       &lt;span class=&#34;c1&#34;&gt;# 测试指定 IP 和端口是否可达&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ip route                    &lt;span class=&#34;c1&#34;&gt;# 查看路由表（推荐）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+        </item>
+        
+    </channel>
+</rss>
