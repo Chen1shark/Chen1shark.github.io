@@ -7,17 +7,15 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>Chen1shark</copyright>
-        <lastBuildDate>Sat, 21 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/java/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 23 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/java/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Java基础用法</title>
         <link>http://localhost:1313/p/java-basics/</link>
         <pubDate>Sat, 21 Mar 2026 00:00:00 +0000</pubDate>
         
         <guid>http://localhost:1313/p/java-basics/</guid>
-        <description>&lt;h1 id=&#34;java-基础用法&#34;&gt;Java 基础用法
-&lt;/h1&gt;&lt;h2 id=&#34;一集合框架算法高频&#34;&gt;一、集合框架（算法高频）
+        <description>&lt;h2 id=&#34;集合框架算法高频&#34;&gt;集合框架（算法高频）
 &lt;/h2&gt;&lt;h3 id=&#34;list-相关&#34;&gt;List 相关
-&lt;/h3&gt;&lt;h4 id=&#34;list排序&#34;&gt;List排序
-&lt;/h4&gt;&lt;p&gt;详见：&lt;a class=&#34;link&#34; href=&#34;#%e8%87%aa%e5%ae%9a%e4%b9%89%e6%af%94%e8%be%83%e5%99%a8%e6%b1%87%e6%80%bb&#34; &gt;自定义比较器汇总&lt;/a&gt;&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;排序详见：&lt;a class=&#34;link&#34; href=&#34;#%e8%87%aa%e5%ae%9a%e4%b9%89%e6%af%94%e8%be%83%e5%99%a8%e6%b1%87%e6%80%bb&#34; &gt;自定义比较器汇总&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&#34;set-相关&#34;&gt;Set 相关
 &lt;/h3&gt;&lt;h3 id=&#34;map-相关&#34;&gt;Map 相关
 &lt;/h3&gt;&lt;h3 id=&#34;优先级队列priorityqueue&#34;&gt;优先级队列（PriorityQueue）
@@ -61,12 +59,12 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;PriorityQueue&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Node&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pq&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;new&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;PriorityQueue&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;priority&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;priority&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;二数组--二维数组&#34;&gt;二、数组 &amp;amp; 二维数组
+&lt;/div&gt;&lt;h2 id=&#34;数组--二维数组&#34;&gt;数组 &amp;amp; 二维数组
 &lt;/h2&gt;&lt;h3 id=&#34;数组常用操作&#34;&gt;数组常用操作
 &lt;/h3&gt;&lt;h3 id=&#34;二维数组常用操作&#34;&gt;二维数组常用操作
 &lt;/h3&gt;&lt;h3 id=&#34;数组排序含自定义比较器&#34;&gt;数组排序（含自定义比较器）
 &lt;/h3&gt;&lt;p&gt;详见：&lt;a class=&#34;link&#34; href=&#34;#%e8%87%aa%e5%ae%9a%e4%b9%89%e6%af%94%e8%be%83%e5%99%a8%e6%b1%87%e6%80%bb&#34; &gt;自定义比较器汇总&lt;/a&gt; 和 &lt;a class=&#34;link&#34; href=&#34;#arrays-%e5%b7%a5%e5%85%b7%e7%b1%bb&#34; &gt;Arrays工具类&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;三链表&#34;&gt;三、链表
+&lt;h2 id=&#34;链表&#34;&gt;链表
 &lt;/h2&gt;&lt;h3 id=&#34;链表节点定义模板&#34;&gt;链表节点定义（模板）
 &lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -175,8 +173,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id=&#34;链表指针操作核心易错点&#34;&gt;链表指针操作（核心易错点）
-&lt;/h3&gt;&lt;h4 id=&#34;算法题中的指针使用区别&#34;&gt;算法题中的指针使用区别
-&lt;/h4&gt;&lt;ul&gt;
+&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;场景 1：多个指针操作同一个链表（推荐）&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -221,7 +218,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;strong&gt;关键点&lt;/strong&gt;：所有指针（&lt;code&gt;dummy&lt;/code&gt;, &lt;code&gt;prev&lt;/code&gt;, &lt;code&gt;curr&lt;/code&gt;）操作&lt;strong&gt;同一个链表对象&lt;/strong&gt;，修改会相互影响。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;关键点&lt;/strong&gt;：所有指针（&lt;code&gt;dummy&lt;/code&gt;、&lt;code&gt;prev&lt;/code&gt;、&lt;code&gt;curr&lt;/code&gt;）操作&lt;strong&gt;同一个链表对象&lt;/strong&gt;，修改会相互影响。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;场景 2：错误做法 - 创建多个独立虚拟头节点&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -272,7 +269,7 @@
 &lt;li&gt;&lt;strong&gt;正确做法&lt;/strong&gt;：一个虚拟头节点 + 多个工作指针，操作同一个链表&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;错误做法&lt;/strong&gt;：多个独立虚拟头节点，&lt;strong&gt;结果完全错误&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;⚠️ 方法二的致命问题&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;方法二的致命问题&lt;/strong&gt;：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -297,11 +294,11 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dummy2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;next&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 返回：1→4→3 ❌ 丢失了头节点！&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;strong&gt;为什么方法二错误&lt;/strong&gt;:&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;为什么方法二错误&lt;/strong&gt;：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;dummy2.next&lt;/code&gt; 固定指向原头节点，不知道交换后的新头节点&lt;/li&gt;
 &lt;li&gt;两两交换会改变头节点位置，但 &lt;code&gt;dummy2&lt;/code&gt; 无法感知这个变化&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;结果：返回错误的起始位置，导致链表截断&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;结果&lt;/strong&gt;：返回错误的起始位置，导致链表截断&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;高频应用场景&lt;/strong&gt;：&lt;/p&gt;
 &lt;ul&gt;
@@ -310,10 +307,9 @@
 &lt;/ul&gt;
 &lt;h3 id=&#34;链表排序归并快排等&#34;&gt;链表排序（归并/快排等）
 &lt;/h3&gt;&lt;h3 id=&#34;链表高频技巧&#34;&gt;链表高频技巧
-&lt;/h3&gt;&lt;h2 id=&#34;四常用工具类--语法&#34;&gt;四、常用工具类 &amp;amp; 语法
+&lt;/h3&gt;&lt;h2 id=&#34;常用工具类--语法&#34;&gt;常用工具类 &amp;amp; 语法
 &lt;/h2&gt;&lt;h3 id=&#34;arrays-工具类&#34;&gt;Arrays 工具类
-&lt;/h3&gt;&lt;h4 id=&#34;数组排序&#34;&gt;数组排序
-&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -329,10 +325,9 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;Arrays&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;sort&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;strArr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;length&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;());&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;// 按长度排序&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;collections-工具类&#34;&gt;Collections 工具类
-&lt;/h3&gt;&lt;h4 id=&#34;自定义比较器汇总&#34;&gt;自定义比较器汇总
-&lt;/h4&gt;&lt;h5 id=&#34;lambda-vs-comparator-vs-comparing区别&#34;&gt;Lambda vs Comparator vs comparing区别
-&lt;/h5&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;h3 id=&#34;自定义比较器汇总&#34;&gt;自定义比较器汇总
+&lt;/h3&gt;&lt;h4 id=&#34;lambda-vs-comparator-vs-comparing区别&#34;&gt;Lambda vs Comparator vs comparing区别
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
@@ -382,20 +377,20 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h5 id=&#34;三者区别说明&#34;&gt;三者区别说明
-&lt;/h5&gt;&lt;ul&gt;
+&lt;/div&gt;&lt;h4 id=&#34;三者区别说明&#34;&gt;三者区别说明
+&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Lambda&lt;/strong&gt;：&lt;code&gt;(a, b) -&amp;gt; b - a&lt;/code&gt; - 最简洁，直接写比较逻辑&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Comparator&lt;/strong&gt;：&lt;code&gt;new Comparator&amp;lt;&amp;gt;()&lt;/code&gt; - 传统接口，需要重写compare方法&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;comparing&lt;/strong&gt;：&lt;code&gt;Comparator.comparing()&lt;/code&gt; - 方法引用，最强大，支持链式调用&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;使用建议&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;使用建议&lt;/strong&gt;：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;简单比较用Lambda&lt;/li&gt;
-&lt;li&gt;复杂逻辑用Comparator&lt;/li&gt;
-&lt;li&gt;对象属性排序用comparing&lt;/li&gt;
+&lt;li&gt;简单比较用 Lambda&lt;/li&gt;
+&lt;li&gt;复杂逻辑用 Comparator&lt;/li&gt;
+&lt;li&gt;对象属性排序用 comparing&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h5 id=&#34;compareto--comparator--comparing--comparable-区别与使用场景&#34;&gt;compareTo / Comparator / comparing / Comparable 区别与使用场景
-&lt;/h5&gt;&lt;ul&gt;
+&lt;h4 id=&#34;compareto--comparator--comparing--comparable-区别与使用场景&#34;&gt;compareTo / Comparator / comparing / Comparable 区别与使用场景
+&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Comparable &amp;amp; compareTo（类内部默认排序）&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -465,8 +460,8 @@
 &lt;/ol&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;list-与数组互转刷题常用&#34;&gt;List 与数组互转（刷题常用）
-&lt;/h4&gt;&lt;ul&gt;
+&lt;h3 id=&#34;list-与数组互转刷题常用&#34;&gt;List 与数组互转（刷题常用）
+&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;List → 数组：使用 List 实例的 &lt;code&gt;toArray&lt;/code&gt;，传入目标类型的空数组（推荐）&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -504,10 +499,10 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id=&#34;math-工具类&#34;&gt;Math 工具类
 &lt;/h3&gt;&lt;h3 id=&#34;其他常用语法循环条件等&#34;&gt;其他常用语法（循环/条件等）
-&lt;/h3&gt;&lt;h2 id=&#34;五刷题易错点个性化记录&#34;&gt;五、刷题易错点（个性化记录）
+&lt;/h3&gt;&lt;h2 id=&#34;刷题易错点个性化记录&#34;&gt;刷题易错点（个性化记录）
 &lt;/h2&gt;&lt;h3 id=&#34;语法层面易错&#34;&gt;语法层面易错
 &lt;/h3&gt;&lt;h3 id=&#34;逻辑层面易错&#34;&gt;逻辑层面易错
-&lt;/h3&gt;&lt;h2 id=&#34;六代码模板可直接复用&#34;&gt;六、代码模板（可直接复用）
+&lt;/h3&gt;&lt;h2 id=&#34;代码模板可直接复用&#34;&gt;代码模板（可直接复用）
 &lt;/h2&gt;&lt;h3 id=&#34;集合相关模板&#34;&gt;集合相关模板
 &lt;/h3&gt;&lt;h3 id=&#34;链表相关模板&#34;&gt;链表相关模板
 &lt;/h3&gt;&lt;h3 id=&#34;排序相关模板&#34;&gt;排序相关模板

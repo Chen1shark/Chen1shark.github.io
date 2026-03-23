@@ -6,11 +6,11 @@
 
 <link rel='canonical' href='http://localhost:1313/p/java-basics/'>
 
-<link rel="stylesheet" href="/scss/style.min.86591c898bd806857815fbb8c47e8d3fed97c133b78e83d9bfc27b164dd0aa2b.css"><meta property='og:title' content="Java基础用法">
+<link rel="stylesheet" href="/scss/style.min.900a64d3a36c9f33519ef1058ebc84ab68513b898835839f0f8ea080d6eeb5b7.css"><meta property='og:title' content="Java基础用法">
 <meta property='og:description' content="Java 算法刷题基础语法与常用工具类速查笔记">
 <meta property='og:url' content='http://localhost:1313/p/java-basics/'>
 <meta property='og:site_name' content='Chen1shark 的一坨笔记'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-03-21T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-03-21T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-03-21T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2026-03-23T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="Java基础用法">
 <meta name="twitter:description" content="Java 算法刷题基础语法与常用工具类速查笔记">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -192,61 +192,51 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#一集合框架算法高频">一、集合框架（算法高频）</a>
+    <li><a href="#集合框架算法高频">集合框架（算法高频）</a>
       <ol>
-        <li><a href="#list-相关">List 相关</a>
-          <ol>
-            <li><a href="#list排序">List排序</a></li>
-          </ol>
-        </li>
+        <li><a href="#list-相关">List 相关</a></li>
         <li><a href="#set-相关">Set 相关</a></li>
         <li><a href="#map-相关">Map 相关</a></li>
         <li><a href="#优先级队列priorityqueue">优先级队列（PriorityQueue）</a></li>
       </ol>
     </li>
-    <li><a href="#二数组--二维数组">二、数组 &amp; 二维数组</a>
+    <li><a href="#数组--二维数组">数组 &amp; 二维数组</a>
       <ol>
         <li><a href="#数组常用操作">数组常用操作</a></li>
         <li><a href="#二维数组常用操作">二维数组常用操作</a></li>
         <li><a href="#数组排序含自定义比较器">数组排序（含自定义比较器）</a></li>
       </ol>
     </li>
-    <li><a href="#三链表">三、链表</a>
+    <li><a href="#链表">链表</a>
       <ol>
         <li><a href="#链表节点定义模板">链表节点定义（模板）</a></li>
-        <li><a href="#链表指针操作核心易错点">链表指针操作（核心易错点）</a>
-          <ol>
-            <li><a href="#算法题中的指针使用区别">算法题中的指针使用区别</a></li>
-          </ol>
-        </li>
+        <li><a href="#链表指针操作核心易错点">链表指针操作（核心易错点）</a></li>
         <li><a href="#链表排序归并快排等">链表排序（归并/快排等）</a></li>
         <li><a href="#链表高频技巧">链表高频技巧</a></li>
       </ol>
     </li>
-    <li><a href="#四常用工具类--语法">四、常用工具类 &amp; 语法</a>
+    <li><a href="#常用工具类--语法">常用工具类 &amp; 语法</a>
       <ol>
-        <li><a href="#arrays-工具类">Arrays 工具类</a>
+        <li><a href="#arrays-工具类">Arrays 工具类</a></li>
+        <li><a href="#自定义比较器汇总">自定义比较器汇总</a>
           <ol>
-            <li><a href="#数组排序">数组排序</a></li>
+            <li><a href="#lambda-vs-comparator-vs-comparing区别">Lambda vs Comparator vs comparing区别</a></li>
+            <li><a href="#三者区别说明">三者区别说明</a></li>
+            <li><a href="#compareto--comparator--comparing--comparable-区别与使用场景">compareTo / Comparator / comparing / Comparable 区别与使用场景</a></li>
           </ol>
         </li>
-        <li><a href="#collections-工具类">Collections 工具类</a>
-          <ol>
-            <li><a href="#自定义比较器汇总">自定义比较器汇总</a></li>
-            <li><a href="#list-与数组互转刷题常用">List 与数组互转（刷题常用）</a></li>
-          </ol>
-        </li>
+        <li><a href="#list-与数组互转刷题常用">List 与数组互转（刷题常用）</a></li>
         <li><a href="#math-工具类">Math 工具类</a></li>
         <li><a href="#其他常用语法循环条件等">其他常用语法（循环/条件等）</a></li>
       </ol>
     </li>
-    <li><a href="#五刷题易错点个性化记录">五、刷题易错点（个性化记录）</a>
+    <li><a href="#刷题易错点个性化记录">刷题易错点（个性化记录）</a>
       <ol>
         <li><a href="#语法层面易错">语法层面易错</a></li>
         <li><a href="#逻辑层面易错">逻辑层面易错</a></li>
       </ol>
     </li>
-    <li><a href="#六代码模板可直接复用">六、代码模板（可直接复用）</a>
+    <li><a href="#代码模板可直接复用">代码模板（可直接复用）</a>
       <ol>
         <li><a href="#集合相关模板">集合相关模板</a></li>
         <li><a href="#链表相关模板">链表相关模板</a></li>
@@ -326,11 +316,9 @@
     <section class="article-content">
     
     
-    <h1 id="java-基础用法">Java 基础用法
-</h1><h2 id="一集合框架算法高频">一、集合框架（算法高频）
+    <h2 id="集合框架算法高频">集合框架（算法高频）
 </h2><h3 id="list-相关">List 相关
-</h3><h4 id="list排序">List排序
-</h4><p>详见：<a class="link" href="#%e8%87%aa%e5%ae%9a%e4%b9%89%e6%af%94%e8%be%83%e5%99%a8%e6%b1%87%e6%80%bb" >自定义比较器汇总</a></p>
+</h3><p>排序详见：<a class="link" href="#%e8%87%aa%e5%ae%9a%e4%b9%89%e6%af%94%e8%be%83%e5%99%a8%e6%b1%87%e6%80%bb" >自定义比较器汇总</a></p>
 <h3 id="set-相关">Set 相关
 </h3><h3 id="map-相关">Map 相关
 </h3><h3 id="优先级队列priorityqueue">优先级队列（PriorityQueue）
@@ -374,12 +362,12 @@
 </span></span></span><span class="line"><span class="cl"><span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PriorityQueue</span><span class="o">&lt;&gt;</span><span class="p">((</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="na">priority</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="na">priority</span><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="二数组--二维数组">二、数组 &amp; 二维数组
+</div><h2 id="数组--二维数组">数组 &amp; 二维数组
 </h2><h3 id="数组常用操作">数组常用操作
 </h3><h3 id="二维数组常用操作">二维数组常用操作
 </h3><h3 id="数组排序含自定义比较器">数组排序（含自定义比较器）
 </h3><p>详见：<a class="link" href="#%e8%87%aa%e5%ae%9a%e4%b9%89%e6%af%94%e8%be%83%e5%99%a8%e6%b1%87%e6%80%bb" >自定义比较器汇总</a> 和 <a class="link" href="#arrays-%e5%b7%a5%e5%85%b7%e7%b1%bb" >Arrays工具类</a></p>
-<h2 id="三链表">三、链表
+<h2 id="链表">链表
 </h2><h3 id="链表节点定义模板">链表节点定义（模板）
 </h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -488,8 +476,7 @@
 </span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="链表指针操作核心易错点">链表指针操作（核心易错点）
-</h3><h4 id="算法题中的指针使用区别">算法题中的指针使用区别
-</h4><ul>
+</h3><ul>
 <li><strong>场景 1：多个指针操作同一个链表（推荐）</strong></li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -534,7 +521,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>关键点</strong>：所有指针（<code>dummy</code>, <code>prev</code>, <code>curr</code>）操作<strong>同一个链表对象</strong>，修改会相互影响。</p>
+</div><p><strong>关键点</strong>：所有指针（<code>dummy</code>、<code>prev</code>、<code>curr</code>）操作<strong>同一个链表对象</strong>，修改会相互影响。</p>
 <ul>
 <li><strong>场景 2：错误做法 - 创建多个独立虚拟头节点</strong></li>
 </ul>
@@ -585,7 +572,7 @@
 <li><strong>正确做法</strong>：一个虚拟头节点 + 多个工作指针，操作同一个链表</li>
 <li><strong>错误做法</strong>：多个独立虚拟头节点，<strong>结果完全错误</strong></li>
 </ul>
-<p><strong>⚠️ 方法二的致命问题</strong>：</p>
+<p><strong>方法二的致命问题</strong>：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -610,11 +597,11 @@
 </span></span></span><span class="line"><span class="cl"><span class="k">return</span><span class="w"> </span><span class="n">dummy2</span><span class="p">.</span><span class="na">next</span><span class="p">;</span><span class="w">  </span><span class="c1">// 返回：1→4→3 ❌ 丢失了头节点！</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>为什么方法二错误</strong>:</p>
+</div><p><strong>为什么方法二错误</strong>：</p>
 <ul>
 <li><code>dummy2.next</code> 固定指向原头节点，不知道交换后的新头节点</li>
 <li>两两交换会改变头节点位置，但 <code>dummy2</code> 无法感知这个变化</li>
-<li><strong>结果：返回错误的起始位置，导致链表截断</strong></li>
+<li><strong>结果</strong>：返回错误的起始位置，导致链表截断</li>
 </ul>
 <p><strong>高频应用场景</strong>：</p>
 <ul>
@@ -623,10 +610,9 @@
 </ul>
 <h3 id="链表排序归并快排等">链表排序（归并/快排等）
 </h3><h3 id="链表高频技巧">链表高频技巧
-</h3><h2 id="四常用工具类--语法">四、常用工具类 &amp; 语法
+</h3><h2 id="常用工具类--语法">常用工具类 &amp; 语法
 </h2><h3 id="arrays-工具类">Arrays 工具类
-</h3><h4 id="数组排序">数组排序
-</h4><div class="highlight"><div class="chroma">
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -642,10 +628,9 @@
 </span></span></span><span class="line"><span class="cl"><span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">strArr</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="na">length</span><span class="p">());</span><span class="w"> </span><span class="c1">// 按长度排序</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="collections-工具类">Collections 工具类
-</h3><h4 id="自定义比较器汇总">自定义比较器汇总
-</h4><h5 id="lambda-vs-comparator-vs-comparing区别">Lambda vs Comparator vs comparing区别
-</h5><div class="highlight"><div class="chroma">
+</div><h3 id="自定义比较器汇总">自定义比较器汇总
+</h3><h4 id="lambda-vs-comparator-vs-comparing区别">Lambda vs Comparator vs comparing区别
+</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -695,20 +680,20 @@
 </span></span></span><span class="line"><span class="cl"><span class="p">);</span><span class="w">
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h5 id="三者区别说明">三者区别说明
-</h5><ul>
+</div><h4 id="三者区别说明">三者区别说明
+</h4><ul>
 <li><strong>Lambda</strong>：<code>(a, b) -&gt; b - a</code> - 最简洁，直接写比较逻辑</li>
 <li><strong>Comparator</strong>：<code>new Comparator&lt;&gt;()</code> - 传统接口，需要重写compare方法</li>
 <li><strong>comparing</strong>：<code>Comparator.comparing()</code> - 方法引用，最强大，支持链式调用</li>
 </ul>
-<p><strong>使用建议</strong>:</p>
+<p><strong>使用建议</strong>：</p>
 <ul>
-<li>简单比较用Lambda</li>
-<li>复杂逻辑用Comparator</li>
-<li>对象属性排序用comparing</li>
+<li>简单比较用 Lambda</li>
+<li>复杂逻辑用 Comparator</li>
+<li>对象属性排序用 comparing</li>
 </ul>
-<h5 id="compareto--comparator--comparing--comparable-区别与使用场景">compareTo / Comparator / comparing / Comparable 区别与使用场景
-</h5><ul>
+<h4 id="compareto--comparator--comparing--comparable-区别与使用场景">compareTo / Comparator / comparing / Comparable 区别与使用场景
+</h4><ul>
 <li>
 <p><strong>Comparable &amp; compareTo（类内部默认排序）</strong></p>
 <ul>
@@ -778,8 +763,8 @@
 </ol>
 </li>
 </ul>
-<h4 id="list-与数组互转刷题常用">List 与数组互转（刷题常用）
-</h4><ul>
+<h3 id="list-与数组互转刷题常用">List 与数组互转（刷题常用）
+</h3><ul>
 <li>List → 数组：使用 List 实例的 <code>toArray</code>，传入目标类型的空数组（推荐）</li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -817,10 +802,10 @@
 </div>
 </div><h3 id="math-工具类">Math 工具类
 </h3><h3 id="其他常用语法循环条件等">其他常用语法（循环/条件等）
-</h3><h2 id="五刷题易错点个性化记录">五、刷题易错点（个性化记录）
+</h3><h2 id="刷题易错点个性化记录">刷题易错点（个性化记录）
 </h2><h3 id="语法层面易错">语法层面易错
 </h3><h3 id="逻辑层面易错">逻辑层面易错
-</h3><h2 id="六代码模板可直接复用">六、代码模板（可直接复用）
+</h3><h2 id="代码模板可直接复用">代码模板（可直接复用）
 </h2><h3 id="集合相关模板">集合相关模板
 </h3><h3 id="链表相关模板">链表相关模板
 </h3><h3 id="排序相关模板">排序相关模板
@@ -832,7 +817,19 @@
     <footer class="article-footer">
     
 
-    </footer>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2026-03-23
+        </span>
+    </section></footer>
 
 
     
@@ -1030,6 +1027,7 @@
 
     
 
+   
 </script>
     </body>
 </html>
