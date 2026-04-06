@@ -1,0 +1,2565 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="从基础数据类型、底层数据结构到持久化、高可用、缓存设计模式的 Redis 全栈学习笔记，结合 hmdp 点评项目的真实应用场景进行讲解。">
+<title>Redis 系统学习笔记</title>
+
+<link rel='canonical' href='http://localhost:1313/p/redis-learning-notes/'>
+
+<link rel="stylesheet" href="/scss/style.min.900a64d3a36c9f33519ef1058ebc84ab68513b898835839f0f8ea080d6eeb5b7.css"><meta property='og:title' content="Redis 系统学习笔记">
+<meta property='og:description' content="从基础数据类型、底层数据结构到持久化、高可用、缓存设计模式的 Redis 全栈学习笔记，结合 hmdp 点评项目的真实应用场景进行讲解。">
+<meta property='og:url' content='http://localhost:1313/p/redis-learning-notes/'>
+<meta property='og:site_name' content='Chen1shark 的一坨笔记'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-04-05T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2026-04-05T00:00:00&#43;08:00'/>
+<meta name="twitter:title" content="Redis 系统学习笔记">
+<meta name="twitter:description" content="从基础数据类型、底层数据结构到持久化、高可用、缓存设计模式的 Redis 全栈学习笔记，结合 hmdp 点评项目的真实应用场景进行讲解。">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_43a4d95c40a44c26.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Chen1shark 的一坨笔记</a></h1>
+            <h2 class="site-description">欢迎来到我的技术博客</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/Chen1shark/'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/categories/java/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-coffee"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 14c.83 .642 2.077 1.017 3.5 1c1.423 .017 2.67 -.358 3.5 -1c.83 -.642 2.077 -1.017 3.5 -1c1.423 -.017 2.67 .358 3.5 1" /><path d="M8 3a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2" /><path d="M12 3a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2" /><path d="M3 10h14v5a6 6 0 0 1 -6 6h-2a6 6 0 0 1 -6 -6v-5" /><path d="M16.746 16.726a3 3 0 1 0 .252 -5.555" /></svg>
+                
+                <span>Java</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/categories/spring/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-leaf"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 21c.5 -4.5 2.5 -8 7 -10" /><path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0" /></svg>
+                
+                <span>Spring</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/categories/recruitment/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-writing-sign"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 19c3.333 -2 5 -4 5 -6c0 -3 -1 -3 -2 -3s-2.032 1.085 -2 3c.034 2.048 1.658 2.877 2.5 4c1.5 2 2.5 2.5 3.5 1c.667 -1 1.167 -1.833 1.5 -2.5c1 2.333 2.333 3.5 4 3.5h2.5" /><path d="M20 17v-12c0 -1.121 -.879 -2 -2 -2s-2 .879 -2 2v12l2 2l2 -2" /><path d="M16 7h4" /></svg>
+                
+                <span>Recruitment</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/categories/project/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-folder"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" /></svg>
+                
+                <span>Project</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/categories/database/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-database"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M4 6a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" /><path d="M4 6v6a8 3 0 0 0 16 0v-6" /><path d="M4 12v6a8 3 0 0 0 16 0v-6" /></svg>
+                
+                <span>Database</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#概述">概述</a></li>
+    <li><a href="#string字符串">String（字符串）</a>
+      <ol>
+        <li><a href="#内部编码">内部编码</a></li>
+        <li><a href="#常用指令">常用指令</a></li>
+        <li><a href="#使用场景">使用场景</a></li>
+      </ol>
+    </li>
+    <li><a href="#hash哈希">Hash（哈希）</a>
+      <ol>
+        <li><a href="#内部编码-1">内部编码</a></li>
+        <li><a href="#常用指令-1">常用指令</a></li>
+        <li><a href="#使用场景-1">使用场景</a></li>
+      </ol>
+    </li>
+    <li><a href="#list列表">List（列表）</a>
+      <ol>
+        <li><a href="#内部编码-2">内部编码</a></li>
+        <li><a href="#常用指令-2">常用指令</a></li>
+        <li><a href="#使用场景-2">使用场景</a></li>
+      </ol>
+    </li>
+    <li><a href="#set集合">Set（集合）</a>
+      <ol>
+        <li><a href="#内部编码-3">内部编码</a></li>
+        <li><a href="#常用指令-3">常用指令</a></li>
+        <li><a href="#使用场景-3">使用场景</a></li>
+      </ol>
+    </li>
+    <li><a href="#zset有序集合">ZSet（有序集合）</a>
+      <ol>
+        <li><a href="#内部编码-4">内部编码</a></li>
+        <li><a href="#常用指令-4">常用指令</a></li>
+        <li><a href="#使用场景-4">使用场景</a></li>
+      </ol>
+    </li>
+    <li><a href="#geo地理位置">GEO（地理位置）</a>
+      <ol>
+        <li><a href="#常用指令-5">常用指令</a></li>
+        <li><a href="#使用场景-5">使用场景</a></li>
+      </ol>
+    </li>
+    <li><a href="#bitmap位图">BitMap（位图）</a>
+      <ol>
+        <li><a href="#常用指令-6">常用指令</a></li>
+        <li><a href="#使用场景-6">使用场景</a></li>
+      </ol>
+    </li>
+    <li><a href="#hyperloglog">HyperLogLog</a>
+      <ol>
+        <li><a href="#常用指令-7">常用指令</a></li>
+        <li><a href="#使用场景-7">使用场景</a></li>
+      </ol>
+    </li>
+    <li><a href="#stream消息流">Stream（消息流）</a>
+      <ol>
+        <li><a href="#常用指令-8">常用指令</a></li>
+        <li><a href="#与其他队列方案对比">与其他队列方案对比</a></li>
+      </ol>
+    </li>
+    <li><a href="#底层数据结构">底层数据结构</a>
+      <ol>
+        <li><a href="#sdssimple-dynamic-string简单动态字符串">SDS（Simple Dynamic String，简单动态字符串）</a></li>
+        <li><a href="#ziplist--listpack压缩列表">ZipList / ListPack（压缩列表）</a></li>
+        <li><a href="#skiplist跳表">SkipList（跳表）</a></li>
+        <li><a href="#hashtable哈希表">HashTable（哈希表）</a></li>
+        <li><a href="#quicklist快速列表">QuickList（快速列表）</a></li>
+        <li><a href="#intset整数集合">IntSet（整数集合）</a></li>
+      </ol>
+    </li>
+    <li><a href="#键过期与内存淘汰">键过期与内存淘汰</a>
+      <ol>
+        <li><a href="#过期键删除策略">过期键删除策略</a></li>
+        <li><a href="#内存淘汰策略maxmemory-policy">内存淘汰策略（maxmemory-policy）</a></li>
+      </ol>
+    </li>
+    <li><a href="#持久化">持久化</a>
+      <ol>
+        <li><a href="#rdb快照">RDB（快照）</a></li>
+        <li><a href="#aof追加日志">AOF（追加日志）</a></li>
+        <li><a href="#混合持久化redis-40">混合持久化（Redis 4.0+）</a></li>
+      </ol>
+    </li>
+    <li><a href="#高可用">高可用</a>
+      <ol>
+        <li><a href="#主从复制">主从复制</a></li>
+        <li><a href="#哨兵sentinel">哨兵（Sentinel）</a></li>
+        <li><a href="#redis-cluster">Redis Cluster</a></li>
+      </ol>
+    </li>
+    <li><a href="#缓存设计模式">缓存设计模式</a>
+      <ol>
+        <li><a href="#缓存穿透">缓存穿透</a></li>
+        <li><a href="#缓存击穿">缓存击穿</a></li>
+        <li><a href="#缓存雪崩">缓存雪崩</a></li>
+        <li><a href="#cache-aside旁路缓存">Cache Aside（旁路缓存）</a></li>
+      </ol>
+    </li>
+    <li><a href="#分布式锁">分布式锁</a>
+      <ol>
+        <li><a href="#setnx-自实现hmdp-simpleredislock">SETNX 自实现（hmdp SimpleRedisLock）</a></li>
+        <li><a href="#redisson-分布式锁hmdp-最终方案">Redisson 分布式锁（hmdp 最终方案）</a></li>
+      </ol>
+    </li>
+    <li><a href="#lua-脚本">Lua 脚本</a></li>
+    <li><a href="#事务">事务</a></li>
+    <li><a href="#性能优化">性能优化</a>
+      <ol>
+        <li><a href="#避免大-key">避免大 Key</a></li>
+        <li><a href="#pipeline批量命令">Pipeline（批量命令）</a></li>
+        <li><a href="#避免热点-key">避免热点 Key</a></li>
+        <li><a href="#慢查询分析">慢查询分析</a></li>
+      </ol>
+    </li>
+    <li><a href="#hmdp-redis-用法速查">hmdp Redis 用法速查</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+            
+            
+            <a href="/categories/database/" style="background-color: hsl(352, 60%, 84%); color: hsl(352, 60%, 15%);">
+                Database
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/redis-learning-notes/">Redis 系统学习笔记</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            从基础数据类型、底层数据结构到持久化、高可用、缓存设计模式的 Redis 全栈学习笔记，结合 hmdp 点评项目的真实应用场景进行讲解。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-04-05T00:00:00&#43;08:00'>2026-04-05</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="概述">概述
+</h2><p>Redis（Remote Dictionary Server）是一款基于内存的高性能键值数据库，支持多种数据结构，具备持久化、主从复制、哨兵、集群等企业级特性。</p>
+<p><strong>核心特点</strong>：</p>
+<ul>
+<li>纯内存操作，读写速度可达 10 万+ QPS</li>
+<li>单线程命令处理（6.0 后 I/O 多线程），无锁竞争</li>
+<li>丰富的数据结构：String、Hash、List、Set、ZSet 及 GEO、BitMap、Stream 等扩展类型</li>
+<li>支持 Lua 脚本原子执行、事务、发布订阅</li>
+<li>持久化（RDB + AOF）+ 集群保障高可用</li>
+</ul>
+<hr>
+<h2 id="string字符串">String（字符串）
+</h2><h3 id="内部编码">内部编码
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>编码</th>
+          <th>条件</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>int</code></td>
+          <td>整型且范围在 long 内</td>
+          <td>直接存数字，不存字符串</td>
+      </tr>
+      <tr>
+          <td><code>embstr</code></td>
+          <td>长度 ≤ 44 字节</td>
+          <td>一次内存分配，只读优化</td>
+      </tr>
+      <tr>
+          <td><code>raw</code></td>
+          <td>长度 &gt; 44 字节</td>
+          <td>SDS（简单动态字符串）分两次分配</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="常用指令">常用指令
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 基本读写</span>
+</span></span><span class="line"><span class="cl">SET key value <span class="o">[</span>EX seconds<span class="o">]</span> <span class="o">[</span>PX ms<span class="o">]</span> <span class="o">[</span>NX<span class="p">|</span>XX<span class="o">]</span>
+</span></span><span class="line"><span class="cl">GET key
+</span></span><span class="line"><span class="cl">MSET k1 v1 k2 v2           <span class="c1"># 批量设置</span>
+</span></span><span class="line"><span class="cl">MGET k1 k2                  <span class="c1"># 批量获取</span>
+</span></span><span class="line"><span class="cl">GETSET key newValue         <span class="c1"># 返回旧值并设置新值（原子）</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 计数</span>
+</span></span><span class="line"><span class="cl">INCR key                    <span class="c1"># +1（不存在则从 0 开始）</span>
+</span></span><span class="line"><span class="cl">INCRBY key <span class="m">10</span>               <span class="c1"># +10</span>
+</span></span><span class="line"><span class="cl">DECR key
+</span></span><span class="line"><span class="cl">DECRBY key <span class="m">5</span>
+</span></span><span class="line"><span class="cl">INCRBYFLOAT key 1.5
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 其他</span>
+</span></span><span class="line"><span class="cl">STRLEN key                  <span class="c1"># 字符串长度</span>
+</span></span><span class="line"><span class="cl">APPEND key <span class="s2">&#34; suffix&#34;</span>        <span class="c1"># 追加</span>
+</span></span><span class="line"><span class="cl">SETRANGE key offset value   <span class="c1"># 修改指定位置</span>
+</span></span><span class="line"><span class="cl">GETRANGE key <span class="m">0</span> <span class="m">3</span>            <span class="c1"># 截取子串</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用场景">使用场景
+</h3><p><strong>场景一：缓存 JSON 数据（hmdp 商铺缓存）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 写入缓存：序列化为 JSON 字符串</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">shopJson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JSONUtil</span><span class="p">.</span><span class="na">toJsonStr</span><span class="p">(</span><span class="n">shop</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">set</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s">&#34;cache:shop:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">shopJson</span><span class="p">,</span><span class="w"> </span><span class="n">30</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">MINUTES</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 读取缓存：反序列化</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">get</span><span class="p">(</span><span class="s">&#34;cache:shop:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">id</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Shop</span><span class="w"> </span><span class="n">shop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JSONUtil</span><span class="p">.</span><span class="na">toBean</span><span class="p">(</span><span class="n">json</span><span class="p">,</span><span class="w"> </span><span class="n">Shop</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>场景二：短信验证码（TTL 限时）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 存入验证码，2 分钟过期</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">set</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s">&#34;login:code:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">phone</span><span class="p">,</span><span class="w"> </span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">2</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">MINUTES</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>场景三：分布式计数器 / 全局 ID（hmdp RedisIDWorker）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// INCR 原子自增，按天拆 Key 统计每日订单量</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kt">long</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">increment</span><span class="p">(</span><span class="s">&#34;icr:order:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">date</span><span class="p">);</span><span class="w">  </span><span class="c1">// 每日从 1 开始</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 拼接：时间戳 &lt;&lt; 32 | count</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">return</span><span class="w"> </span><span class="n">timestamp</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">32</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">count</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>场景四：分布式互斥锁（SETNX）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// SETNX：Key 不存在时才写入，相当于 tryLock</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Boolean</span><span class="w"> </span><span class="n">flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setIfAbsent</span><span class="p">(</span><span class="s">&#34;lock:shop:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;1&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">10</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">SECONDS</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">Boolean</span><span class="p">.</span><span class="na">TRUE</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">flag</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 拿到锁，执行重建缓存</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<blockquote class="alert alert-note">
+  <p><code>NX</code>（Not eXists）保证原子性，TTL 防止死锁。生产中推荐 Redisson，自带看门狗续期和可重入支持。</p>
+</blockquote>
+
+<hr>
+<h2 id="hash哈希">Hash（哈希）
+</h2><h3 id="内部编码-1">内部编码
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>编码</th>
+          <th>条件</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>listpack</code>（Redis 7.0+）/ <code>ziplist</code>（旧版）</td>
+          <td>字段数 ≤ <code>hash-max-listpack-entries</code>（默认 128）且每个值 ≤ <code>hash-max-listpack-value</code>（默认 64 字节）</td>
+      </tr>
+      <tr>
+          <td><code>hashtable</code></td>
+          <td>超出上述阈值</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="常用指令-1">常用指令
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">HSET key field value <span class="o">[</span>field value ...<span class="o">]</span>  <span class="c1"># 设置一或多个字段</span>
+</span></span><span class="line"><span class="cl">HGET key field
+</span></span><span class="line"><span class="cl">HMGET key f1 f2                          <span class="c1"># 批量取</span>
+</span></span><span class="line"><span class="cl">HGETALL key                              <span class="c1"># 所有字段和值</span>
+</span></span><span class="line"><span class="cl">HDEL key field <span class="o">[</span>field ...<span class="o">]</span>
+</span></span><span class="line"><span class="cl">HEXISTS key field                        <span class="c1"># 字段是否存在</span>
+</span></span><span class="line"><span class="cl">HLEN key                                 <span class="c1"># 字段数量</span>
+</span></span><span class="line"><span class="cl">HKEYS key                                <span class="c1"># 所有字段名</span>
+</span></span><span class="line"><span class="cl">HVALS key                                <span class="c1"># 所有值</span>
+</span></span><span class="line"><span class="cl">HINCRBY key field <span class="m">1</span>                      <span class="c1"># 字段整型自增</span>
+</span></span><span class="line"><span class="cl">HSCAN key cursor <span class="o">[</span>MATCH pattern<span class="o">]</span> <span class="o">[</span>COUNT n<span class="o">]</span> <span class="c1"># 游标遍历（大 Hash 用此代替 HGETALL）</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用场景-1">使用场景
+</h3><p><strong>场景一：存储用户会话（hmdp Token 登录）</strong></p>
+<p>用户信息以 Hash 存储，每个字段对应一个属性，部分更新无需整体序列化：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// UserDTO 转为 Map&lt;String, Object&gt;，所有值转 String</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BeanUtil</span><span class="p">.</span><span class="na">beanToMap</span><span class="p">(</span><span class="n">userDTO</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">CopyOptions</span><span class="p">.</span><span class="na">create</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">setIgnoreNullValue</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">setFieldValueEditor</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="na">toString</span><span class="p">()));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 存入 Hash</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForHash</span><span class="p">().</span><span class="na">putAll</span><span class="p">(</span><span class="s">&#34;login:token:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">token</span><span class="p">,</span><span class="w"> </span><span class="n">map</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">expire</span><span class="p">(</span><span class="s">&#34;login:token:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">token</span><span class="p">,</span><span class="w"> </span><span class="n">36000</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">MINUTES</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 读取并还原</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Map</span><span class="o">&lt;</span><span class="n">Object</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">entries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForHash</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">entries</span><span class="p">(</span><span class="s">&#34;login:token:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">token</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">UserDTO</span><span class="w"> </span><span class="n">userDTO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BeanUtil</span><span class="p">.</span><span class="na">fillBeanWithMap</span><span class="p">(</span><span class="n">entries</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UserDTO</span><span class="p">(),</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>场景二：商品购物车</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 购物车：cart:{userId}，field=skuId，value=数量</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForHash</span><span class="p">().</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;cart:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">skuId</span><span class="p">.</span><span class="na">toString</span><span class="p">(),</span><span class="w"> </span><span class="n">quantity</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 查看购物车全部商品</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Map</span><span class="o">&lt;</span><span class="n">Object</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">cart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForHash</span><span class="p">().</span><span class="na">entries</span><span class="p">(</span><span class="s">&#34;cart:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">userId</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>场景三：对象属性频繁局部更新</strong></p>
+<p>Hash 允许只更新单个字段，避免 String 方案中整体序列化/反序列化的开销：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 只更新商铺评分字段，不影响其他属性</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForHash</span><span class="p">().</span><span class="na">put</span><span class="p">(</span><span class="s">&#34;shop:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;score&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">newScore</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="list列表">List（列表）
+</h2><h3 id="内部编码-2">内部编码
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>编码</th>
+          <th>条件</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>listpack</code>（Redis 7.0+）/ <code>ziplist</code>（旧版）</td>
+          <td>元素数 ≤ <code>list-max-listpack-size</code>（默认 128）且每个元素 ≤ 64 字节</td>
+      </tr>
+      <tr>
+          <td><code>quicklist</code></td>
+          <td>超出阈值，内部是多个 listpack 节点组成的双向链表</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="常用指令-2">常用指令
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 入队/出队</span>
+</span></span><span class="line"><span class="cl">LPUSH key v1 v2    <span class="c1"># 从左（头）插入</span>
+</span></span><span class="line"><span class="cl">RPUSH key v1 v2    <span class="c1"># 从右（尾）插入</span>
+</span></span><span class="line"><span class="cl">LPOP key <span class="o">[</span>count<span class="o">]</span>   <span class="c1"># 从左弹出</span>
+</span></span><span class="line"><span class="cl">RPOP key <span class="o">[</span>count<span class="o">]</span>   <span class="c1"># 从右弹出</span>
+</span></span><span class="line"><span class="cl">BLPOP key timeout  <span class="c1"># 阻塞弹出（无元素时等待，timeout=0 永久）</span>
+</span></span><span class="line"><span class="cl">BRPOP key timeout
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询</span>
+</span></span><span class="line"><span class="cl">LRANGE key <span class="m">0</span> -1    <span class="c1"># 获取全部（-1 表示最后一个）</span>
+</span></span><span class="line"><span class="cl">LLEN key           <span class="c1"># 长度</span>
+</span></span><span class="line"><span class="cl">LINDEX key <span class="m">0</span>       <span class="c1"># 按下标取值</span>
+</span></span><span class="line"><span class="cl">LINSERT key BEFORE/AFTER pivot value  <span class="c1"># 插入到某元素前/后</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改与删除</span>
+</span></span><span class="line"><span class="cl">LSET key index value
+</span></span><span class="line"><span class="cl">LREM key count value   <span class="c1"># 删除 count 个匹配 value 的元素</span>
+</span></span><span class="line"><span class="cl">LTRIM key start end    <span class="c1"># 裁剪，只保留 [start, end]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用场景-2">使用场景
+</h3><p><strong>场景一：消息队列（简单场景）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 生产者：RPUSH 入队</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForList</span><span class="p">().</span><span class="na">rightPush</span><span class="p">(</span><span class="s">&#34;queue:task&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">task</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 消费者：BLPOP 阻塞消费（轮询，无消息时阻塞 30 秒）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForList</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">leftPop</span><span class="p">(</span><span class="s">&#34;queue:task&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">30</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">SECONDS</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<blockquote class="alert alert-warning">
+  <p>简单 List 队列不支持 ACK、消息持久化分组，生产环境建议使用 Redis Stream 或 RabbitMQ。</p>
+</blockquote>
+
+<p><strong>场景二：最新动态列表（固定长度）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 每次写入后 LTRIM 保持最新 100 条</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#34;recent:news&#34;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForList</span><span class="p">().</span><span class="na">leftPush</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">news</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForList</span><span class="p">().</span><span class="na">trim</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">99</span><span class="p">);</span><span class="w">  </span><span class="c1">// 只保留最新 100 条</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>场景三：分页查询历史记录</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 第 n 页（每页 10 条）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kt">long</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">page</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">10</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kt">long</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">9</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">records</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForList</span><span class="p">().</span><span class="na">range</span><span class="p">(</span><span class="s">&#34;history:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="set集合">Set（集合）
+</h2><h3 id="内部编码-3">内部编码
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>编码</th>
+          <th>条件</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>intset</code></td>
+          <td>全为整数且元素数 ≤ <code>set-max-intset-entries</code>（默认 512）</td>
+      </tr>
+      <tr>
+          <td><code>listpack</code>（Redis 7.2+）</td>
+          <td>元素数 ≤ <code>set-max-listpack-entries</code>（默认 128）且每个元素 ≤ <code>set-max-listpack-value</code>（默认 64 字节）</td>
+      </tr>
+      <tr>
+          <td><code>hashtable</code></td>
+          <td>超出上述阈值</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="常用指令-3">常用指令
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SADD key v1 v2      <span class="c1"># 添加元素（已存在忽略）</span>
+</span></span><span class="line"><span class="cl">SREM key v1         <span class="c1"># 删除元素</span>
+</span></span><span class="line"><span class="cl">SMEMBERS key        <span class="c1"># 所有成员（大集合慎用，用 SSCAN 代替）</span>
+</span></span><span class="line"><span class="cl">SISMEMBER key v     <span class="c1"># 是否包含</span>
+</span></span><span class="line"><span class="cl">SMISMEMBER key v1 v2 <span class="c1"># 批量判断是否包含</span>
+</span></span><span class="line"><span class="cl">SCARD key           <span class="c1"># 元素数量</span>
+</span></span><span class="line"><span class="cl">SRANDMEMBER key n   <span class="c1"># 随机取 n 个（不删除）</span>
+</span></span><span class="line"><span class="cl">SPOP key n          <span class="c1"># 随机弹出 n 个（删除）</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 集合运算</span>
+</span></span><span class="line"><span class="cl">SINTER k1 k2        <span class="c1"># 交集</span>
+</span></span><span class="line"><span class="cl">SUNION k1 k2        <span class="c1"># 并集</span>
+</span></span><span class="line"><span class="cl">SDIFF k1 k2         <span class="c1"># 差集（k1 中有 k2 中没有的）</span>
+</span></span><span class="line"><span class="cl">SINTERSTORE dst k1 k2  <span class="c1"># 交集结果存入 dst</span>
+</span></span><span class="line"><span class="cl">SUNIONSTORE dst k1 k2
+</span></span><span class="line"><span class="cl">SDIFFSTORE dst k1 k2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用场景-3">使用场景
+</h3><p><strong>场景一：共同关注（hmdp 交集）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 用户关注列表存入 Set：follows:{userId}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForSet</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;follows:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">followUserId</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 求共同关注（两个 Set 的交集）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">common</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForSet</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">intersect</span><span class="p">(</span><span class="s">&#34;follows:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;follows:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">targetId</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>场景二：秒杀一人一单去重（hmdp Lua 脚本内）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="c1">-- seckill.lua 中：记录已下单用户 ID，防止重复</span>
+</span></span><span class="line"><span class="cl"><span class="n">redis.call</span><span class="p">(</span><span class="s1">&#39;sadd&#39;</span><span class="p">,</span> <span class="s1">&#39;seckill:order:&#39;</span> <span class="o">..</span> <span class="n">voucherId</span><span class="p">,</span> <span class="n">userId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- 判断是否已下单</span>
+</span></span><span class="line"><span class="cl"><span class="kr">if</span> <span class="n">redis.call</span><span class="p">(</span><span class="s1">&#39;sismember&#39;</span><span class="p">,</span> <span class="s1">&#39;seckill:order:&#39;</span> <span class="o">..</span> <span class="n">voucherId</span><span class="p">,</span> <span class="n">userId</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="mi">2</span>  <span class="c1">-- 重复下单</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>场景三：随机抽奖</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 参与抽奖：sadd 加入候选池</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForSet</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;lottery:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">activityId</span><span class="p">,</span><span class="w"> </span><span class="n">userId</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 不放回抽奖（每人只能中奖一次）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">winners</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForSet</span><span class="p">().</span><span class="na">pop</span><span class="p">(</span><span class="s">&#34;lottery:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">activityId</span><span class="p">,</span><span class="w"> </span><span class="n">3</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 可重复抽奖（不删除候选人，同一人可能多次被抽到）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">candidates</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForSet</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">randomMembers</span><span class="p">(</span><span class="s">&#34;lottery:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">activityId</span><span class="p">,</span><span class="w"> </span><span class="n">3</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>场景四：标签系统</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 商品打标签：tag:{tagName} 集合存商品 ID</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForSet</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;tag:java&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;101&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;102&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;105&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForSet</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;tag:backend&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;101&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;103&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;106&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 同时满足多个标签的商品（交集）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForSet</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">intersect</span><span class="p">(</span><span class="s">&#34;tag:java&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;tag:backend&#34;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="zset有序集合">ZSet（有序集合）
+</h2><p>ZSet 是 Redis 最强大的数据类型，每个成员绑定一个浮点数 <code>score</code>，按 <code>score</code> 升序自动排列，天然支持排行榜、范围查询、游标分页。</p>
+<h3 id="内部编码-4">内部编码
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>编码</th>
+          <th>条件</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>listpack</code>（Redis 7.0+）/ <code>ziplist</code>（旧版）</td>
+          <td>元素数 ≤ <code>zset-max-listpack-entries</code>（默认 128）且每个成员 ≤ 64 字节</td>
+      </tr>
+      <tr>
+          <td><code>skiplist + hashtable</code></td>
+          <td>超出阈值（跳表保证范围查询 O(log N)，hashtable 保证按成员查 score O(1)）</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="常用指令-4">常用指令
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ZADD key <span class="o">[</span>NX<span class="p">|</span>XX<span class="o">]</span> <span class="o">[</span>GT<span class="p">|</span>LT<span class="o">]</span> <span class="o">[</span>CH<span class="o">]</span> score member <span class="o">[</span>score member ...<span class="o">]</span>
+</span></span><span class="line"><span class="cl">ZREM key member <span class="o">[</span>member ...<span class="o">]</span>
+</span></span><span class="line"><span class="cl">ZSCORE key member           <span class="c1"># 查询 score（不存在返回 nil）</span>
+</span></span><span class="line"><span class="cl">ZINCRBY key 1.0 member      <span class="c1"># score 原子自增</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 排名查询（按 score 升序，rank 从 0 开始）</span>
+</span></span><span class="line"><span class="cl">ZRANK key member            <span class="c1"># 升序排名</span>
+</span></span><span class="line"><span class="cl">ZREVRANK key member         <span class="c1"># 降序排名</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 范围查询（按下标）</span>
+</span></span><span class="line"><span class="cl">ZRANGE key <span class="m">0</span> -1 <span class="o">[</span>WITHSCORES<span class="o">]</span> <span class="o">[</span>REV<span class="o">]</span>       <span class="c1"># Redis 6.2+ 支持 REV</span>
+</span></span><span class="line"><span class="cl">ZREVRANGE key <span class="m">0</span> <span class="m">4</span>                         <span class="c1"># 降序 Top 5</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 范围查询（按 score）</span>
+</span></span><span class="line"><span class="cl">ZRANGEBYSCORE key min max <span class="o">[</span>WITHSCORES<span class="o">]</span> <span class="o">[</span>LIMIT offset count<span class="o">]</span>
+</span></span><span class="line"><span class="cl">ZREVRANGEBYSCORE key max min <span class="o">[</span>WITHSCORES<span class="o">]</span> <span class="o">[</span>LIMIT offset count<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Redis 6.2+ 统一写法：</span>
+</span></span><span class="line"><span class="cl">ZRANGE key max min BYSCORE REV LIMIT <span class="m">0</span> <span class="m">5</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 统计</span>
+</span></span><span class="line"><span class="cl">ZCARD key                   <span class="c1"># 成员总数</span>
+</span></span><span class="line"><span class="cl">ZCOUNT key min max          <span class="c1"># [min, max] 范围内的成员数</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 集合运算</span>
+</span></span><span class="line"><span class="cl">ZINTERSTORE dst n k1 k2 <span class="o">[</span>WEIGHTS w1 w2<span class="o">]</span> <span class="o">[</span>AGGREGATE SUM<span class="p">|</span>MIN<span class="p">|</span>MAX<span class="o">]</span>
+</span></span><span class="line"><span class="cl">ZUNIONSTORE dst n k1 k2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 游标遍历（大集合安全遍历）</span>
+</span></span><span class="line"><span class="cl">ZSCAN key cursor <span class="o">[</span>MATCH pattern<span class="o">]</span> <span class="o">[</span>COUNT n<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用场景-4">使用场景
+</h3><p><strong>场景一：点赞排行榜（hmdp score=时间戳，取最早点赞的 Top 5）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 点赞时写入，score = 当前时间戳（越早点赞 score 越小）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForZSet</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;blog:liked:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blogId</span><span class="p">,</span><span class="w"> </span><span class="n">userId</span><span class="p">.</span><span class="na">toString</span><span class="p">(),</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 查 score（为 null 说明未点赞）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Double</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForZSet</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">score</span><span class="p">(</span><span class="s">&#34;blog:liked:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blogId</span><span class="p">,</span><span class="w"> </span><span class="n">userId</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 取最早点赞的 5 人（score 最小的 5 个，即 ZRANGE 0 4）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">top5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForZSet</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">range</span><span class="p">(</span><span class="s">&#34;blog:liked:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">blogId</span><span class="p">,</span><span class="w"> </span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">4</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>场景二：Feed 流推送与游标分页（hmdp）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 发布博文：推给所有粉丝（score = 发布时间戳）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForZSet</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;feed:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fanId</span><span class="p">,</span><span class="w"> </span><span class="n">blogId</span><span class="p">.</span><span class="na">toString</span><span class="p">(),</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 游标分页读取（关键：用 score 范围代替 offset，防止数据漂移）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 首次：max = Long.MAX_VALUE，offset = 0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 后续：max = 上次最小 score，offset = 上次最小 score 相同条数</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Set</span><span class="o">&lt;</span><span class="n">ZSetOperations</span><span class="p">.</span><span class="na">TypedTuple</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">tuples</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForZSet</span><span class="p">().</span><span class="na">reverseRangeByScoreWithScores</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="s">&#34;feed:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">minScore</span><span class="p">,</span><span class="w"> </span><span class="n">maxScore</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">offset</span><span class="p">,</span><span class="w"> </span><span class="n">pageSize</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<blockquote class="alert alert-important">
+  <p>Feed 流不能用 <code>OFFSET</code> 分页：数据持续写入时偏移量会漂移，导致重复或跳过。<code>score</code> 游标分页本质是&quot;从上次停留的位置继续&quot;，与新增数据无关。</p>
+</blockquote>
+
+<p><strong>场景三：实时排行榜</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 游戏积分榜：ZADD + ZINCRBY 实时更新</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForZSet</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">incrementScore</span><span class="p">(</span><span class="s">&#34;rank:game:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">gameId</span><span class="p">,</span><span class="w"> </span><span class="n">userId</span><span class="p">.</span><span class="na">toString</span><span class="p">(),</span><span class="w"> </span><span class="n">addScore</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 取 Top 10（降序）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Set</span><span class="o">&lt;</span><span class="n">ZSetOperations</span><span class="p">.</span><span class="na">TypedTuple</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">top10</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForZSet</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">reverseRangeWithScores</span><span class="p">(</span><span class="s">&#34;rank:game:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">gameId</span><span class="p">,</span><span class="w"> </span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">9</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 查某用户排名（降序第几名）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Long</span><span class="w"> </span><span class="n">rank</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForZSet</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">reverseRank</span><span class="p">(</span><span class="s">&#34;rank:game:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">gameId</span><span class="p">,</span><span class="w"> </span><span class="n">userId</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>场景四：延时队列（score = 执行时间戳）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 定时任务：score = 预期执行时间（Unix 毫秒）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kt">long</span><span class="w"> </span><span class="n">executeAt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">delayMs</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForZSet</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;delay:queue&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">taskJson</span><span class="p">,</span><span class="w"> </span><span class="n">executeAt</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 定时轮询（取当前时间之前到期的任务）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Set</span><span class="o">&lt;</span><span class="n">ZSetOperations</span><span class="p">.</span><span class="na">TypedTuple</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">tasks</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForZSet</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">rangeByScoreWithScores</span><span class="p">(</span><span class="s">&#34;delay:queue&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 处理后 ZREM 删除</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="geo地理位置">GEO（地理位置）
+</h2><p>GEO 底层是 ZSet，使用 <strong>GeoHash</strong> 算法将经纬度编码为一个整数作为 <code>score</code>，从而复用 ZSet 的有序特性支持距离范围查询。</p>
+<h3 id="常用指令-5">常用指令
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">GEOADD key longitude latitude member <span class="o">[</span>...<span class="o">]</span>   <span class="c1"># 添加地理位置</span>
+</span></span><span class="line"><span class="cl">GEOPOS key member <span class="o">[</span>...<span class="o">]</span>                       <span class="c1"># 获取成员经纬度</span>
+</span></span><span class="line"><span class="cl">GEODIST key m1 m2 <span class="o">[</span>M<span class="p">|</span>KM<span class="p">|</span>MI<span class="p">|</span>FT<span class="o">]</span>              <span class="c1"># 计算两点距离</span>
+</span></span><span class="line"><span class="cl">GEOSEARCH key FROMMEMBER m BYRADIUS <span class="m">5</span> KM ASC <span class="o">[</span>COUNT 10<span class="o">]</span> <span class="o">[</span>WITHCOORD<span class="o">]</span> <span class="o">[</span>WITHDIST<span class="o">]</span>
+</span></span><span class="line"><span class="cl">GEOSEARCH key FROMLONLAT lon lat BYRADIUS <span class="m">5</span> KM ASC  <span class="c1"># 以坐标为圆心</span>
+</span></span><span class="line"><span class="cl">GEOSEARCHSTORE dst key ...                    <span class="c1"># 结果存入另一个 ZSet</span>
+</span></span><span class="line"><span class="cl">GEOHASH key member                            <span class="c1"># 获取 GeoHash 字符串</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用场景-5">使用场景
+</h3><p><strong>附近商铺（hmdp 按类型预热 + 距离查询）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 预热：按商铺类型批量写入 GEO</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// shop:geo:{typeId}  score=GeoHash</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForGeo</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s">&#34;shop:geo:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">typeId</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Point</span><span class="p">(</span><span class="n">shop</span><span class="p">.</span><span class="na">getX</span><span class="p">(),</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="na">getY</span><span class="p">()),</span><span class="w">  </span><span class="c1">// longitude, latitude</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">shop</span><span class="p">.</span><span class="na">getId</span><span class="p">().</span><span class="na">toString</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 查询 5km 内的商铺，按距离升序，分页</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">GeoResults</span><span class="o">&lt;</span><span class="n">RedisGeoCommands</span><span class="p">.</span><span class="na">GeoLocation</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">results</span><span class="w"> </span><span class="o">=</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForGeo</span><span class="p">().</span><span class="na">search</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="s">&#34;shop:geo:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">typeId</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">GeoReference</span><span class="p">.</span><span class="na">fromCoordinate</span><span class="p">(</span><span class="n">userLon</span><span class="p">,</span><span class="w"> </span><span class="n">userLat</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">Distance</span><span class="p">(</span><span class="n">5000</span><span class="p">),</span><span class="w">   </span><span class="c1">// 5km</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">RedisGeoCommands</span><span class="p">.</span><span class="na">GeoSearchCommandArgs</span><span class="p">.</span><span class="na">newGeoSearchArgs</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">includeDistance</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="na">limit</span><span class="p">(</span><span class="n">page</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pageSize</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 结果包含 member（shopId）和 distance</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="bitmap位图">BitMap（位图）
+</h2><p>BitMap 底层是 String，将每一位（bit）用来表示布尔状态，极致节省内存（1 亿用户签到仅需 12.5 MB）。</p>
+<h3 id="常用指令-6">常用指令
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SETBIT key offset value         <span class="c1"># 设置第 offset 位（0 或 1）</span>
+</span></span><span class="line"><span class="cl">GETBIT key offset               <span class="c1"># 获取第 offset 位</span>
+</span></span><span class="line"><span class="cl">BITCOUNT key <span class="o">[</span>start end<span class="o">]</span>        <span class="c1"># 统计值为 1 的位数（start/end 按字节）</span>
+</span></span><span class="line"><span class="cl">BITPOS key bit <span class="o">[</span>start end<span class="o">]</span>      <span class="c1"># 查找第一个值为 bit 的位置</span>
+</span></span><span class="line"><span class="cl">BITOP AND<span class="p">|</span>OR<span class="p">|</span>XOR<span class="p">|</span>NOT dst k1 k2  <span class="c1"># 位运算</span>
+</span></span><span class="line"><span class="cl">BITFIELD key GET u8 <span class="m">0</span>           <span class="c1"># 以整数形式读取指定长度的位段（高级操作）</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用场景-6">使用场景
+</h3><p><strong>用户月度签到（hmdp）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 签到：每月一个 Key，第 day 位设为 1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Key：sign:{userId}:2025:04</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="w"> </span><span class="n">day</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LocalDateTime</span><span class="p">.</span><span class="na">now</span><span class="p">().</span><span class="na">getDayOfMonth</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">setBit</span><span class="p">(</span><span class="s">&#34;sign:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">userId</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">yearMonth</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 统计连续签到天数（从今天倒推）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// BITFIELD GET 取本月所有签到位，以 dayOfMonth 位无符号整数读取</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">bitField</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="s">&#34;sign:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">userId</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">yearMonth</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">BitFieldSubCommands</span><span class="p">.</span><span class="na">create</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">BitFieldSubCommands</span><span class="p">.</span><span class="na">BitFieldType</span><span class="p">.</span><span class="na">unsigned</span><span class="p">(</span><span class="n">day</span><span class="p">)).</span><span class="na">valueAt</span><span class="p">(</span><span class="n">0</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kt">long</span><span class="w"> </span><span class="n">bits</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">0</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="w"> </span><span class="n">streak</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">0</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">bits</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">1</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// 从最低位（今天）向高位（早期日期）统计</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">streak</span><span class="o">++</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">bits</span><span class="w"> </span><span class="o">&gt;&gt;&gt;=</span><span class="w"> </span><span class="n">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<blockquote class="alert alert-note">
+  <p><code>BITFIELD</code> 的 <code>unsigned(dayOfMonth)</code> 读取的是高 dayOfMonth 位，最低位对应今天。右移配合 <code>&amp; 1</code> 可以高效逐位判断，无需 <code>GETBIT</code> 逐位查询。</p>
+</blockquote>
+
+<p><strong>用户活跃度统计</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 每日活跃用户：每个 userId 对应一位</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// active:20250401  第 userId 位为 1 = 当天活跃</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">setBit</span><span class="p">(</span><span class="s">&#34;active:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 统计日活（BITCOUNT 整个 Key）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Long</span><span class="w"> </span><span class="n">dau</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">bitCount</span><span class="p">(</span><span class="s">&#34;active:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">date</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 连续 7 日均活跃的用户（7 个 BitMap AND）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">bitOpAnd</span><span class="p">(</span><span class="s">&#34;active:7day&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">keys</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Long</span><span class="w"> </span><span class="n">retentionCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">bitCount</span><span class="p">(</span><span class="s">&#34;active:7day&#34;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="hyperloglog">HyperLogLog
+</h2><p>HyperLogLog 是基于概率算法的基数估计数据结构，用极小内存（固定 12 KB）估计集合元素数量，<strong>误差率约 0.81%</strong>，<strong>不支持查询具体成员</strong>。</p>
+<h3 id="常用指令-7">常用指令
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">PFADD key v1 v2 v3      <span class="c1"># 添加元素（可能返回 0 表示基数未变化）</span>
+</span></span><span class="line"><span class="cl">PFCOUNT key <span class="o">[</span>key ...<span class="o">]</span>   <span class="c1"># 估算基数（多个 Key 则估算并集）</span>
+</span></span><span class="line"><span class="cl">PFMERGE dst k1 k2       <span class="c1"># 合并多个 HyperLogLog</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用场景-7">使用场景
+</h3><p><strong>UV 统计（页面独立访客数）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 每次请求：将用户 ID 写入当天 UV 统计</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForHyperLogLog</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&#34;uv:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="n">userId</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 查询当天 UV</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Long</span><span class="w"> </span><span class="n">uv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForHyperLogLog</span><span class="p">().</span><span class="na">size</span><span class="p">(</span><span class="s">&#34;uv:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">date</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 查询某周 UV（合并 7 天）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForHyperLogLog</span><span class="p">().</span><span class="na">union</span><span class="p">(</span><span class="s">&#34;uv:week&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">keys</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Long</span><span class="w"> </span><span class="n">weekUV</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForHyperLogLog</span><span class="p">().</span><span class="na">size</span><span class="p">(</span><span class="s">&#34;uv:week&#34;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div>
+<blockquote class="alert alert-note">
+  <p>UV 不需要精确值，用 Set 存所有 userId 会占用大量内存（百万用户就是数十 MB），HyperLogLog 固定 12 KB 且误差可接受，是 UV 统计的标准方案。</p>
+</blockquote>
+
+<hr>
+<h2 id="stream消息流">Stream（消息流）
+</h2><p>Stream 是 Redis 5.0 引入的消息队列数据类型，支持<strong>消费者组</strong>、<strong>ACK 确认</strong>、<strong>消息持久化</strong>，弥补了 List 和 PubSub 的不足。</p>
+<h3 id="常用指令-8">常用指令
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 生产</span>
+</span></span><span class="line"><span class="cl">XADD key <span class="o">[</span>MAXLEN ~ n<span class="o">]</span> * field value <span class="o">[</span>field value ...<span class="o">]</span>  <span class="c1"># * = 自动生成 ID</span>
+</span></span><span class="line"><span class="cl">XADD key MAXLEN ~ <span class="m">1000</span> * msg <span class="s2">&#34;hello&#34;</span>  <span class="c1"># 最多保留 1000 条</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 消费（独立消费）</span>
+</span></span><span class="line"><span class="cl">XREAD COUNT <span class="m">10</span> BLOCK <span class="m">0</span> STREAMS key $   <span class="c1"># 阻塞读取新消息（$ = 只读最新）</span>
+</span></span><span class="line"><span class="cl">XRANGE key - +                          <span class="c1"># 读全部消息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 消费者组</span>
+</span></span><span class="line"><span class="cl">XGROUP CREATE key groupName $ <span class="o">[</span>MKSTREAM<span class="o">]</span>  <span class="c1"># 创建消费者组（$ = 从最新开始）</span>
+</span></span><span class="line"><span class="cl">XREADGROUP GROUP g1 consumer1 COUNT <span class="m">5</span> BLOCK <span class="m">0</span> STREAMS key &gt;  <span class="c1"># &gt; = 未投递给本组的消息</span>
+</span></span><span class="line"><span class="cl">XACK key groupName id                    <span class="c1"># 确认消息已消费</span>
+</span></span><span class="line"><span class="cl">XPENDING key groupName - + <span class="m">10</span>            <span class="c1"># 查看未 ACK 的消息</span>
+</span></span><span class="line"><span class="cl">XCLAIM key group consumer minIdle id     <span class="c1"># 转移长时间未 ACK 的消息给其他消费者</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="与其他队列方案对比">与其他队列方案对比
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>方案</th>
+          <th>持久化</th>
+          <th>ACK</th>
+          <th>消费者组</th>
+          <th>消息堆积</th>
+          <th>适用场景</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>List BLPOP</td>
+          <td>有（RDB/AOF）</td>
+          <td>无</td>
+          <td>无</td>
+          <td>有上限</td>
+          <td>轻量任务队列</td>
+      </tr>
+      <tr>
+          <td>PubSub</td>
+          <td>无</td>
+          <td>无</td>
+          <td>无</td>
+          <td>不堆积</td>
+          <td>实时广播</td>
+      </tr>
+      <tr>
+          <td>Stream</td>
+          <td>有</td>
+          <td>有</td>
+          <td>有</td>
+          <td>可限制</td>
+          <td>可靠消息队列</td>
+      </tr>
+      <tr>
+          <td>RabbitMQ</td>
+          <td>有</td>
+          <td>有</td>
+          <td>有</td>
+          <td>有上限</td>
+          <td>企业级，高可靠</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h2 id="底层数据结构">底层数据结构
+</h2><h3 id="sdssimple-dynamic-string简单动态字符串">SDS（Simple Dynamic String，简单动态字符串）
+</h3><p>Redis 的字符串不直接使用 C 原生 <code>char*</code>，而是自定义 SDS 结构：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">sdshdr</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">len</span><span class="p">;</span>     <span class="c1">// 已使用字节数，O(1) 获取长度
+</span></span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">alloc</span><span class="p">;</span>   <span class="c1">// 已分配总字节数（不含头部和结尾 \0）
+</span></span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">flags</span><span class="p">;</span>  <span class="c1">// 编码类型（sdshdr8/16/32/64）
+</span></span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">buf</span><span class="p">[];</span>  <span class="c1">// 实际字节数组
+</span></span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>SDS 相对 C 字符串的优势</strong>：</p>
+<ul>
+<li><code>O(1)</code> 获取字符串长度（直接读 <code>len</code> 字段，无需遍历）</li>
+<li><strong>预分配</strong>：修改时若空间不足，分配额外空间（len &lt; 1MB 则翻倍，≥ 1MB 则多分配 1MB），减少扩容次数</li>
+<li><strong>惰性释放</strong>：缩短字符串时不立即释放多余空间，减少重新分配</li>
+<li><strong>二进制安全</strong>：通过 <code>len</code> 判断结束，而非 <code>\0</code>，可存任意二进制数据</li>
+</ul>
+<h3 id="ziplist--listpack压缩列表">ZipList / ListPack（压缩列表）
+</h3><p>用于元素数量少且每个元素较小时，将所有数据紧凑地存储在连续内存中，减少指针开销。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">ZipList 内存布局：
+</span></span><span class="line"><span class="cl">┌────────┬───────┬──────┬─────────┬─────────┬─────────┬──────┐
+</span></span><span class="line"><span class="cl">│ zlbytes│ zltail│ zllen│ entry1  │ entry2  │  ...    │ zlend│
+</span></span><span class="line"><span class="cl">└────────┴───────┴──────┴─────────┴─────────┴─────────┴──────┘
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">每个 entry：
+</span></span><span class="line"><span class="cl">┌───────────────┬───────────────┬───────────┐
+</span></span><span class="line"><span class="cl">│ prevrawlen    │  encoding     │  content  │
+</span></span><span class="line"><span class="cl">│(前一节点长度)  │(当前节点编码)  │(实际数据)  │
+</span></span><span class="line"><span class="cl">└───────────────┴───────────────┴───────────┘
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+<blockquote class="alert alert-warning">
+  <p>ZipList 的 <code>prevrawlen</code> 字段在更新时可能引发<strong>连锁更新</strong>（cascade update）：修改某个节点长度导致下一个节点的 <code>prevrawlen</code> 需要扩容，进而触发后续所有节点的连锁扩容，最坏情况 O(N²)。Redis 7.0 引入 <strong>ListPack</strong> 彻底去掉了 <code>prevrawlen</code> 字段，解决了连锁更新问题。</p>
+</blockquote>
+
+<h3 id="skiplist跳表">SkipList（跳表）
+</h3><p>ZSet 的范围查询由跳表实现，跳表是在有序链表基础上加了多级索引，实现 <code>O(log N)</code> 的查找和插入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Level 4: head ──────────────────────── 50 ──── tail
+</span></span><span class="line"><span class="cl">Level 3: head ────── 20 ──────────────── 50 ──── tail
+</span></span><span class="line"><span class="cl">Level 2: head ── 10 ── 20 ────── 35 ──── 50 ──── tail
+</span></span><span class="line"><span class="cl">Level 1: head ── 10 ── 20 ── 28 ── 35 ── 50 ── 60 ── tail
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>查找</strong>：从最高层索引快速跳跃，逐层缩小范围，最终在底层找到目标 <code>O(log N)</code></li>
+<li><strong>插入</strong>：随机决定节点层数（越高层概率越低，期望层数 O(log N)），更新各层指针</li>
+<li><strong>相比平衡树</strong>：实现更简单，范围查询性能相当，且跳表的修改不需要复杂的旋转操作</li>
+</ul>
+<p>Redis ZSet 同时维护一个 <strong>HashTable</strong>（成员 → score 的映射），使 <code>ZSCORE</code> 达到 O(1)；跳表负责 <code>ZRANGE</code>、<code>ZRANK</code> 等范围和排名查询，复杂度为 O(log N)；<code>ZRANGE</code> 返回 M 个结果时总复杂度为 O(log N + M)。</p>
+<h3 id="hashtable哈希表">HashTable（哈希表）
+</h3><p>Redis HashTable 是一个数组 + 链表（拉链法）解决冲突的结构，同时维护两张哈希表用于<strong>渐进式 rehash</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">dict {
+</span></span><span class="line"><span class="cl">    dictht ht[2];   // 两张哈希表，平时只用 ht[0]
+</span></span><span class="line"><span class="cl">    int rehashidx;  // -1 = 未在 rehash；≥0 = 正在 rehash 的桶下标
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>渐进式 rehash</strong>（解决 rehash 阻塞问题）：</p>
+<ul>
+<li>触发条件：负载因子（used / size）&gt; 1 时扩容（有 BGSAVE 时阈值提升到 5），&lt; 0.1 时缩容</li>
+<li>扩容时不一次性迁移所有数据，而是<strong>每次增删改查操作时迁移 <code>rehashidx</code> 指向的一个桶</strong></li>
+<li>rehash 期间读写同时查两张表，rehash 完成后释放旧表</li>
+</ul>
+<h3 id="quicklist快速列表">QuickList（快速列表）
+</h3><p>List 在数据量大时使用 QuickList，它是 <strong>ListPack 节点组成的双向链表</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">QuickList:
+</span></span><span class="line"><span class="cl">┌────────┐   ┌────────┐   ┌────────┐
+</span></span><span class="line"><span class="cl">│ListPack│◄──│ListPack│──►│ListPack│
+</span></span><span class="line"><span class="cl">└────────┘   └────────┘   └────────┘
+</span></span><span class="line"><span class="cl"> (&lt;=128项)              (&lt;=128项)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>每个 ListPack 节点内部是紧凑存储，节点数量多时通过双向链表连接，兼顾内存效率和遍历性能。可配置 <code>list-max-listpack-size</code> 控制每个 ListPack 最大元素数。</p>
+<h3 id="intset整数集合">IntSet（整数集合）
+</h3><p>当 Set 中所有成员都是整数且数量较少时，使用 IntSet 以有序数组存储，支持 O(log N) 二分查找：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">intset</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">uint32_t</span> <span class="n">encoding</span><span class="p">;</span>  <span class="c1">// INTSET_ENC_INT16/32/64
+</span></span></span><span class="line"><span class="cl">    <span class="kt">uint32_t</span> <span class="n">length</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int8_t</span> <span class="n">contents</span><span class="p">[];</span>  <span class="c1">// 实际为 encoding 指定类型的数组
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">intset</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>若插入的整数超出当前编码范围（如 int16 存不下 int32），会自动升级编码并迁移数组，<strong>不可降级</strong>。</p>
+<hr>
+<h2 id="键过期与内存淘汰">键过期与内存淘汰
+</h2><h3 id="过期键删除策略">过期键删除策略
+</h3><p>Redis 使用<strong>惰性删除 + 定期删除</strong>的组合策略：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>策略</th>
+          <th>原理</th>
+          <th>优点</th>
+          <th>缺点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>惰性删除</strong></td>
+          <td>访问 Key 时才检查是否过期</td>
+          <td>CPU 友好，只在使用时检查</td>
+          <td>过期 Key 长期不被访问导致内存泄漏</td>
+      </tr>
+      <tr>
+          <td><strong>定期删除</strong></td>
+          <td>每隔一定时间随机抽取部分 Key 检查删除</td>
+          <td>兼顾内存和 CPU</td>
+          <td>无法保证及时清理所有过期 Key</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>Redis 每 100ms 执行一次定期扫描，随机抽取 20 个 Key，若过期比例 &gt; 25% 则继续抽取，直到比例降低或超过 25ms 时间限制。</p>
+<h3 id="内存淘汰策略maxmemory-policy">内存淘汰策略（maxmemory-policy）
+</h3><p>当内存达到 <code>maxmemory</code> 上限时，根据策略淘汰数据：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>策略</th>
+          <th>描述</th>
+          <th>适用场景</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>noeviction</code>（默认）</td>
+          <td>拒绝写入，返回错误</td>
+          <td>不允许丢数据时</td>
+      </tr>
+      <tr>
+          <td><code>allkeys-lru</code></td>
+          <td>淘汰所有 Key 中最近最少使用的</td>
+          <td>通用缓存场景</td>
+      </tr>
+      <tr>
+          <td><code>volatile-lru</code></td>
+          <td>只淘汰设了过期时间的 Key（LRU）</td>
+          <td>缓存与持久数据混存</td>
+      </tr>
+      <tr>
+          <td><code>allkeys-random</code></td>
+          <td>随机淘汰所有 Key</td>
+          <td>均匀访问时</td>
+      </tr>
+      <tr>
+          <td><code>volatile-random</code></td>
+          <td>随机淘汰有过期时间的 Key</td>
+          <td>-</td>
+      </tr>
+      <tr>
+          <td><code>volatile-ttl</code></td>
+          <td>淘汰剩余 TTL 最短的 Key</td>
+          <td>按即将过期优先清理</td>
+      </tr>
+      <tr>
+          <td><code>allkeys-lfu</code></td>
+          <td>淘汰所有 Key 中访问频率最低的（Redis 4.0+）</td>
+          <td>热点数据差异明显时</td>
+      </tr>
+      <tr>
+          <td><code>volatile-lfu</code></td>
+          <td>只淘汰设了过期时间的 Key（LFU）</td>
+          <td>-</td>
+      </tr>
+  </tbody>
+</table></div>
+
+<blockquote class="alert alert-tip">
+  <p>纯缓存场景推荐 <code>allkeys-lru</code> 或 <code>allkeys-lfu</code>；<code>volatile-lru</code> 适合缓存和持久数据混合存储，避免淘汰不应删除的数据。</p>
+</blockquote>
+
+<hr>
+<h2 id="持久化">持久化
+</h2><h3 id="rdb快照">RDB（快照）
+</h3><p>RDB 将某一时刻的全量数据序列化为二进制文件（<code>dump.rdb</code>），支持手动触发和自动触发：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">SAVE    <span class="c1"># 同步，阻塞主线程（慎用）</span>
+</span></span><span class="line"><span class="cl">BGSAVE  <span class="c1"># 异步，fork 子进程执行，主线程不阻塞</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>自动触发配置</strong>（<code>redis.conf</code>）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">save 3600 1     # 1 小时内至少 1 次写操作
+</span></span><span class="line"><span class="cl">save 300 100    # 5 分钟内至少 100 次写操作
+</span></span><span class="line"><span class="cl">save 60 10000   # 1 分钟内至少 10000 次写操作
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>BGSAVE + COW（写时复制）</strong>：fork 子进程与父进程共享内存页，写时才复制修改的页，保证快照数据的一致性，同时主进程可继续处理请求。</p>
+<p><strong>优点</strong>：文件紧凑，恢复速度快，适合备份。</p>
+<p><strong>缺点</strong>：两次快照之间的数据可能丢失（丢失窗口 = save 间隔）。</p>
+<h3 id="aof追加日志">AOF（追加日志）
+</h3><p>AOF 将每条写命令以文本形式追加到 <code>appendonly.aof</code> 文件，重启时重放命令恢复数据：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">appendonly yes
+</span></span><span class="line"><span class="cl">appendfsync everysec   # fsync 策略：always（最安全）/ everysec（推荐）/ no（OS 决定）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th><code>appendfsync</code></th>
+          <th>丢数据风险</th>
+          <th>性能</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>always</code></td>
+          <td>最多丢 1 条</td>
+          <td>最低</td>
+      </tr>
+      <tr>
+          <td><code>everysec</code></td>
+          <td>最多丢 1 秒</td>
+          <td>中等</td>
+      </tr>
+      <tr>
+          <td><code>no</code></td>
+          <td>可能丢较多</td>
+          <td>最高</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>AOF 重写</strong>（压缩 AOF 文件）：<code>BGREWRITEAOF</code> 命令触发，fork 子进程将当前数据状态转为最少命令集，重写期间新命令写入 AOF 重写缓冲区，完成后追加并替换旧文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">auto-aof-rewrite-percentage 100   # 文件比上次重写后大 100% 时触发
+</span></span><span class="line"><span class="cl">auto-aof-rewrite-min-size 64mb    # 且文件大小 &gt;= 64MB
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="混合持久化redis-40">混合持久化（Redis 4.0+）
+</h3><p>AOF 重写时，将当前数据以 RDB 格式写入 AOF 文件开头，后续新增命令以 AOF 格式追加，兼顾 RDB 的恢复速度和 AOF 的数据完整性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">aof-use-rdb-preamble yes   # 开启混合持久化（Redis 7.x 默认开启）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="高可用">高可用
+</h2><h3 id="主从复制">主从复制
+</h3><p>从节点通过 <code>REPLICAOF</code> 命令连接主节点，实现读写分离和数据冗余：</p>
+<p><strong>全量同步</strong>（首次连接或 repl_backlog 溢出时）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Slave → PSYNC ? -1 → Master
+</span></span><span class="line"><span class="cl">Master → FULLRESYNC + runId + offset
+</span></span><span class="line"><span class="cl">Master → BGSAVE 生成 RDB + 发送给 Slave
+</span></span><span class="line"><span class="cl">Master → 期间写命令暂存 repl_backlog
+</span></span><span class="line"><span class="cl">Slave → 加载 RDB → 接收增量命令
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>增量同步</strong>（断线重连时）：主节点维护一个环形缓冲区（<code>repl_backlog</code>），从节点携带 <code>offset</code> 请求同步，若 offset 仍在缓冲区内则只发送缺失部分，否则触发全量同步。</p>
+<h3 id="哨兵sentinel">哨兵（Sentinel）
+</h3><p>哨兵解决主节点故障时的<strong>自动故障转移</strong>问题：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Sentinel 集群（≥3 个节点）
+</span></span><span class="line"><span class="cl">    │
+</span></span><span class="line"><span class="cl">    ├── 监控主从节点健康状态（PING 心跳）
+</span></span><span class="line"><span class="cl">    ├── 主观下线（SDOWN）：单个哨兵判定主节点不可达
+</span></span><span class="line"><span class="cl">    ├── 客观下线（ODOWN）：超过 quorum 个哨兵达成共识
+</span></span><span class="line"><span class="cl">    └── 故障转移：选举 Leader 哨兵，从从节点中选出新主节点
+</span></span><span class="line"><span class="cl">                 ├── 优先选 slave-priority 低（数值小）的
+</span></span><span class="line"><span class="cl">                 ├── 其次选复制偏移量最大（数据最新）的
+</span></span><span class="line"><span class="cl">                 └── 最后选 runId 最小的
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="redis-cluster">Redis Cluster
+</h3><p>Cluster 模式通过<strong>数据分片</strong>支持水平扩展，将 16384 个哈希槽分配给多个主节点：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">hash_slot = CRC16(key) % 16384
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">节点 A: slots 0 - 5460
+</span></span><span class="line"><span class="cl">节点 B: slots 5461 - 10922
+</span></span><span class="line"><span class="cl">节点 C: slots 10923 - 16383
+</span></span><span class="line"><span class="cl">每个主节点有若干从节点（通常 1 个）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>客户端路由：命令发给任意节点，若该节点不负责目标 slot，返回 <code>MOVED</code> 或 <code>ASK</code> 重定向，客户端再发到正确节点。</p>
+
+<blockquote class="alert alert-warning">
+  <p>Cluster 模式下，涉及多 Key 的操作（<code>MGET</code>、<code>SINTERSTORE</code> 等）要求所有 Key 落在同一个 slot。可通过 <strong>hash tag</strong> 强制指定 slot：<code>{user:1}:order</code> 和 <code>{user:1}:profile</code> 都以 <code>user:1</code> 计算 slot，保证同 slot。</p>
+</blockquote>
+
+<hr>
+<h2 id="缓存设计模式">缓存设计模式
+</h2><h3 id="缓存穿透">缓存穿透
+</h3><p><strong>问题</strong>：查询数据库中根本不存在的数据，缓存永远无法命中，每次打到 DB。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>方案</th>
+          <th>适用场景</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>缓存空值</strong>（短 TTL）</td>
+          <td>简单场景，不存在数据量少</td>
+      </tr>
+      <tr>
+          <td><strong>布隆过滤器</strong></td>
+          <td>数据量大，ID 可预先知晓</td>
+      </tr>
+      <tr>
+          <td><strong>接口鉴权/参数校验</strong></td>
+          <td>拦截非法格式的请求</td>
+      </tr>
+  </tbody>
+</table></div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 方案一：缓存空值（TTL=2min）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">2</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">MINUTES</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 方案二：布隆过滤器（Redisson）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">RBloomFilter</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="n">bloom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redisson</span><span class="p">.</span><span class="na">getBloomFilter</span><span class="p">(</span><span class="s">&#34;shop:bloom&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">bloom</span><span class="p">.</span><span class="na">tryInit</span><span class="p">(</span><span class="n">100_000L</span><span class="p">,</span><span class="w"> </span><span class="n">0</span><span class="p">.</span><span class="na">01</span><span class="p">);</span><span class="w">  </span><span class="c1">// 10 万元素，1% 误判率</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">bloom</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">id</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="na">fail</span><span class="p">(</span><span class="s">&#34;不存在&#34;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="缓存击穿">缓存击穿
+</h3><p><strong>问题</strong>：热点 Key 突然过期，大量并发请求同时穿透到 DB 重建缓存。</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>方案</th>
+          <th>一致性</th>
+          <th>可用性</th>
+          <th>适用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>互斥锁</strong>（SETNX）</td>
+          <td>强</td>
+          <td>低（等待阻塞）</td>
+          <td>数据一致性要求高</td>
+      </tr>
+      <tr>
+          <td><strong>逻辑过期</strong></td>
+          <td>弱（短暂旧数据）</td>
+          <td>高（不阻塞）</td>
+          <td>热点读多写少</td>
+      </tr>
+  </tbody>
+</table></div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 互斥锁方案：拿不到锁则等待，保证只有一个线程重建</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">tryLock</span><span class="p">(</span><span class="n">lockKey</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="n">50</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">queryWithMutex</span><span class="p">(</span><span class="n">id</span><span class="p">);</span><span class="w">  </span><span class="c1">// 自旋等待</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 逻辑过期方案：立即返回旧数据，异步重建</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">redisData</span><span class="p">.</span><span class="na">getExpireTime</span><span class="p">().</span><span class="na">isBefore</span><span class="p">(</span><span class="n">LocalDateTime</span><span class="p">.</span><span class="na">now</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tryLock</span><span class="p">(</span><span class="n">lockKey</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">executor</span><span class="p">.</span><span class="na">submit</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">rebuild</span><span class="p">());</span><span class="w">  </span><span class="c1">// 异步重建</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">r</span><span class="p">;</span><span class="w">  </span><span class="c1">// 直接返回旧数据，不阻塞</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="缓存雪崩">缓存雪崩
+</h3><p><strong>问题</strong>：大批 Key 集中过期，或 Redis 宕机，大量请求同时打到 DB。</p>
+<ul>
+<li><strong>TTL 加随机偏移</strong>：错开批量过期时间</li>
+<li><strong>多级缓存</strong>：本地缓存（Caffeine）+ Redis，Redis 故障时本地兜底</li>
+<li><strong>熔断降级</strong>：Redis 不可用时快速失败，返回降级数据</li>
+<li><strong>Redis 集群</strong>：主从 + 哨兵或 Cluster，消除单点故障</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// TTL 加随机偏移（30到35分钟随机）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kt">long</span><span class="w"> </span><span class="n">ttl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">30</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">RandomUtil</span><span class="p">.</span><span class="na">randomLong</span><span class="p">(</span><span class="n">0</span><span class="p">,</span><span class="w"> </span><span class="n">5</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">().</span><span class="na">set</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">json</span><span class="p">,</span><span class="w"> </span><span class="n">ttl</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">MINUTES</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="cache-aside旁路缓存">Cache Aside（旁路缓存）
+</h3><p>标准的缓存更新模式：<strong>读缓存命中则返回；写时先更新 DB，再删除缓存</strong>（而非更新缓存）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="nd">@Transactional</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">Shop</span><span class="w"> </span><span class="n">shop</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">updateById</span><span class="p">(</span><span class="n">shop</span><span class="p">);</span><span class="w">                                           </span><span class="c1">// 1. 先更新 DB</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="s">&#34;cache:shop:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">shop</span><span class="p">.</span><span class="na">getId</span><span class="p">());</span><span class="w"> </span><span class="c1">// 2. 再删除缓存</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Result</span><span class="p">.</span><span class="na">ok</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 不直接更新缓存：避免 DB 更新成功但缓存更新失败导致的脏数据</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 先删缓存再更新 DB 存在间隙：删除后更新前的查询会重建旧数据缓存</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="分布式锁">分布式锁
+</h2><h3 id="setnx-自实现hmdp-simpleredislock">SETNX 自实现（hmdp SimpleRedisLock）
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 加锁：SETNX 原子写入，值存线程标识（防止误删其他线程的锁）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">tryLock</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">timeoutSec</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">threadId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ID_PREFIX</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">getId</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Boolean</span><span class="w"> </span><span class="n">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">opsForValue</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">.</span><span class="na">setIfAbsent</span><span class="p">(</span><span class="n">KEY_PREFIX</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">threadId</span><span class="p">,</span><span class="w"> </span><span class="n">timeoutSec</span><span class="p">,</span><span class="w"> </span><span class="n">TimeUnit</span><span class="p">.</span><span class="na">SECONDS</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Boolean</span><span class="p">.</span><span class="na">TRUE</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">success</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 解锁：Lua 脚本原子判断 + 删除（防止判断后删除前 TTL 过期被其他线程抢占）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">unlock</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="n">UNLOCK_SCRIPT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Collections</span><span class="p">.</span><span class="na">singletonList</span><span class="p">(</span><span class="n">KEY_PREFIX</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">ID_PREFIX</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Thread</span><span class="p">.</span><span class="na">currentThread</span><span class="p">().</span><span class="na">getId</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="c1">-- unlock.lua</span>
+</span></span><span class="line"><span class="cl"><span class="kr">if</span> <span class="n">redis.call</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="n">KEYS</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="n">ARGV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="n">redis.call</span><span class="p">(</span><span class="s1">&#39;del&#39;</span><span class="p">,</span> <span class="n">KEYS</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="kr">else</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="redisson-分布式锁hmdp-最终方案">Redisson 分布式锁（hmdp 最终方案）
+</h3><p>Redisson 封装了看门狗（watchdog）自动续期、可重入、红锁等高级特性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">RLock</span><span class="w"> </span><span class="n">lock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">redissonClient</span><span class="p">.</span><span class="na">getLock</span><span class="p">(</span><span class="s">&#34;lock:order:&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">userId</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// tryLock(waitTime, leaseTime, unit)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// waitTime=-1/leaseTime=-1：不等待，不手动设超时，靠看门狗续期</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kt">boolean</span><span class="w"> </span><span class="n">acquired</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lock</span><span class="p">.</span><span class="na">tryLock</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 业务逻辑</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w"> </span><span class="k">finally</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">lock</span><span class="p">.</span><span class="na">unlock</span><span class="p">();</span><span class="w">  </span><span class="c1">// 必须在 finally 释放</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>看门狗机制</strong>：<code>leaseTime</code> 未指定时，后台线程每 10 秒（默认 TTL 30s 的 1/3）检查锁是否仍被持有，若持有则续期 30s，防止业务执行时间超过锁 TTL 导致提前过期。</p>
+<hr>
+<h2 id="lua-脚本">Lua 脚本
+</h2><p>Redis 单线程执行 Lua 脚本，保证脚本内所有命令的原子性，适用于&quot;读取-判断-写入&quot;的复合操作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="c1">-- seckill.lua（hmdp 秒杀资格原子判断）</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">voucherId</span> <span class="o">=</span> <span class="n">ARGV</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">userId</span>    <span class="o">=</span> <span class="n">ARGV</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">stockKey</span>  <span class="o">=</span> <span class="s1">&#39;seckill:stock:&#39;</span> <span class="o">..</span> <span class="n">voucherId</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">orderKey</span>  <span class="o">=</span> <span class="s1">&#39;seckill:order:&#39;</span> <span class="o">..</span> <span class="n">voucherId</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">-- 1. 库存不足</span>
+</span></span><span class="line"><span class="cl"><span class="kr">if</span> <span class="n">tonumber</span><span class="p">(</span><span class="n">redis.call</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="n">stockKey</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="kr">then</span> <span class="kr">return</span> <span class="mi">1</span> <span class="kr">end</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- 2. 重复下单</span>
+</span></span><span class="line"><span class="cl"><span class="kr">if</span> <span class="n">redis.call</span><span class="p">(</span><span class="s1">&#39;sismember&#39;</span><span class="p">,</span> <span class="n">orderKey</span><span class="p">,</span> <span class="n">userId</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="kr">then</span> <span class="kr">return</span> <span class="mi">2</span> <span class="kr">end</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- 3. 原子扣减库存 + 记录下单</span>
+</span></span><span class="line"><span class="cl"><span class="n">redis.call</span><span class="p">(</span><span class="s1">&#39;decr&#39;</span><span class="p">,</span> <span class="n">stockKey</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">redis.call</span><span class="p">(</span><span class="s1">&#39;sadd&#39;</span><span class="p">,</span> <span class="n">orderKey</span><span class="p">,</span> <span class="n">userId</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">return</span> <span class="mi">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// Spring 中加载并执行 Lua 脚本</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">DefaultRedisScript</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="n">SECKILL_SCRIPT</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kd">static</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">SECKILL_SCRIPT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">DefaultRedisScript</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">SECKILL_SCRIPT</span><span class="p">.</span><span class="na">setLocation</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ClassPathResource</span><span class="p">(</span><span class="s">&#34;seckill.lua&#34;</span><span class="p">));</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">SECKILL_SCRIPT</span><span class="p">.</span><span class="na">setResultType</span><span class="p">(</span><span class="n">Long</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">Long</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">SECKILL_SCRIPT</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">Collections</span><span class="p">.</span><span class="na">emptyList</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">voucherId</span><span class="p">.</span><span class="na">toString</span><span class="p">(),</span><span class="w"> </span><span class="n">userId</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="事务">事务
+</h2><p>Redis 事务通过 <code>MULTI</code> / <code>EXEC</code> 将命令打包执行，但<strong>不支持回滚</strong>（执行时命令报错不会中断其余命令）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">MULTI       <span class="c1"># 开启事务</span>
+</span></span><span class="line"><span class="cl">SET k1 v1
+</span></span><span class="line"><span class="cl">INCR k2
+</span></span><span class="line"><span class="cl">EXEC        <span class="c1"># 提交，按顺序执行所有命令</span>
+</span></span><span class="line"><span class="cl">DISCARD     <span class="c1"># 放弃事务</span>
+</span></span><span class="line"><span class="cl">WATCH key   <span class="c1"># 乐观锁：若 EXEC 前 key 被其他客户端修改，事务放弃执行</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+<blockquote class="alert alert-warning">
+  <p>Redis 事务没有原子性保证：若某条命令执行报错（如对 String 执行 INCR），其他命令仍正常执行，不会回滚。真正需要原子性请使用 <strong>Lua 脚本</strong>。</p>
+</blockquote>
+
+<hr>
+<h2 id="性能优化">性能优化
+</h2><h3 id="避免大-key">避免大 Key
+</h3><p>大 Key（String &gt; 10KB，Hash/List/Set/ZSet 元素 &gt; 5000 个）会导致：</p>
+<ul>
+<li><strong>阻塞主线程</strong>：序列化/反序列化耗时，<code>KEYS *</code>、<code>SMEMBERS</code> 等全量查询卡住</li>
+<li><strong>内存碎片</strong>：大对象分配不均匀</li>
+<li><strong>迁移慢</strong>：Cluster 模式下大 Key 所在 slot 迁移耗时极长</li>
+</ul>
+<p><strong>处理方式</strong>：大 String 拆分存储；大 Hash 按字段 hash 分片（如 <code>user:1:profile:0</code> 到 <code>user:1:profile:n</code>）；大集合用 HSCAN/SSCAN/ZSCAN 分批遍历。</p>
+<h3 id="pipeline批量命令">Pipeline（批量命令）
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 一次网络请求发送多条命令，减少 RTT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">List</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span><span class="w"> </span><span class="n">results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stringRedisTemplate</span><span class="p">.</span><span class="na">executePipelined</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">(</span><span class="n">RedisCallback</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="n">connection</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">key</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">keys</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">connection</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">getBytes</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">);</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="避免热点-key">避免热点 Key
+</h3><p>单一 Key 请求量过大（如秒杀商品库存、热门博文点赞）会打满单节点带宽。解决方案：</p>
+<ul>
+<li><strong>本地缓存</strong>：Caffeine 等本地缓存缓冲热点请求，减少 Redis 压力</li>
+<li><strong>Key 分片</strong>：将热点 Key 拆为 <code>hot:key:0</code> 到 <code>hot:key:N</code>，随机读取，写时聚合</li>
+<li><strong>读写分离</strong>：热点读走从节点</li>
+</ul>
+<h3 id="慢查询分析">慢查询分析
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 配置（默认 10000μs = 10ms）</span>
+</span></span><span class="line"><span class="cl">CONFIG SET slowlog-log-slower-than <span class="m">5000</span>  <span class="c1"># 超过 5ms 记录</span>
+</span></span><span class="line"><span class="cl">CONFIG SET slowlog-max-len <span class="m">128</span>           <span class="c1"># 最多保留 128 条</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看最近慢查询</span>
+</span></span><span class="line"><span class="cl">SLOWLOG GET <span class="m">10</span>
+</span></span><span class="line"><span class="cl">SLOWLOG LEN
+</span></span><span class="line"><span class="cl">SLOWLOG RESET
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<h2 id="hmdp-redis-用法速查">hmdp Redis 用法速查
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>功能</th>
+          <th>Key 格式</th>
+          <th>数据类型</th>
+          <th>核心操作</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>验证码</td>
+          <td><code>login:code:{phone}</code></td>
+          <td>String</td>
+          <td><code>SET</code> TTL=2min</td>
+      </tr>
+      <tr>
+          <td>用户 Token</td>
+          <td><code>login:token:{token}</code></td>
+          <td>Hash</td>
+          <td><code>HMSET</code> / <code>HGETALL</code></td>
+      </tr>
+      <tr>
+          <td>商铺缓存</td>
+          <td><code>cache:shop:{id}</code></td>
+          <td>String(JSON)</td>
+          <td><code>GET</code> / <code>SET</code> TTL=30min</td>
+      </tr>
+      <tr>
+          <td>缓存重建锁</td>
+          <td><code>lock:shop:{id}</code></td>
+          <td>String</td>
+          <td><code>SETNX</code> TTL=10s</td>
+      </tr>
+      <tr>
+          <td>秒杀库存</td>
+          <td><code>seckill:stock:{vid}</code></td>
+          <td>String</td>
+          <td><code>DECR</code>（Lua 内）</td>
+      </tr>
+      <tr>
+          <td>秒杀去重</td>
+          <td><code>seckill:order:{vid}</code></td>
+          <td>Set</td>
+          <td><code>SADD</code> / <code>SISMEMBER</code>（Lua 内）</td>
+      </tr>
+      <tr>
+          <td>全局 ID 序列</td>
+          <td><code>icr:order:{date}</code></td>
+          <td>String</td>
+          <td><code>INCR</code></td>
+      </tr>
+      <tr>
+          <td>点赞排行</td>
+          <td><code>blog:liked:{blogId}</code></td>
+          <td>ZSet</td>
+          <td><code>ZADD</code> score=时间戳，<code>ZRANGE</code></td>
+      </tr>
+      <tr>
+          <td>Feed 流</td>
+          <td><code>feed:{userId}</code></td>
+          <td>ZSet</td>
+          <td><code>ZADD</code> + <code>ZREVRANGEBYSCORE</code> 游标分页</td>
+      </tr>
+      <tr>
+          <td>共同关注</td>
+          <td><code>follows:{userId}</code></td>
+          <td>Set</td>
+          <td><code>SADD</code> / <code>SINTER</code></td>
+      </tr>
+      <tr>
+          <td>附近商铺</td>
+          <td><code>shop:geo:{typeId}</code></td>
+          <td>GEO（ZSet）</td>
+          <td><code>GEOADD</code> / <code>GEOSEARCH</code></td>
+      </tr>
+      <tr>
+          <td>用户签到</td>
+          <td><code>sign:{userId}:{yyyy:MM}</code></td>
+          <td>BitMap</td>
+          <td><code>SETBIT</code> / <code>BITFIELD</code></td>
+      </tr>
+  </tbody>
+</table></div>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2026 Chen1shark
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.2">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.23187c9e10e2dd8b5dcdf101dbaef779ec71560aa497dbe0c502c13aa0c3e22b.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<script>
+    
+
+
+    
+    
+    const live2d_path = 'https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0-rc.6/dist/';
+    
+    const cssPath = "/waifu/waifu.css"
+    const tipsJsonPath = "/waifu/waifu-tips.json"
+
+    
+    
+    function loadExternalResource(url, type) {
+    return new Promise((resolve, reject) => {
+        let tag;
+
+        if (type === 'css') {
+        tag = document.createElement('link');
+        tag.rel = 'stylesheet';
+        tag.href = url;
+        }
+        else if (type === 'js') {
+        tag = document.createElement('script');
+        tag.type = 'module';
+        tag.src = url;
+        }
+        if (tag) {
+        tag.onload = () => resolve(url);
+        tag.onerror = () => reject(url);
+        document.head.appendChild(tag);
+        }
+    });
+    }
+
+    (async () => {
+    
+    
+    if (screen.width < 768) return;
+
+    
+    
+    const OriginalImage = window.Image;
+    window.Image = function(...args) {
+        const img = new OriginalImage(...args);
+        img.crossOrigin = "anonymous";
+        return img;
+    };
+    window.Image.prototype = OriginalImage.prototype;
+    
+    
+    await Promise.all([
+        loadExternalResource(cssPath, 'css'),
+        loadExternalResource(live2d_path + 'waifu-tips.js', 'js')
+    ]);
+    
+    
+    initWidget({
+        waifuPath: tipsJsonPath,
+        
+        cubism2Path: live2d_path + 'live2d.min.js',
+        cubism5Path: 'https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js',
+        tools: ['hitokoto', 'asteroids', 'switch-model', 'switch-texture', 'photo', 'info', 'quit'],
+        logLevel: 'warn',
+        drag: false,
+    });
+    })();
+
+    console.log(`\n%cLive2D%cWidget%c\n`, 'padding: 8px; background: #cd3e45; font-weight: bold; font-size: large; color: white;', 'padding: 8px; background: #ff5450; font-size: large; color: #eee;', '');
+
+    
+
+   
+</script>
+    </body>
+</html>
