@@ -7,7 +7,15 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>Chen1shark</copyright>
-        <lastBuildDate>Sun, 05 Apr 2026 00:00:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 07 Apr 2026 00:00:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Network</title>
+        <link>http://localhost:1313/categories/network/</link>
+        <pubDate>Mon, 06 Apr 2026 00:00:00 +0800</pubDate>
+        
+        <guid>http://localhost:1313/categories/network/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>Database</title>
         <link>http://localhost:1313/categories/database/</link>
         <pubDate>Sun, 05 Apr 2026 00:00:00 +0800</pubDate>

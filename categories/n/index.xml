@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>N on Chen1shark 的一坨笔记</title>
+        <link>http://localhost:1313/categories/n/</link>
+        <description>Recent content in N on Chen1shark 的一坨笔记</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>Chen1shark</copyright>
+        <lastBuildDate>Mon, 06 Apr 2026 00:00:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/n/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>计算机网络面试总结</title>
+        <link>http://localhost:1313/p/computer-network-interview/</link>
+        <pubDate>Mon, 06 Apr 2026 00:00:00 +0800</pubDate>
+        
+        <guid>http://localhost:1313/p/computer-network-interview/</guid>
+        <description>&lt;h2 id=&#34;网络模型&#34;&gt;网络模型
+&lt;/h2&gt;&lt;h3 id=&#34;osi-七层模型&#34;&gt;OSI 七层模型
+&lt;/h3&gt;&lt;h3 id=&#34;tcpip-四层模型&#34;&gt;TCP/IP 四层模型
+&lt;/h3&gt;&lt;hr&gt;
+&lt;h2 id=&#34;物理层&#34;&gt;物理层
+&lt;/h2&gt;&lt;h3 id=&#34;基本概念&#34;&gt;基本概念
+&lt;/h3&gt;&lt;h3 id=&#34;传输介质&#34;&gt;传输介质
+&lt;/h3&gt;&lt;hr&gt;
+&lt;h2 id=&#34;数据链路层&#34;&gt;数据链路层
+&lt;/h2&gt;&lt;h3 id=&#34;以太网帧格式&#34;&gt;以太网帧格式
+&lt;/h3&gt;&lt;h3 id=&#34;mac-地址与-arp&#34;&gt;MAC 地址与 ARP
+&lt;/h3&gt;&lt;h3 id=&#34;交换机工作原理&#34;&gt;交换机工作原理
+&lt;/h3&gt;&lt;hr&gt;
+&lt;h2 id=&#34;网络层&#34;&gt;网络层
+&lt;/h2&gt;&lt;h3 id=&#34;ip-协议&#34;&gt;IP 协议
+&lt;/h3&gt;&lt;h3 id=&#34;子网划分与子网掩码&#34;&gt;子网划分与子网掩码
+&lt;/h3&gt;&lt;h3 id=&#34;路由协议&#34;&gt;路由协议
+&lt;/h3&gt;&lt;h3 id=&#34;nat-与-napt&#34;&gt;NAT 与 NAPT
+&lt;/h3&gt;&lt;h3 id=&#34;icmp-协议&#34;&gt;ICMP 协议
+&lt;/h3&gt;&lt;hr&gt;
+&lt;h2 id=&#34;传输层&#34;&gt;传输层
+&lt;/h2&gt;&lt;h3 id=&#34;tcp-核心机制&#34;&gt;TCP 核心机制
+&lt;/h3&gt;&lt;h4 id=&#34;三次握手&#34;&gt;三次握手
+&lt;/h4&gt;&lt;h4 id=&#34;四次挥手&#34;&gt;四次挥手
+&lt;/h4&gt;&lt;h4 id=&#34;可靠传输&#34;&gt;可靠传输
+&lt;/h4&gt;&lt;h4 id=&#34;流量控制与拥塞控制&#34;&gt;流量控制与拥塞控制
+&lt;/h4&gt;&lt;h3 id=&#34;udp-特点&#34;&gt;UDP 特点
+&lt;/h3&gt;&lt;h3 id=&#34;tcp-vs-udp-对比&#34;&gt;TCP vs UDP 对比
+&lt;/h3&gt;&lt;hr&gt;
+&lt;h2 id=&#34;应用层&#34;&gt;应用层
+&lt;/h2&gt;&lt;h3 id=&#34;httphttps&#34;&gt;HTTP/HTTPS
+&lt;/h3&gt;&lt;h4 id=&#34;http-版本演进&#34;&gt;HTTP 版本演进
+&lt;/h4&gt;&lt;h4 id=&#34;状态码&#34;&gt;状态码
+&lt;/h4&gt;&lt;h4 id=&#34;请求方法&#34;&gt;请求方法
+&lt;/h4&gt;&lt;h4 id=&#34;缓存机制&#34;&gt;缓存机制
+&lt;/h4&gt;&lt;h4 id=&#34;https-握手过程&#34;&gt;HTTPS 握手过程
+&lt;/h4&gt;&lt;h4 id=&#34;证书与加密&#34;&gt;证书与加密
+&lt;/h4&gt;&lt;h3 id=&#34;dns-解析&#34;&gt;DNS 解析
+&lt;/h3&gt;&lt;h3 id=&#34;websocket&#34;&gt;WebSocket
+&lt;/h3&gt;&lt;h3 id=&#34;其他协议&#34;&gt;其他协议
+&lt;/h3&gt;&lt;hr&gt;
+&lt;h2 id=&#34;网络安全&#34;&gt;网络安全
+&lt;/h2&gt;&lt;h3 id=&#34;常见攻击方式&#34;&gt;常见攻击方式
+&lt;/h3&gt;&lt;h3 id=&#34;防护手段&#34;&gt;防护手段
+&lt;/h3&gt;&lt;h3 id=&#34;https-安全机制&#34;&gt;HTTPS 安全机制
+&lt;/h3&gt;&lt;hr&gt;
+&lt;h2 id=&#34;网络编程&#34;&gt;网络编程
+&lt;/h2&gt;&lt;h3 id=&#34;socket-编程&#34;&gt;Socket 编程
+&lt;/h3&gt;&lt;h3 id=&#34;io-模型&#34;&gt;IO 模型
+&lt;/h3&gt;&lt;hr&gt;
+&lt;h2 id=&#34;面试高频问题&#34;&gt;面试高频问题
+&lt;/h2&gt;&lt;hr&gt;
+&lt;h2 id=&#34;实战场景&#34;&gt;实战场景
+&lt;/h2&gt;&lt;hr&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>
