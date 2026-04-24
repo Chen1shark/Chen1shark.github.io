@@ -7,7 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
         <copyright>Chen1shark</copyright>
-        <lastBuildDate>Tue, 07 Apr 2026 00:00:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/network/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 08 Apr 2026 00:00:00 +0800</lastBuildDate><atom:link href="http://localhost:1313/categories/network/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>计算机网络（面试）</title>
         <link>http://localhost:1313/p/computer-network-interview/</link>
         <pubDate>Mon, 06 Apr 2026 00:00:00 +0800</pubDate>
@@ -112,16 +112,81 @@
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;h2 id=&#34;osi-与-tcpip-对比&#34;&gt;OSI 与 TCP/IP 对比
+&lt;/h2&gt;&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;对比项&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;OSI 七层&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;TCP/IP 四层&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;性质&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;理论模型，完整规范&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;实际应用，简洁实用&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;分层数量&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;7 层&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;4 层&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;应用层范围&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;应用/表示/会话分开&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;合并为应用层&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;底层范围&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;物理/数据链路分开&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;合并为网络接口层&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;实际使用&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;教学参考&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;互联网实际标准&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;blockquote class=&#34;alert alert-tip&#34;&gt;
+  &lt;p&gt;&lt;strong&gt;快速记忆&lt;/strong&gt;：OSI 更细、更理论、7 层；TCP/IP 更粗、更实用、4 层。两者本质相同，TCP/IP 是 OSI 的简化实践版本。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;实际例子浏览器访问网站&#34;&gt;实际例子：浏览器访问网站
+&lt;/h2&gt;&lt;p&gt;以访问 &lt;code&gt;https://www.example.com&lt;/code&gt; 为例，从两个视角理解分层协议。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;OSI 视角&lt;/strong&gt;（从上往下逐层封装）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;应用层：浏览器发起 HTTP 请求&lt;/li&gt;
+&lt;li&gt;表示层：数据加密（TLS/SSL）&lt;/li&gt;
+&lt;li&gt;会话层：建立 TCP 会话连接&lt;/li&gt;
+&lt;li&gt;传输层：TCP 分段、端口号（443）&lt;/li&gt;
+&lt;li&gt;网络层：IP 寻址、路由选择&lt;/li&gt;
+&lt;li&gt;数据链路层：MAC 地址寻址&lt;/li&gt;
+&lt;li&gt;物理层：电信号/光信号传输&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;TCP/IP 视角&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;应用层：HTTP + TLS 加密&lt;/li&gt;
+&lt;li&gt;传输层：TCP 协议 + 端口 443&lt;/li&gt;
+&lt;li&gt;网络层：IP 协议 + 路由&lt;/li&gt;
+&lt;li&gt;网络接口层：网卡 + 网线/无线传输&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;数据封装过程&#34;&gt;数据封装过程
 &lt;/h2&gt;&lt;p&gt;数据在发送时需要逐层封装，接收时逐层解封装：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/%e6%95%b0%e6%8d%ae%e5%b0%81%e8%a3%85.png&#34;
-	
-	
-	
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/computer-network-interview/data-encapsulation.png&#34;
+	width=&#34;1854&#34;
+	height=&#34;3561&#34;
+	srcset=&#34;http://localhost:1313/p/computer-network-interview/data-encapsulation_hu_e21b2e45ee178d81.png 480w, http://localhost:1313/p/computer-network-interview/data-encapsulation_hu_67f832df53ad49d4.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;数据封装过程&#34;
 	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;52&#34;
+		data-flex-basis=&#34;124px&#34;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;封装流程&lt;/strong&gt;（从上往下）：&lt;/p&gt;
@@ -274,7 +339,20 @@
 &lt;/table&gt;
 &lt;h3 id=&#34;三次握手与标志位&#34;&gt;三次握手与标志位
 &lt;/h3&gt;&lt;p&gt;三次握手建立连接的过程：&lt;/p&gt;
-&lt;!-- ![TCP 三次握手](tcp-accept.png) --&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/computer-network-interview/tcp-accept.png&#34;
+	width=&#34;1082&#34;
+	height=&#34;1083&#34;
+	srcset=&#34;http://localhost:1313/p/computer-network-interview/tcp-accept_hu_94aedc9e0080250a.png 480w, http://localhost:1313/p/computer-network-interview/tcp-accept_hu_54101a6048ae3822.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;TCP 三次握手&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;99&#34;
+		data-flex-basis=&#34;239px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;第一次握手（SYN）&lt;/strong&gt;&lt;/p&gt;
@@ -335,12 +413,7 @@
 &lt;/table&gt;
 
 &lt;blockquote class=&#34;alert alert-important&#34;&gt;
-  &lt;p&gt;&lt;strong&gt;面试重点&lt;/strong&gt;：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;为什么需要三次握手？&lt;/strong&gt; 防止历史重复连接初始化造成混乱，同步双方初始序号&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;为什么需要四次挥手？&lt;/strong&gt; TCP 是全双工的，双方都需要单独关闭自己的发送通道&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Seq 和 Ack 的关系&lt;/strong&gt;：Ack = 对方 Seq + 数据长度，表示期望收到对方下一个字节的序号&lt;/li&gt;
-&lt;/ol&gt;
+  &lt;p&gt;&lt;strong&gt;面试重点&lt;/strong&gt;：三次握手防止历史重复连接（同步双方初始序号）；四次挥手因 TCP 全双工需各自关闭发送通道；Ack = 对方 Seq + 数据长度。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h3 id=&#34;端口范围&#34;&gt;端口范围
@@ -372,30 +445,30 @@
 &lt;/table&gt;
 &lt;h2 id=&#34;tcp-可靠传输机制&#34;&gt;TCP 可靠传输机制
 &lt;/h2&gt;&lt;p&gt;TCP 通过以下六大机制保证传输可靠性：连接管理、序列号、确认应答、超时重传、流量控制、拥塞控制。&lt;/p&gt;
-&lt;h3 id=&#34;1-连接管理&#34;&gt;1. 连接管理
+&lt;h3 id=&#34;连接管理&#34;&gt;连接管理
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;三次握手&lt;/strong&gt;：建立可靠的连接，同步双方初始序号，防止历史重复连接&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;四次挥手&lt;/strong&gt;：全双工通信需要分别关闭两个方向的数据传输&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;2-序列号sequence-number&#34;&gt;2. 序列号（Sequence Number）
+&lt;h3 id=&#34;序列号sequence-number&#34;&gt;序列号（Sequence Number）
 &lt;/h3&gt;&lt;p&gt;TCP 为每个字节的数据分配编号，实现以下功能：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;可靠性&lt;/strong&gt;：防止数据丢失和重复&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;有序性&lt;/strong&gt;：接收方按序列号重组数据包&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;效率提升&lt;/strong&gt;：支持多次发送、一次确认&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;3-确认应答ack&#34;&gt;3. 确认应答（ACK）
+&lt;h3 id=&#34;确认应答ack&#34;&gt;确认应答（ACK）
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;接收方收到数据后回传 ACK 报文&lt;/li&gt;
 &lt;li&gt;ACK 报文包含确认号，告知发送方数据接收情况&lt;/li&gt;
 &lt;li&gt;若发送方在指定时间内未收到 ACK，触发超时重传&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;4-超时重传&#34;&gt;4. 超时重传
+&lt;h3 id=&#34;超时重传&#34;&gt;超时重传
 &lt;/h3&gt;&lt;p&gt;超时重传是 TCP 保证可靠性的核心机制：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/computer-network-interview/%E8%B6%85%E6%97%B6%E9%87%8D%E4%BC%A0.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/computer-network-interview/timeout-retransmission.png&#34;
 	width=&#34;1142&#34;
 	height=&#34;873&#34;
-	srcset=&#34;http://localhost:1313/p/computer-network-interview/%E8%B6%85%E6%97%B6%E9%87%8D%E4%BC%A0_hu_4c9f22e19ccc53fa.png 480w, http://localhost:1313/p/computer-network-interview/%E8%B6%85%E6%97%B6%E9%87%8D%E4%BC%A0_hu_1ea1bb53bf3d288.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/computer-network-interview/timeout-retransmission_hu_4c9f22e19ccc53fa.png 480w, http://localhost:1313/p/computer-network-interview/timeout-retransmission_hu_1ea1bb53bf3d288.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;超时重传机制&#34;
@@ -425,13 +498,13 @@
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h3 id=&#34;5-流量控制flow-control&#34;&gt;5. 流量控制（Flow Control）
+&lt;h3 id=&#34;流量控制flow-control&#34;&gt;流量控制（Flow Control）
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;问题&lt;/strong&gt;：接收方处理能力有限，发送过快会导致缓冲区溢出丢包&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;解决方案&lt;/strong&gt;：通过 TCP 头部的**滑动窗口（Window Size）**字段，告知发送方可发送的数据量&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;效果&lt;/strong&gt;：发送速度匹配接收方处理能力&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&#34;6-拥塞控制congestion-control&#34;&gt;6. 拥塞控制（Congestion Control）
+&lt;h3 id=&#34;拥塞控制congestion-control&#34;&gt;拥塞控制（Congestion Control）
 &lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;问题&lt;/strong&gt;：网络拥堵时大量重传会加剧拥塞&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;解决方案&lt;/strong&gt;：发送方维护&lt;strong&gt;拥塞窗口（cwnd）&lt;/strong&gt;，根据网络状况调整发送速率&lt;/li&gt;
@@ -464,13 +537,10 @@
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-
-&lt;blockquote class=&#34;alert alert-tip&#34;&gt;
-  &lt;p&gt;&lt;strong&gt;快重传 vs 超时重传&lt;/strong&gt;：快重传通过收到 3 个重复 ACK 提前发现丢包，立即重传而不等待超时，提高效率。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/computer-network-interview/%E5%BF%AB%E9%87%8D%E4%BC%A0.png&#34;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/computer-network-interview/fast-retransmit.png&#34;
 	width=&#34;1352&#34;
 	height=&#34;873&#34;
-	srcset=&#34;http://localhost:1313/p/computer-network-interview/%E5%BF%AB%E9%87%8D%E4%BC%A0_hu_a292afcaac898d18.png 480w, http://localhost:1313/p/computer-network-interview/%E5%BF%AB%E9%87%8D%E4%BC%A0_hu_9fc102ea0e6c0f0a.png 1024w&#34;
+	srcset=&#34;http://localhost:1313/p/computer-network-interview/fast-retransmit_hu_a292afcaac898d18.png 480w, http://localhost:1313/p/computer-network-interview/fast-retransmit_hu_9fc102ea0e6c0f0a.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;快重传机制&#34;
@@ -481,11 +551,11 @@
 		data-flex-basis=&#34;371px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;/blockquote&gt;
 
-
-&lt;blockquote class=&#34;alert alert-important&#34;&gt;
-  &lt;p&gt;&lt;strong&gt;面试总结&lt;/strong&gt;：TCP 可靠性 = 连接管理（基础） + 序列号/确认应答/重传（数据可靠） + 流量控制/拥塞控制（性能优化）&lt;/p&gt;
+&lt;blockquote class=&#34;alert alert-tip&#34;&gt;
+  &lt;p&gt;&lt;strong&gt;快重传 vs 超时重传&lt;/strong&gt;：快重传通过收到 3 个重复 ACK 提前发现丢包，立即重传而不等待超时，提高效率。
+[!IMPORTANT]
+&lt;strong&gt;面试总结&lt;/strong&gt;：TCP 可靠性 = 连接管理（基础） + 序列号/确认应答/重传（数据可靠） + 流量控制/拥塞控制（性能优化）&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&#34;tcp-粘包问题与解决&#34;&gt;TCP 粘包问题与解决
@@ -497,7 +567,7 @@
 &lt;li&gt;&lt;strong&gt;接收端&lt;/strong&gt;：应用层读取速度慢于数据到达速度，多个数据包堆积在缓冲区&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;三种解决方法&#34;&gt;三种解决方法
-&lt;/h3&gt;&lt;h4 id=&#34;1-固定长度fixed-length&#34;&gt;1. 固定长度（Fixed Length）
+&lt;/h3&gt;&lt;h4 id=&#34;固定长度fixed-length&#34;&gt;固定长度（Fixed Length）
 &lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;思路&lt;/strong&gt;：每个数据包固定大小，不足则填充&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;优点&lt;/strong&gt;：实现简单，解析方便&lt;/li&gt;
@@ -516,7 +586,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;结果：[AAAA] [BBBB] [CCCC]
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;2-分隔符delimiter&#34;&gt;2. 分隔符（Delimiter）
+&lt;/div&gt;&lt;h4 id=&#34;分隔符delimiter&#34;&gt;分隔符（Delimiter）
 &lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;思路&lt;/strong&gt;：使用特殊字符（如换行符 &lt;code&gt;\n&lt;/code&gt;）作为数据包边界&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;优点&lt;/strong&gt;：灵活，适合文本数据&lt;/li&gt;
@@ -535,7 +605,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;结果：[Hello] [World]
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;3-长度字段length-field&#34;&gt;3. 长度字段（Length Field）
+&lt;/div&gt;&lt;h4 id=&#34;长度字段length-field&#34;&gt;长度字段（Length Field）
 &lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;思路&lt;/strong&gt;：在包头添加长度字段，接收方先读取长度，再读取对应字节数&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;优点&lt;/strong&gt;：最灵活，适合二进制数据，无浪费&lt;/li&gt;
@@ -599,92 +669,7 @@
 &lt;/table&gt;
 
 &lt;blockquote class=&#34;alert alert-tip&#34;&gt;
-  &lt;p&gt;&lt;strong&gt;实际应用&lt;/strong&gt;：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;HTTP/1.1：使用分隔符（&lt;code&gt;\r\n\r\n&lt;/code&gt; 分隔头部，Content-Length 指定 Body 长度）&lt;/li&gt;
-&lt;li&gt;WebSocket：使用长度字段（帧头部包含 Payload 长度）&lt;/li&gt;
-&lt;li&gt;Redis 协议：使用分隔符（&lt;code&gt;\r\n&lt;/code&gt; 分隔多行回复）&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&#34;实际例子浏览器访问网站&#34;&gt;实际例子：浏览器访问网站
-&lt;/h2&gt;&lt;p&gt;以访问 &lt;code&gt;https://www.example.com&lt;/code&gt; 为例：&lt;/p&gt;
-&lt;h3 id=&#34;osi-视角&#34;&gt;OSI 视角
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;应用层：浏览器发起 HTTP 请求
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;表示层：数据加密（TLS/SSL）
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;会话层：建立 TCP 会话连接
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;传输层：TCP 分段、端口号（443）
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;网络层：IP 寻址、路由选择
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;数据链路层：MAC 地址寻址
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;物理层：电信号/光信号传输
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h3 id=&#34;tcpip-视角&#34;&gt;TCP/IP 视角
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;应用层：HTTP + TLS 加密
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;传输层：TCP 协议 + 端口 443
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;网络层：IP 协议 + 路由
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;网络接口层：网卡 + 网线/无线传输
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;关键区别&#34;&gt;关键区别
-&lt;/h2&gt;&lt;table&gt;
-  &lt;thead&gt;
-      &lt;tr&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;对比项&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;OSI 七层&lt;/th&gt;
-          &lt;th style=&#34;text-align: left&#34;&gt;TCP 四层&lt;/th&gt;
-      &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;理论性&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;理论模型，完整规范&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;实际应用，简洁实用&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;分层数量&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;7 层&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;4 层&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;应用层范围&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;应用/表示/会话分开&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;合并为应用层&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;底层范围&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;物理/数据链路分开&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;合并为网络接口层&lt;/td&gt;
-      &lt;/tr&gt;
-      &lt;tr&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;实际使用&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;教学参考&lt;/td&gt;
-          &lt;td style=&#34;text-align: left&#34;&gt;互联网实际标准&lt;/td&gt;
-      &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;blockquote class=&#34;alert alert-tip&#34;&gt;
-  &lt;p&gt;&lt;strong&gt;快速记忆&lt;/strong&gt;：OSI 更细、更理论、7 层；TCP/IP 更粗、更实用、4 层。两者本质相同，TCP/IP 是 OSI 的简化实践版本。&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;实际应用&lt;/strong&gt;：HTTP/1.1 使用分隔符（&lt;code&gt;\r\n\r\n&lt;/code&gt; 分隔头部，Content-Length 指定 Body 长度）；WebSocket 使用长度字段（帧头部含 Payload 长度）；Redis 使用分隔符（&lt;code&gt;\r\n&lt;/code&gt; 分隔多行回复）。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&#34;http-报文结构&#34;&gt;HTTP 报文结构
@@ -1058,13 +1043,7 @@
 &lt;/ul&gt;
 
 &lt;blockquote class=&#34;alert alert-important&#34;&gt;
-  &lt;p&gt;&lt;strong&gt;面试常问&lt;/strong&gt;：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Cookie 会被浏览器自动携带到服务端，localStorage 不会&lt;/li&gt;
-&lt;li&gt;Cookie 适合存 Session ID，localStorage 适合存用户偏好&lt;/li&gt;
-&lt;li&gt;Cookie 可设置 HttpOnly 防 XSS，localStorage 无此机制&lt;/li&gt;
-&lt;li&gt;敏感数据（如 Token）存 Cookie（HttpOnly）比 localStorage 更安全&lt;/li&gt;
-&lt;/ol&gt;
+  &lt;p&gt;&lt;strong&gt;面试常问&lt;/strong&gt;：Cookie 随请求自动发往服务端，localStorage 不会；Cookie 适合存 Session ID，localStorage 适合存用户偏好；Cookie 可设置 HttpOnly 防 XSS，localStorage 无此机制；敏感 Token 存 Cookie（HttpOnly）比 localStorage 更安全。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&#34;网页卡顿定位方法与手段&#34;&gt;网页卡顿定位方法与手段
@@ -1111,7 +1090,7 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h3 id=&#34;定位手段&#34;&gt;定位手段
-&lt;/h3&gt;&lt;h4 id=&#34;1-chrome-devtools-performance-面板&#34;&gt;1. Chrome DevTools Performance 面板
+&lt;/h3&gt;&lt;h4 id=&#34;chrome-devtools-performance-面板&#34;&gt;Chrome DevTools Performance 面板
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;使用步骤&lt;/strong&gt;：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;打开 DevTools → Performance 面板&lt;/li&gt;
@@ -1156,7 +1135,7 @@
 &lt;li&gt;&lt;strong&gt;Network&lt;/strong&gt;：结合网络请求分析加载阻塞&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Frames&lt;/strong&gt;：查看丢帧情况和渲染耗时&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id=&#34;2-chrome-devtools-network-面板&#34;&gt;2. Chrome DevTools Network 面板
+&lt;h4 id=&#34;chrome-devtools-network-面板&#34;&gt;Chrome DevTools Network 面板
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;排查重点&lt;/strong&gt;：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;瀑布流&lt;/strong&gt;：查看资源加载顺序和耗时&lt;/li&gt;
@@ -1191,7 +1170,7 @@
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h4 id=&#34;3-lighthouse-性能评分&#34;&gt;3. Lighthouse 性能评分
+&lt;h4 id=&#34;lighthouse-性能评分&#34;&gt;Lighthouse 性能评分
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;运行方式&lt;/strong&gt;：DevTools → Lighthouse → 勾选 Performance&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;核心指标（Core Web Vitals）&lt;/strong&gt;：&lt;/p&gt;
 &lt;table&gt;
@@ -1236,7 +1215,7 @@
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h4 id=&#34;4-performance-api代码埋点&#34;&gt;4. Performance API（代码埋点）
+&lt;h4 id=&#34;performance-api代码埋点&#34;&gt;Performance API（代码埋点）
 &lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1269,7 +1248,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;performance&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;measure&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;heavyTask&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;start&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;end&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;5-内存分析memory-面板&#34;&gt;5. 内存分析（Memory 面板）
+&lt;/div&gt;&lt;h4 id=&#34;内存分析memory-面板&#34;&gt;内存分析（Memory 面板）
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;排查内存泄漏&lt;/strong&gt;：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;打开 Memory 面板&lt;/li&gt;
@@ -1333,7 +1312,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id=&#34;常见原因与排查方式&#34;&gt;常见原因与排查方式
-&lt;/h3&gt;&lt;h4 id=&#34;1-网络连通性问题&#34;&gt;1. 网络连通性问题
+&lt;/h3&gt;&lt;h4 id=&#34;网络连通性问题&#34;&gt;网络连通性问题
 &lt;/h4&gt;&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -1363,15 +1342,18 @@
 &lt;p&gt;&lt;strong&gt;排查示例&lt;/strong&gt;：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 检查 DNS 解析&lt;/span&gt;
@@ -1383,9 +1365,64 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看路由路径&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;traceroute 192.168.1.100  &lt;span class=&#34;c1&#34;&gt;# Linux&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tracert 192.168.1.100     &lt;span class=&#34;c1&#34;&gt;# Windows&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看 ARP 缓存（验证同网段设备二层可达性）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;arp -a
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;2-防火墙安全组拦截&#34;&gt;2. 防火墙/安全组拦截
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;&lt;code&gt;arp -a&lt;/code&gt; 输出字段解析&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/computer-network-interview/arp.png&#34;
+	width=&#34;671&#34;
+	height=&#34;183&#34;
+	srcset=&#34;http://localhost:1313/p/computer-network-interview/arp_hu_dddc8b114f4cc0.png 480w, http://localhost:1313/p/computer-network-interview/arp_hu_96848cddf401b310.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;arp -a 命令输出示例&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;366&#34;
+		data-flex-basis=&#34;880px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;字段&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;示例值&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;说明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;主机名&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;?&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;无法反向解析主机名时显示 &lt;code&gt;?&lt;/code&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;IP 地址&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;(192.168.3.20)&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;目标设备的 IP 地址&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;MAC 地址&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;f0:76:1c:58:f4:bc&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;对应的物理地址（网卡硬件地址）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;网络类型&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;[ether]&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;链路层类型（以太网）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;网卡接口&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;eth2&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;本机发出 ARP 请求的网卡名称&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;ARP 缓存有记录说明该 IP 最近与本机在二层通信过（可达）；若无记录，设备可能不在线或不在同一广播域（VLAN）内。&lt;/p&gt;
+&lt;h4 id=&#34;防火墙安全组拦截&#34;&gt;防火墙/安全组拦截
 &lt;/h4&gt;&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -1433,7 +1470,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;ss -tlnp &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep &lt;span class=&#34;m&#34;&gt;8080&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;3-端口未监听或绑定错误&#34;&gt;3. 端口未监听或绑定错误
+&lt;/div&gt;&lt;h4 id=&#34;端口未监听或绑定错误&#34;&gt;端口未监听或绑定错误
 &lt;/h4&gt;&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -1474,19 +1511,25 @@
 &lt;/div&gt;&lt;p&gt;&lt;strong&gt;排查命令&lt;/strong&gt;：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看端口监听详情（确认绑定地址）&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;netstat -tlnp &lt;span class=&#34;p&#34;&gt;|&lt;/span&gt; grep &lt;span class=&#34;m&#34;&gt;8080&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看所有 TCP 连接及对应进程（含已建立连接）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;netstat -napt
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看指定端口被哪个进程占用&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;lsof -i :8080
@@ -1496,7 +1539,105 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;nc -vz 192.168.1.100 &lt;span class=&#34;m&#34;&gt;8080&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;4-服务端应用问题&#34;&gt;4. 服务端应用问题
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;&lt;code&gt;netstat -napt&lt;/code&gt; 输出字段解析&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/p/computer-network-interview/netstat.png&#34;
+	width=&#34;1563&#34;
+	height=&#34;327&#34;
+	srcset=&#34;http://localhost:1313/p/computer-network-interview/netstat_hu_3d43e8c2600e507d.png 480w, http://localhost:1313/p/computer-network-interview/netstat_hu_cdeb933180324776.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;netstat -napt 命令输出示例&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;477&#34;
+		data-flex-basis=&#34;1147px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;选项含义：&lt;code&gt;-n&lt;/code&gt; 数字格式（不解析主机名/服务名）、&lt;code&gt;-a&lt;/code&gt; 显示所有状态、&lt;code&gt;-p&lt;/code&gt; 显示进程 PID 和程序名、&lt;code&gt;-t&lt;/code&gt; 仅 TCP 协议。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;列名&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;示例值&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;说明&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Proto&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;tcp&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;协议类型&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Recv-Q&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;0&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;接收队列积压字节数，持续不为 0 说明应用消费过慢&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Send-Q&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;0&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;发送队列待确认字节数，持续不为 0 说明对端无响应&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Local Address&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;::ffff:192.168.3.100:80&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;本机地址和端口（&lt;code&gt;::ffff:&lt;/code&gt; 为 IPv4 映射的 IPv6 表示）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;Foreign Address&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;::ffff:192.168.3.20:55288&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;对端地址和端口&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;State&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;ESTABLISHED&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;连接状态，常见值见下表&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;PID/Program name&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;code&gt;3391/httpd&lt;/code&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;进程 ID 和程序名（此处为 Apache Web 服务）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;连接状态（State）常见值&lt;/strong&gt;：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;状态&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;含义&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;LISTEN&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;服务端正在监听该端口，等待连接请求&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;ESTABLISHED&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;连接已建立，双方正在通信&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;TIME_WAIT&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;主动关闭方等待 2MSL，防止最后 ACK 丢失；大量出现说明短连接频繁&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;CLOSE_WAIT&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;被动关闭方收到 FIN 后等待应用调用 close；大量出现说明应用未及时关闭连接&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;&lt;strong&gt;SYN_SENT&lt;/strong&gt;&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;客户端已发送 SYN，等待服务端响应&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;blockquote class=&#34;alert alert-tip&#34;&gt;
+  &lt;p&gt;绑定地址排查：若 &lt;code&gt;Local Address&lt;/code&gt; 显示 &lt;code&gt;127.0.0.1:8080&lt;/code&gt; 而非 &lt;code&gt;0.0.0.0:8080&lt;/code&gt;，外部客户端将无法访问，需修改服务监听地址配置。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&#34;服务端应用问题&#34;&gt;服务端应用问题
 &lt;/h4&gt;&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -1557,7 +1698,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;df -h
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;5-负载均衡反向代理问题&#34;&gt;5. 负载均衡/反向代理问题
+&lt;/div&gt;&lt;h4 id=&#34;负载均衡反向代理问题&#34;&gt;负载均衡/反向代理问题
 &lt;/h4&gt;&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -1743,50 +1884,52 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h3 id=&#34;防护方案&#34;&gt;防护方案
-&lt;/h3&gt;&lt;h4 id=&#34;1-csrf-token最常用&#34;&gt;1. CSRF Token（最常用）
+&lt;/h3&gt;&lt;h4 id=&#34;csrf-token最常用&#34;&gt;CSRF Token（最常用）
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;原理&lt;/strong&gt;：服务端生成随机 Token，要求请求必须携带该 Token 才能通过验证&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;实现方式&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;服务端&lt;/strong&gt;生成随机 Token 存入 Session：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 服务端：生成 Token 并存入 Session
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;generate_csrf_token&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;token&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;generate_random_string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;32&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;session&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;csrf_token&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;token&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;token&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 前端：表单中嵌入 Token
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;form&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;action&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;/transfer&amp;#34;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;POST&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;hidden&amp;#34;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;csrf_token&amp;#34;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;{{ csrf_token }}&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c&#34;&gt;&amp;lt;!--&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;其他字段&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;/form&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 后端：验证 Token
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;verify_csrf_token&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;POST&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;csrf_token&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;session&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;csrf_token&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nx&#34;&gt;raise&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;CSRFError&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Invalid CSRF Token&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;generate_csrf_token&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;token&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;generate_random_string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;32&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;session&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;csrf_token&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;token&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;token&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;前端&lt;/strong&gt;表单中嵌入 Token：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;form&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;action&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/transfer&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;POST&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;input&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;hidden&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;csrf_token&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;value&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;{{ csrf_token }}&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;form&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;后端&lt;/strong&gt;验证 Token：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;verify_csrf_token&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;POST&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;csrf_token&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;request&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;session&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;csrf_token&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;raise&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;CSRFError&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Invalid CSRF Token&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;strong&gt;优点&lt;/strong&gt;：防护效果好，业界标准方案&lt;br&gt;
 &lt;strong&gt;缺点&lt;/strong&gt;：需要服务端生成和验证 Token&lt;/p&gt;
-&lt;h4 id=&#34;2-samesite-cookie-属性&#34;&gt;2. SameSite Cookie 属性
+&lt;h4 id=&#34;samesite-cookie-属性&#34;&gt;SameSite Cookie 属性
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;原理&lt;/strong&gt;：设置 Cookie 的 SameSite 属性，限制第三方网站携带 Cookie&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1822,7 +1965,7 @@
 &lt;/table&gt;
 &lt;p&gt;&lt;strong&gt;优点&lt;/strong&gt;：无需代码改动，浏览器原生支持&lt;br&gt;
 &lt;strong&gt;缺点&lt;/strong&gt;：兼容性（IE 不支持），无法防御所有场景&lt;/p&gt;
-&lt;h4 id=&#34;3-双重-cookie-验证&#34;&gt;3. 双重 Cookie 验证
+&lt;h4 id=&#34;双重-cookie-验证&#34;&gt;双重 Cookie 验证
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;原理&lt;/strong&gt;：请求时同时携带 Cookie 和 Header/参数中的 Token，服务端比较两者是否一致&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1920,12 +2063,7 @@
 &lt;/table&gt;
 
 &lt;blockquote class=&#34;alert alert-warning&#34;&gt;
-  &lt;p&gt;&lt;strong&gt;面试重点&lt;/strong&gt;：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;CSRF 与 XSS 区别：CSRF 借用用户 Cookie 发起请求，XSS 是注入恶意脚本窃取 Cookie&lt;/li&gt;
-&lt;li&gt;CSRF Token 和 SameSite=Lax 是目前主流防护组合&lt;/li&gt;
-&lt;li&gt;GET 请求不应执行状态改变操作，遵循幂等性原则&lt;/li&gt;
-&lt;/ol&gt;
+  &lt;p&gt;&lt;strong&gt;面试重点&lt;/strong&gt;：CSRF 借用 Cookie 发起请求，XSS 是注入脚本窃取 Cookie；CSRF Token + SameSite=Lax 是主流防护组合；GET 请求不应执行状态改变操作（幂等性原则）。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2 id=&#34;xss-攻击与防护&#34;&gt;XSS 攻击与防护
@@ -1973,38 +2111,23 @@
 &lt;li&gt;&lt;strong&gt;恶意跳转&lt;/strong&gt;：将用户引导至钓鱼网站&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;防护方案-1&#34;&gt;防护方案
-&lt;/h3&gt;&lt;h4 id=&#34;1-输入过滤与转义核心方案&#34;&gt;1. 输入过滤与转义（核心方案）
+&lt;/h3&gt;&lt;h4 id=&#34;输入过滤与转义核心方案&#34;&gt;输入过滤与转义（核心方案）
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;转义特殊字符&lt;/strong&gt;：将 &lt;code&gt;&amp;lt; &amp;gt; &amp;quot; &#39; &amp;amp;&lt;/code&gt; 等字符转换为 HTML 实体&lt;/p&gt;
+&lt;p&gt;转义对照：&lt;code&gt;&amp;lt;&lt;/code&gt; → &lt;code&gt;&amp;amp;lt;&lt;/code&gt;，&lt;code&gt;&amp;gt;&lt;/code&gt; → &lt;code&gt;&amp;amp;gt;&lt;/code&gt;，&lt;code&gt;&amp;quot;&lt;/code&gt; → &lt;code&gt;&amp;amp;quot;&lt;/code&gt;，&lt;code&gt;&#39;&lt;/code&gt; → &lt;code&gt;&amp;amp;#x27;&lt;/code&gt;，&lt;code&gt;&amp;amp;&lt;/code&gt; → &lt;code&gt;&amp;amp;amp;&lt;/code&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 前端转义示例
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;escapeHtml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;escapeHtml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;div&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;createElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;div&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;textContent&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;input&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;innerHTML&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 转义对照表
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;  &lt;span class=&#34;err&#34;&gt;→&lt;/span&gt;  &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;lt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;  &lt;span class=&#34;err&#34;&gt;→&lt;/span&gt;  &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;gt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&amp;#34;&lt;/span&gt;  &lt;span class=&#34;err&#34;&gt;→&lt;/span&gt;  &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;quot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;  &lt;span class=&#34;err&#34;&gt;→&lt;/span&gt;  &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;#&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;x27&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;  &lt;span class=&#34;err&#34;&gt;→&lt;/span&gt;  &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;amp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;strong&gt;框架自动转义&lt;/strong&gt;：&lt;/p&gt;
@@ -2026,7 +2149,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;{&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;userInput&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;div&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h4 id=&#34;2-content-security-policy-csp&#34;&gt;2. Content Security Policy (CSP)
+&lt;/div&gt;&lt;h4 id=&#34;content-security-policycsp&#34;&gt;Content Security Policy（CSP）
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;原理&lt;/strong&gt;：通过 HTTP 响应头限制页面可加载的资源来源，禁止执行内联脚本&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2062,7 +2185,7 @@
       &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h4 id=&#34;3-httponly-cookie&#34;&gt;3. HttpOnly Cookie
+&lt;h4 id=&#34;httponly-cookie&#34;&gt;HttpOnly Cookie
 &lt;/h4&gt;&lt;p&gt;&lt;strong&gt;原理&lt;/strong&gt;：设置 &lt;code&gt;HttpOnly&lt;/code&gt; 属性，禁止 JavaScript 访问 Cookie，防止被窃取&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2073,7 +2196,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;strong&gt;效果&lt;/strong&gt;：即使 XSS 攻击成功，也无法通过 &lt;code&gt;document.cookie&lt;/code&gt; 获取敏感 Cookie。&lt;/p&gt;
-&lt;h4 id=&#34;4-其他防护措施&#34;&gt;4. 其他防护措施
+&lt;h4 id=&#34;其他防护措施&#34;&gt;其他防护措施
 &lt;/h4&gt;&lt;table&gt;
   &lt;thead&gt;
       &lt;tr&gt;
@@ -2138,42 +2261,29 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h3 id=&#34;防护代码示例&#34;&gt;防护代码示例
-&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/h3&gt;&lt;p&gt;使用 DOMPurify 净化用户输入的富文本 HTML：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 使用 DOMPurify 净化用户输入 HTML
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;DOMPurify&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;dompurify&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;DOMPurify&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;dompurify&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;clean&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;DOMPurify&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;sanitize&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dirtyHtml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 严格 CSP 配置示例
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nx&#34;&gt;Content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Security&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Policy&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;default&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;src&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;none&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;script&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;src&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;self&amp;#39;&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;nonce-abc123&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;style&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;src&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;self&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;img&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;src&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;self&amp;#39;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;https&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nx&#34;&gt;connect&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;src&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;self&amp;#39;&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;api&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;example&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;com&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;严格 CSP 响应头配置示例：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-http&#34; data-lang=&#34;http&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;Content-Security-Policy: default-src &amp;#39;none&amp;#39;; script-src &amp;#39;self&amp;#39; &amp;#39;nonce-abc123&amp;#39;; style-src &amp;#39;self&amp;#39;; img-src &amp;#39;self&amp;#39; https:; connect-src &amp;#39;self&amp;#39; api.example.com
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;blockquote class=&#34;alert alert-caution&#34;&gt;
-  &lt;p&gt;&lt;strong&gt;面试重点&lt;/strong&gt;：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;XSS 三种类型&lt;/strong&gt;：存储型（危害最大）、反射型、DOM 型&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;核心防护&lt;/strong&gt;：输入转义 + CSP + HttpOnly Cookie 组合&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;与 CSRF 区别&lt;/strong&gt;：XSS 是“偷身份”，CSRF 是“借身份”&lt;/li&gt;
-&lt;/ol&gt;
+  &lt;p&gt;&lt;strong&gt;面试重点&lt;/strong&gt;：XSS 三种类型（存储型危害最大、反射型、DOM 型）；核心防护为输入转义 + CSP + HttpOnly Cookie 组合；XSS 是&amp;quot;偷身份&amp;quot;，CSRF 是&amp;quot;借身份&amp;quot;。&lt;/p&gt;
 &lt;/blockquote&gt;
 
 </description>
