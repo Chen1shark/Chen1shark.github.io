@@ -1,0 +1,3460 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="富途和平安公司笔试题目与解析总结">
+<title>笔试</title>
+
+<link rel='canonical' href='http://localhost:1313/p/%E7%AC%94%E8%AF%95/'>
+
+<link rel="stylesheet" href="/scss/style.min.900a64d3a36c9f33519ef1058ebc84ab68513b898835839f0f8ea080d6eeb5b7.css"><meta property='og:title' content="笔试">
+<meta property='og:description' content="富途和平安公司笔试题目与解析总结">
+<meta property='og:url' content='http://localhost:1313/p/%E7%AC%94%E8%AF%95/'>
+<meta property='og:site_name' content='Chen1shark 的一坨笔记'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-04-12T00:00:00&#43;08:00'/><meta property='article:modified_time' content='2026-04-30T00:00:00&#43;08:00'/>
+<meta name="twitter:title" content="笔试">
+<meta name="twitter:description" content="富途和平安公司笔试题目与解析总结">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_43a4d95c40a44c26.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Chen1shark 的一坨笔记</a></h1>
+            <h2 class="site-description">欢迎来到我的技术博客</h2>
+        </div>
+    </header><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#操作系统">操作系统</a>
+      <ol>
+        <li><a href="#文件逻辑结构分类">文件逻辑结构分类</a>
+          <ol>
+            <li><a href="#无结构文件流式文件">无结构文件（流式文件）</a></li>
+            <li><a href="#有结构文件记录式文件">有结构文件（记录式文件）</a></li>
+            <li><a href="#为什么没有连续文件作为主要类型">为什么没有&quot;连续文件&quot;作为主要类型</a></li>
+          </ol>
+        </li>
+        <li><a href="#虚拟内存">虚拟内存</a>
+          <ol>
+            <li><a href="#什么是虚拟内存">什么是虚拟内存</a></li>
+            <li><a href="#是什么实现了虚拟内存">是什么实现了虚拟内存</a></li>
+            <li><a href="#虚拟内存-vs-物理内存-vs-磁盘">虚拟内存 vs 物理内存 vs 磁盘</a></li>
+            <li><a href="#常见笔试考点">常见笔试考点</a></li>
+          </ol>
+        </li>
+        <li><a href="#进程的基本状态">进程的基本状态</a>
+          <ol>
+            <li><a href="#三种基本状态">三种基本状态</a></li>
+            <li><a href="#为什么没有挂起作为基本状态">为什么没有&quot;挂起&quot;作为基本状态</a></li>
+          </ol>
+        </li>
+        <li><a href="#树的遍历算法">树的遍历算法</a>
+          <ol>
+            <li><a href="#遍历的分类体系">遍历的分类体系</a></li>
+            <li><a href="#bfs广度优先搜索">BFS（广度优先搜索）</a></li>
+            <li><a href="#dfs深度优先搜索">DFS（深度优先搜索）</a></li>
+            <li><a href="#四种遍历对比总结">四种遍历对比总结</a></li>
+            <li><a href="#记忆技巧">记忆技巧</a></li>
+            <li><a href="#典型笔试题">典型笔试题</a></li>
+          </ol>
+        </li>
+        <li><a href="#软件生命周期">软件生命周期</a>
+          <ol>
+            <li><a href="#什么是软件生命周期">什么是软件生命周期</a></li>
+            <li><a href="#经典瀑布模型waterfall-model">经典瀑布模型（Waterfall Model）</a></li>
+            <li><a href="#各阶段耗时与成本占比">各阶段耗时与成本占比</a></li>
+            <li><a href="#现代开发模型的阶段调整">现代开发模型的阶段调整</a></li>
+            <li><a href="#各阶段成本详细构成">各阶段成本详细构成</a></li>
+            <li><a href="#不同规模项目的差异">不同规模项目的差异</a></li>
+            <li><a href="#笔试常见考点">笔试常见考点</a></li>
+          </ol>
+        </li>
+        <li><a href="#java-类型转换与运算">Java 类型转换与运算</a>
+          <ol>
+            <li><a href="#题目char--int--double---的结果是什么类型">题目：<code>char + int + double + &#34;&#34;</code> 的结果是什么类型？</a></li>
+            <li><a href="#逐步分析">逐步分析</a></li>
+            <li><a href="#完整执行流程">完整执行流程</a></li>
+            <li><a href="#关键知识点总结">关键知识点总结</a></li>
+            <li><a href="#变式练习">变式练习</a></li>
+            <li><a href="#笔试答题要点">笔试答题要点</a></li>
+          </ol>
+        </li>
+        <li><a href="#因果图与判定表">因果图与判定表</a>
+          <ol>
+            <li><a href="#什么是因果图">什么是因果图</a></li>
+            <li><a href="#因果图的图形符号">因果图的图形符号</a></li>
+            <li><a href="#因果图的约束关系">因果图的约束关系</a></li>
+            <li><a href="#什么是判定表">什么是判定表</a></li>
+            <li><a href="#因果图与判定表的转换步骤">因果图与判定表的转换步骤</a></li>
+            <li><a href="#实例演示">实例演示</a></li>
+            <li><a href="#因果图与判定表的优缺点">因果图与判定表的优缺点</a></li>
+            <li><a href="#笔试常见考点-1">笔试常见考点</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#题目汇总">题目汇总</a>
+      <ol>
+        <li><a href="#算法题">算法题</a></li>
+        <li><a href="#数据库与系统设计">数据库与系统设计</a></li>
+        <li><a href="#计算机网络">计算机网络</a></li>
+      </ol>
+    </li>
+    <li><a href="#经验总结">经验总结</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E7%AC%94%E8%AF%95/">笔试</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            富途和平安公司笔试题目与解析总结
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published" datetime='2026-04-12T00:00:00&#43;08:00'>2026-04-12</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="操作系统">操作系统
+</h2><h3 id="文件逻辑结构分类">文件逻辑结构分类
+</h3><h4 id="无结构文件流式文件">无结构文件（流式文件）
+</h4><p><strong>定义</strong>：</p>
+<ul>
+<li>文件被视为一个整体，不进行任何内部划分</li>
+<li>以字节为单位的有序序列，无固定记录单位</li>
+<li>操作系统只关注文件的存取，不解释文件内容</li>
+</ul>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>数据组织完全由应用程序决定</li>
+<li>灵活性最高，适用于任意类型数据</li>
+<li>读写以字节或字符流形式进行</li>
+</ul>
+<p><strong>常见示例</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>文件类型</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>文本文件（.txt）</td>
+          <td>纯字符序列，无格式记录划分</td>
+      </tr>
+      <tr>
+          <td>源代码文件（.java, .c）</td>
+          <td>代码文本的连续字符流</td>
+      </tr>
+      <tr>
+          <td>二进制可执行文件</td>
+          <td>机器指令的连续字节序列</td>
+      </tr>
+      <tr>
+          <td>日志文件</td>
+          <td>按行追加的文本内容</td>
+      </tr>
+  </tbody>
+</table></div>
+<hr>
+<h4 id="有结构文件记录式文件">有结构文件（记录式文件）
+</h4><p><strong>定义</strong>：</p>
+<ul>
+<li>文件由若干**记录（Record）**组成</li>
+<li>每条记录有固定格式和字段定义</li>
+<li>记录是文件的基本操作单位（最小读写单元）</li>
+</ul>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>支持按记录号或关键字进行存取</li>
+<li>适用于数据库、表格化数据管理</li>
+<li>系统需理解记录格式</li>
+</ul>
+<p><strong>常见示例</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>场景</th>
+          <th>记录结构</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>学生成绩文件</td>
+          <td>学号 | 姓名 | 语文 | 数学 | 英语</td>
+      </tr>
+      <tr>
+          <td>职工档案</td>
+          <td>工号 | 部门 | 职位 | 入职日期 | 薪资</td>
+      </tr>
+      <tr>
+          <td>银行账户</td>
+          <td>账号 | 户名 | 余额 | 开户行 | 状态</td>
+      </tr>
+  </tbody>
+</table></div>
+<h5 id="有结构文件的四种组织方式">有结构文件的四种组织方式
+</h5><p><strong>1. 顺序文件</strong></p>
+<p><strong>定义</strong>：记录按某个关键字（如学号、工号）顺序排列存储。</p>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>物理顺序与逻辑顺序一致</li>
+<li>支持顺序存取（从第一个记录依次读取）</li>
+<li>查找特定记录需从头遍历，效率较低</li>
+</ul>
+<p><strong>示例</strong>：学生成绩按学号从小到大排列</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">记录1: 2021001 | 张三 | 85 | 90 | 78
+</span></span><span class="line"><span class="cl">记录2: 2021002 | 李四 | 88 | 92 | 80
+</span></span><span class="line"><span class="cl">记录3: 2021005 | 王五 | 90 | 85 | 88
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>适用场景</strong>：批处理任务、报表生成、顺序遍历全量数据</p>
+<p><strong>2. 索引文件</strong></p>
+<p><strong>定义</strong>：为文件建立<strong>索引表</strong>，索引项包含关键字和对应记录的物理地址。</p>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>索引表与数据文件分离存储</li>
+<li>支持直接存取（通过索引快速定位）</li>
+<li>插入删除灵活，只需修改索引</li>
+</ul>
+<p><strong>示例</strong>：图书管理系统</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">索引表:                    数据文件:
+</span></span><span class="line"><span class="cl">ISBN           地址
+</span></span><span class="line"><span class="cl">978-7-111      → 0x1000   记录1: 978-7-111 | Java编程思想 | 张三译
+</span></span><span class="line"><span class="cl">978-7-222      → 0x2000   记录2: 978-7-222 | 操作系统导论 | 李四著
+</span></span><span class="line"><span class="cl">978-7-333      → 0x3000   记录3: 978-7-333 | 计算机网络 | 王五编
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>适用场景</strong>：频繁随机查询的数据库表、图书检索系统</p>
+<p><strong>3. 索引顺序文件</strong></p>
+<p><strong>定义</strong>：顺序+索引的折中方案，将文件分组，为每组建立索引。</p>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>每组内部记录顺序存储（减少索引项数量）</li>
+<li>查找时先查索引定位组，再组内顺序查找</li>
+<li>平衡了索引空间和查询效率</li>
+</ul>
+<p><strong>示例</strong>：10万条学生记录，每1000条为一组</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">组索引:                数据文件（分10组）:
+</span></span><span class="line"><span class="cl">组号 | 最大关键字 | 地址
+</span></span><span class="line"><span class="cl">1    | 2021000    | 0x1000    ← 第1组（学号0001-1000）
+</span></span><span class="line"><span class="cl">2    | 2022000    | 0x4000    ← 第2组（学号1001-2000）
+</span></span><span class="line"><span class="cl">...  | ...        | ...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>查找学号2021050：</p>
+<ol>
+<li>查索引 → 属于第2组（起始地址 0x4000）</li>
+<li>在第2组内顺序查找 2021050</li>
+</ol>
+<p><strong>适用场景</strong>：大型顺序文件、需要兼顾顺序和随机访问的场景</p>
+<p><strong>4. 直接文件（散列文件）</strong></p>
+<p><strong>定义</strong>：通过哈希函数将关键字直接映射到物理地址。</p>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>存取速度最快，O(1) 时间复杂度</li>
+<li>无需索引表，节省存储空间</li>
+<li>存在哈希冲突问题，需冲突解决策略</li>
+</ul>
+<p><strong>示例</strong>：用户登录系统</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">哈希函数: H(用户名) = 用户名首字母ASCII % 桶数量
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">用户名: alice → H(&#39;a&#39;)=97%100=97 → 直接存到地址桶97
+</span></span><span class="line"><span class="cl">用户名: bob   → H(&#39;b&#39;)=98%100=98 → 直接存到地址桶98
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>冲突处理：当两个用户名映射到同一桶时，使用链地址法或开放定址法解决。</p>
+<p><strong>适用场景</strong>：需要快速存取的系统，如用户认证表、缓存系统、符号表</p>
+<hr>
+<h4 id="为什么没有连续文件作为主要类型">为什么没有&quot;连续文件&quot;作为主要类型
+</h4><h5 id="概念澄清逻辑结构-vs-物理结构">概念澄清：逻辑结构 vs 物理结构
+</h5><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>维度</th>
+          <th>逻辑结构</th>
+          <th>物理结构</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>关注点</strong></td>
+          <td>用户看到的数据组织方式</td>
+          <td>数据在存储设备上的实际存放</td>
+      </tr>
+      <tr>
+          <td><strong>视角</strong></td>
+          <td>应用程序/用户视角</td>
+          <td>操作系统/磁盘视角</td>
+      </tr>
+      <tr>
+          <td><strong>典型例子</strong></td>
+          <td>流式文件、索引文件</td>
+          <td>连续分配、链接分配、索引分配</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>关键理解</strong>：</p>
+<ul>
+<li><strong>连续分配</strong>是<strong>物理存储方式</strong>，指文件数据在磁盘上占用连续的物理块</li>
+<li>逻辑结构讨论的是&quot;文件内容如何组织&quot;，而非&quot;数据放在磁盘哪里&quot;</li>
+</ul>
+<h5 id="连续分配的物理结构缺点">连续分配的物理结构缺点
+</h5><p><strong>1. 外部碎片严重</strong></p>
+<ul>
+<li>磁盘上产生大量无法利用的小空闲区</li>
+<li>需定期执行磁盘整理（碎片整理）来合并空闲空间</li>
+</ul>
+<p><strong>2. 文件增长受限</strong></p>
+<ul>
+<li>创建时必须声明最大文件大小</li>
+<li>若实际增长超出预分配空间，需整体迁移</li>
+</ul>
+<p><strong>3. 插入删除代价高</strong></p>
+<ul>
+<li>在文件中间插入记录需移动后续所有数据</li>
+<li>删除记录后需压缩空间或标记空闲</li>
+</ul>
+<p><strong>4. 存储利用率低</strong></p>
+<ul>
+<li>预分配空间往往大于实际使用，造成浪费</li>
+</ul>
+<h5 id="现代文件系统的物理结构选择">现代文件系统的物理结构选择
+</h5><p>现代操作系统已放弃连续分配作为主方案，采用：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>系统</th>
+          <th>物理结构</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Unix/Linux</td>
+          <td>索引分配（inode）</td>
+          <td>多级索引，支持大文件和高效随机访问</td>
+      </tr>
+      <tr>
+          <td>Windows NTFS</td>
+          <td>B+树索引</td>
+          <td>主文件表（MFT）记录文件属性及数据位置</td>
+      </tr>
+      <tr>
+          <td>现代数据库</td>
+          <td>页式管理+索引</td>
+          <td>按页存储，通过 B+树索引组织</td>
+      </tr>
+  </tbody>
+</table></div>
+<h5 id="总结为什么考试会问这个问题">总结：为什么考试会问这个问题
+</h5><p>操作系统教材中&quot;文件逻辑结构&quot;只讲：</p>
+<ul>
+<li>无结构文件（流式）</li>
+<li>有结构文件（记录式及其变种）</li>
+</ul>
+<p>而&quot;连续分配&quot;出现在&quot;文件的物理结构&quot;章节，与&quot;链接分配&quot;、&ldquo;索引分配&quot;并列。混淆两者是常见考点，需明确区分：</p>
+
+<blockquote>
+  <p><strong>逻辑结构</strong> = 数据的逻辑组织（是什么）
+<strong>物理结构</strong> = 数据的物理存储（放哪里）</p>
+
+</blockquote>
+
+<h3 id="虚拟内存">虚拟内存
+</h3><h4 id="什么是虚拟内存">什么是虚拟内存
+</h4><p><strong>定义</strong>：</p>
+<p>虚拟内存（Virtual Memory）是一种内存管理技术，它为每个进程提供一个<strong>连续的、私有的地址空间</strong>假象，使得进程以为自己独占整个内存，而实际上物理内存可能被多个进程共享，且部分数据可能存储在磁盘上。</p>
+<p><strong>核心思想</strong>：</p>
+<ul>
+<li><strong>地址分离</strong>：程序使用<strong>虚拟地址</strong>（逻辑地址），CPU 通过地址转换映射到<strong>物理地址</strong></li>
+<li><strong>空间扩展</strong>：利用磁盘空间作为内存的后备存储，突破物理内存容量限制</li>
+<li><strong>隔离保护</strong>：每个进程拥有独立的虚拟地址空间，互不干扰</li>
+</ul>
+<p><strong>为什么需要虚拟内存</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>问题</th>
+          <th>虚拟内存解决方案</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>物理内存不足</td>
+          <td>将不常用数据换出到磁盘（Swap/Pagefile）</td>
+      </tr>
+      <tr>
+          <td>内存碎片</td>
+          <td>虚拟地址连续，物理地址可离散分布</td>
+      </tr>
+      <tr>
+          <td>进程间干扰</td>
+          <td>每个进程独立地址空间，无法直接访问其他进程内存</td>
+      </tr>
+      <tr>
+          <td>程序移植困难</td>
+          <td>程序使用虚拟地址，与物理内存布局无关</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="是什么实现了虚拟内存">是什么实现了虚拟内存
+</h4><p>虚拟内存的实现依赖<strong>硬件 + 操作系统</strong>的协同工作：</p>
+<h5 id="1-硬件支持mmu内存管理单元">1. 硬件支持：MMU（内存管理单元）
+</h5><p>**MMU（Memory Management Unit）**是实现虚拟内存的核心硬件组件，集成在 CPU 内部或紧耦合于 CPU。</p>
+<p><strong>MMU 的主要功能</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>功能</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>地址转换</strong></td>
+          <td>将虚拟地址转换为物理地址</td>
+      </tr>
+      <tr>
+          <td><strong>页表遍历</strong></td>
+          <td>自动查询页表完成地址映射</td>
+      </tr>
+      <tr>
+          <td><strong>TLB 缓存</strong></td>
+          <td>缓存近期地址转换结果，加速后续访问</td>
+      </tr>
+      <tr>
+          <td><strong>权限检查</strong></td>
+          <td>检查页面访问权限（读/写/执行），违规触发缺页异常</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>地址转换过程</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">CPU 发出虚拟地址: 0x0000_1234
+</span></span><span class="line"><span class="cl">            ↓
+</span></span><span class="line"><span class="cl">        [MMU 工作]
+</span></span><span class="line"><span class="cl">            ↓
+</span></span><span class="line"><span class="cl">    1. 检查 TLB（快表）
+</span></span><span class="line"><span class="cl">       - 命中：直接得到物理地址
+</span></span><span class="line"><span class="cl">       - 未命中：查询页表
+</span></span><span class="line"><span class="cl">    2. 页表查询（硬件自动或软件辅助）
+</span></span><span class="line"><span class="cl">       - 页号 → 物理页框号
+</span></span><span class="line"><span class="cl">    3. 组合物理地址
+</span></span><span class="line"><span class="cl">       物理页框号 + 页内偏移
+</span></span><span class="line"><span class="cl">            ↓
+</span></span><span class="line"><span class="cl">得到物理地址: 0x0004_5234
+</span></span><span class="line"><span class="cl">            ↓
+</span></span><span class="line"><span class="cl">访问物理内存
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="2-操作系统支持">2. 操作系统支持
+</h5><p>操作系统负责虚拟内存的<strong>管理策略</strong>和<strong>异常处理</strong>：</p>
+<p><strong>（1）页表管理</strong></p>
+<ul>
+<li>为每个进程维护独立的页表</li>
+<li>记录虚拟页与物理页框的映射关系</li>
+<li>管理页表项的权限位（读/写/执行/存在位）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">虚拟页号(VPN)    物理页框号(PFN)   权限位
+</span></span><span class="line"><span class="cl">     0            0x0004          R/W/P=1
+</span></span><span class="line"><span class="cl">     1            0x0001          R/W/P=1
+</span></span><span class="line"><span class="cl">     2            --              P=0 (在磁盘)
+</span></span><span class="line"><span class="cl">     3            0x0008          R/P=1 (只读)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>（2）页面置换算法</strong></p>
+<p>当物理内存不足时，选择哪些页面换出到磁盘：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>算法</th>
+          <th>策略</th>
+          <th>特点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>FIFO</td>
+          <td>先进先出</td>
+          <td>简单，可能淘汰常用页（Belady 异常）</td>
+      </tr>
+      <tr>
+          <td>LRU</td>
+          <td>最近最少使用</td>
+          <td>接近最优，实现开销大</td>
+      </tr>
+      <tr>
+          <td>Clock</td>
+          <td>时钟算法</td>
+          <td>LRU 的近似实现，开销较小</td>
+      </tr>
+      <tr>
+          <td>OPT</td>
+          <td>最优算法</td>
+          <td>理论最优，无法实际实现（需预知未来）</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>（3）缺页异常处理（Page Fault）</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">进程访问虚拟页
+</span></span><span class="line"><span class="cl">      ↓
+</span></span><span class="line"><span class="cl">检查页表：该页不在物理内存(P=0)
+</span></span><span class="line"><span class="cl">      ↓
+</span></span><span class="line"><span class="cl">CPU 触发缺页异常（Trap）
+</span></span><span class="line"><span class="cl">      ↓
+</span></span><span class="line"><span class="cl">操作系统接管：
+</span></span><span class="line"><span class="cl">  1. 分配物理页框（如无空闲页，先执行页面置换）
+</span></span><span class="line"><span class="cl">  2. 从磁盘读取缺失页面到物理内存
+</span></span><span class="line"><span class="cl">  3. 更新页表映射
+</span></span><span class="line"><span class="cl">  4. 重新执行引发缺页的指令
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="3-存储层次配合">3. 存储层次配合
+</h5><p>虚拟内存的有效运行依赖多级存储的协同：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">┌─────────────────────────────────────────┐
+</span></span><span class="line"><span class="cl">│  寄存器 / Cache（L1/L2/L3）             │ ← 最快，容量最小
+</span></span><span class="line"><span class="cl">│     ↓ 由硬件自动管理                    │
+</span></span><span class="line"><span class="cl">├─────────────────────────────────────────┤
+</span></span><span class="line"><span class="cl">│  物理内存（RAM）                        │ ← 实际存储活动页面
+</span></span><span class="line"><span class="cl">│     ↓ 由 MMU 和 OS 管理                  │
+</span></span><span class="line"><span class="cl">├─────────────────────────────────────────┤
+</span></span><span class="line"><span class="cl">│  磁盘（Swap/Pagefile）                  │ ← 后备存储，容量大
+</span></span><span class="line"><span class="cl">│     存储换出的页面                      │
+</span></span><span class="line"><span class="cl">└─────────────────────────────────────────┘
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="虚拟内存-vs-物理内存-vs-磁盘">虚拟内存 vs 物理内存 vs 磁盘
+</h4><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>对比项</th>
+          <th>虚拟内存</th>
+          <th>物理内存（RAM）</th>
+          <th>磁盘（Swap）</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>容量</td>
+          <td>理论上无限（受地址位数限制，如 64 位系统为 2^64）</td>
+          <td>实际硬件容量（如 16GB）</td>
+          <td>磁盘分区大小（如 32GB）</td>
+      </tr>
+      <tr>
+          <td>速度</td>
+          <td>无实际存储，需地址转换</td>
+          <td>纳秒级（ns）</td>
+          <td>毫秒级（ms），慢 10^5 倍</td>
+      </tr>
+      <tr>
+          <td>成本</td>
+          <td>无额外硬件成本</td>
+          <td>较贵（$/GB 高）</td>
+          <td>便宜（$/GB 低）</td>
+      </tr>
+      <tr>
+          <td>易失性</td>
+          <td>概念层，不涉及</td>
+          <td>断电丢失</td>
+          <td>断电保留</td>
+      </tr>
+      <tr>
+          <td>管理方</td>
+          <td>OS + MMU</td>
+          <td>硬件</td>
+          <td>OS + 磁盘驱动</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="常见笔试考点">常见笔试考点
+</h4><p><strong>考点 1：页面置换的 Belady 异常</strong></p>
+
+<blockquote>
+  <p>FIFO 算法可能出现：分配页框数增加，缺页次数反而增加的异常现象。LRU 和 Clock 算法不会出现。</p>
+
+</blockquote>
+
+<p><strong>考点 2：虚拟地址空间大小</strong></p>
+
+<blockquote>
+  <p>32 位系统：2^32 = 4GB 虚拟地址空间
+64 位系统：2^64（实际只用 48-57 位，约 256TB-128PB）</p>
+
+</blockquote>
+
+<p><strong>考点 3：抖动（Thrashing）</strong></p>
+
+<blockquote>
+  <p>如果进程工作集大小超过物理内存，频繁换入换出，CPU 利用率急剧下降。解决方案：降低并发度、增加物理内存、优化局部性。</p>
+
+</blockquote>
+
+<p><strong>考点 4：写时复制（Copy-On-Write）</strong></p>
+
+<blockquote>
+  <p><code>fork()</code> 创建子进程时，父子共享物理页面，标记为只读。任一进程写入时触发缺页，OS 复制页面后再写入，减少不必要的内存复制。</p>
+
+</blockquote>
+
+<h3 id="进程的基本状态">进程的基本状态
+</h3><h4 id="三种基本状态">三种基本状态
+</h4><p>操作系统中，进程在其生命周期内主要处于以下三种基本状态：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>状态</th>
+          <th>定义</th>
+          <th>触发条件</th>
+          <th>特点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>就绪（Ready）</strong></td>
+          <td>进程已具备运行条件，等待 CPU 调度</td>
+          <td>进程创建完成、I/O 完成、时间片到</td>
+          <td>在就绪队列中排队，一旦获得 CPU 即可执行</td>
+      </tr>
+      <tr>
+          <td><strong>运行（Running）</strong></td>
+          <td>进程正在 CPU 上执行指令</td>
+          <td>被调度程序选中，获得 CPU 使用权</td>
+          <td>单核系统只有一个进程处于运行态；多核可有多个</td>
+      </tr>
+      <tr>
+          <td><strong>阻塞/等待（Blocked/Waiting）</strong></td>
+          <td>进程因等待某事件而暂停执行</td>
+          <td>请求 I/O、等待信号量、等待用户输入</td>
+          <td>即使 CPU 空闲也无法运行，需等待事件完成后转为就绪</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>状态转换关系</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>转换</th>
+          <th>源状态</th>
+          <th>目标状态</th>
+          <th>触发原因</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>创建</td>
+          <td>就绪</td>
+          <td>进程创建完成，初始化完毕</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>就绪</td>
+          <td>运行</td>
+          <td>被调度程序选中，获得 CPU</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>运行</td>
+          <td>就绪</td>
+          <td>时间片用完、或被更高优先级进程抢占</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>运行</td>
+          <td>阻塞</td>
+          <td>请求 I/O 操作、申请资源失败、等待信号/事件</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>阻塞</td>
+          <td>就绪</td>
+          <td>I/O 完成、资源可用、信号到达</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>运行</td>
+          <td>终止</td>
+          <td>进程执行完成、异常退出、被杀死</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>状态转换详解</strong>：</p>
+<ol>
+<li><strong>就绪 → 运行</strong>：进程调度程序从就绪队列选择一个进程，分配 CPU</li>
+<li><strong>运行 → 就绪</strong>：时间片用完、或被更高优先级进程抢占</li>
+<li><strong>运行 → 阻塞</strong>：进程执行 I/O 操作（如读写文件）、申请资源失败、等待信号</li>
+<li><strong>阻塞 → 就绪</strong>：I/O 完成、资源可用、信号到达，进程重新具备运行条件</li>
+</ol>
+<h4 id="为什么没有挂起作为基本状态">为什么没有&quot;挂起&quot;作为基本状态
+</h4><h5 id="概念澄清基本状态-vs-扩展状态">概念澄清：基本状态 vs 扩展状态
+</h5><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>类型</th>
+          <th>含义</th>
+          <th>包含状态</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>基本状态</strong></td>
+          <td>描述进程对 CPU 和 I/O 的需求关系</td>
+          <td>就绪、运行、阻塞</td>
+      </tr>
+      <tr>
+          <td><strong>扩展状态</strong></td>
+          <td>描述进程的内存驻留情况（与换入换出相关）</td>
+          <td>挂起就绪、挂起阻塞</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>核心区别</strong>：</p>
+<ul>
+<li><strong>基本状态</strong>关注&rdquo;<strong>进程能否使用 CPU</strong>&quot;</li>
+<li><strong>挂起状态</strong>关注&quot;<strong>进程是否在内存中</strong>&quot;（是物理内存管理范畴）</li>
+</ul>
+<h5 id="挂起suspend的本质">挂起（Suspend）的本质
+</h5><p><strong>挂起不是独立的基本状态</strong>，而是对现有状态的<strong>修饰/扩展</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">就绪状态  ──→  挂起就绪（就绪 + 在外存）
+</span></span><span class="line"><span class="cl">                （进程就绪但映像在磁盘）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">阻塞状态  ──→  挂起阻塞（阻塞 + 在外存）
+</span></span><span class="line"><span class="cl">                （进程阻塞且映像在磁盘）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="为什么教材不把挂起列为基本状态">为什么教材不把挂起列为基本状态
+</h5><p><strong>1. 分类维度不同</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>维度</th>
+          <th>基本状态分类</th>
+          <th>挂起分类</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>关注点</td>
+          <td>进程对 CPU 的需求</td>
+          <td>进程在内存还是外存</td>
+      </tr>
+      <tr>
+          <td>解决的问题</td>
+          <td>CPU 调度</td>
+          <td>内存空间管理</td>
+      </tr>
+      <tr>
+          <td>历史背景</td>
+          <td>所有操作系统都必须有</td>
+          <td>仅在支持虚拟内存/交换的系统中有</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>2. 早期操作系统没有挂起</strong></p>
+<ul>
+<li>早期批处理系统、简单分时系统不支持进程换出</li>
+<li>只有具备**交换（Swapping）**功能的系统才需要挂起概念</li>
+<li>挂起是现代虚拟内存系统的扩展，非基础功能</li>
+</ul>
+<p><strong>3. 五态模型的产生背景</strong></p>
+<p>有些教材引入&quot;五态模型&quot;（新建、就绪、运行、阻塞、终止）或&quot;七态模型&quot;（增加挂起就绪、挂起阻塞）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">七态模型示例：
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">新建 ──→ 就绪 ←────→ 运行 ───→ 终止
+</span></span><span class="line"><span class="cl">            ↑↓               │
+</span></span><span class="line"><span class="cl">            ↓（挂起）         ↓
+</span></span><span class="line"><span class="cl">      挂起就绪 ←── 挂起阻塞 ←┘
+</span></span><span class="line"><span class="cl">            │        ↑
+</span></span><span class="line"><span class="cl">            └────────┘
+</span></span><span class="line"><span class="cl">       （激活/解挂）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>注意</strong>：七态模型中，挂起就绪和挂起阻塞仍是&quot;就绪&quot;和&quot;阻塞&quot;的变体，而非独立的基本状态。</p>
+<h5 id="挂起与其他概念的区分">挂起与其他概念的区分
+</h5><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>概念</th>
+          <th>含义</th>
+          <th>与挂起的区别</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>阻塞</strong></td>
+          <td>等待 I/O 或事件，进程在内存中</td>
+          <td>挂起与阻塞正交，可同时存在</td>
+      </tr>
+      <tr>
+          <td><strong>挂起</strong></td>
+          <td>进程映像被换出到磁盘</td>
+          <td>阻塞进程可被挂起，就绪进程也可被挂起</td>
+      </tr>
+      <tr>
+          <td><strong>睡眠</strong></td>
+          <td>用户态的主动等待（如 <code>sleep()</code>）</td>
+          <td>实现层面，通常对应阻塞态</td>
+      </tr>
+      <tr>
+          <td><strong>僵尸（Zombie）</strong></td>
+          <td>进程已终止但父进程未回收</td>
+          <td>特殊的终止态，与挂起无关</td>
+      </tr>
+  </tbody>
+</table></div>
+<h5 id="典型笔试问法与解答">典型笔试问法与解答
+</h5><p><strong>问</strong>：进程有哪些基本状态？</p>
+<p><strong>答</strong>：三种基本状态——就绪、运行、阻塞。有些系统扩展为五态（新增新建、终止）或七态（新增两种挂起状态），但核心仍是就绪、运行、阻塞三态的变体。</p>
+<p><strong>问</strong>：进程从运行态可以直接转换到哪些状态？</p>
+<p><strong>答</strong>：</p>
+<ul>
+<li>运行 → 就绪（时间片用完、被抢占）</li>
+<li>运行 → 阻塞（请求 I/O、等待资源）</li>
+<li>运行 → 终止（执行完成、异常退出）</li>
+<li>运行 → 挂起就绪（被换出，较少见）</li>
+</ul>
+<p><strong>问</strong>：就绪和挂起就绪的区别？</p>
+<p><strong>答</strong>：</p>
+<ul>
+<li>就绪：进程具备运行条件，<strong>进程控制块(PCB)和程序都在内存</strong></li>
+<li>挂起就绪：进程具备运行条件，但<strong>程序映像在外存磁盘</strong>，需要先激活（换入内存）才能真正运行。</li>
+</ul>
+<h3 id="树的遍历算法">树的遍历算法
+</h3><h4 id="遍历的分类体系">遍历的分类体系
+</h4><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>分类维度</th>
+          <th>类型</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>搜索策略</strong></td>
+          <td>BFS（广度优先）</td>
+          <td>按层次遍历，先访问根，再访问子节点</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>DFS（深度优先）</td>
+          <td>沿着一条路径走到底，再回溯</td>
+      </tr>
+      <tr>
+          <td><strong>DFS 的访问顺序</strong></td>
+          <td>先序遍历</td>
+          <td>根 → 左子树 → 右子树</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>中序遍历</td>
+          <td>左子树 → 根 → 右子树</td>
+      </tr>
+      <tr>
+          <td></td>
+          <td>后序遍历</td>
+          <td>左子树 → 右子树 → 根</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="bfs广度优先搜索">BFS（广度优先搜索）
+</h4><p><strong>核心思想</strong>：</p>
+<ul>
+<li>按层次遍历，从上到下、从左到右</li>
+<li>使用队列（Queue）实现</li>
+</ul>
+<p><strong>遍历过程</strong>：</p>
+<ol>
+<li>将根节点入队</li>
+<li>取出队首节点，访问该节点</li>
+<li>将该节点的左子节点、右子节点依次入队</li>
+<li>重复步骤 2-3，直到队列为空</li>
+</ol>
+<p><strong>示例树结构</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">        1          ← 第1层
+</span></span><span class="line"><span class="cl">       / \
+</span></span><span class="line"><span class="cl">      2   3        ← 第2层
+</span></span><span class="line"><span class="cl">     / \   \
+</span></span><span class="line"><span class="cl">    4   5   6      ← 第3层
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>BFS 遍历结果</strong>：1, 2, 3, 4, 5, 6</p>
+<p><strong>BFS 的队列变化</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>步骤</th>
+          <th>队列状态</th>
+          <th>访问节点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>初始</td>
+          <td>[1]</td>
+          <td>-</td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>[2, 3]</td>
+          <td>1</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>[3, 4, 5]</td>
+          <td>2</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>[4, 5, 6]</td>
+          <td>3</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>[5, 6]</td>
+          <td>4</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>[6]</td>
+          <td>5</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>[]</td>
+          <td>6</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>寻找最短路径（无权图）</li>
+<li>按层次打印树结构</li>
+<li>查找距离根节点最近的满足条件的节点</li>
+</ul>
+<h4 id="dfs深度优先搜索">DFS（深度优先搜索）
+</h4><p><strong>核心思想</strong>：</p>
+<ul>
+<li>沿着一条分支一直走到底，然后回溯</li>
+<li>使用栈（Stack）或递归实现</li>
+</ul>
+<p><strong>三种遍历方式的区别</strong>在于<strong>访问根节点的时机</strong>：</p>
+<h5 id="1-前序遍历pre-order">1. 前序遍历（Pre-order）
+</h5><p><strong>访问顺序</strong>：根节点 → 左子树 → 右子树</p>
+<p><strong>口诀</strong>：根左右</p>
+<p><strong>遍历过程（以上述示例树）</strong>：</p>
+<ol>
+<li>访问根 1</li>
+<li>遍历左子树（以 2 为根）
+<ul>
+<li>访问 2</li>
+<li>遍历 2 的左子树（访问 4）</li>
+<li>遍历 2 的右子树（访问 5）</li>
+</ul>
+</li>
+<li>遍历右子树（以 3 为根）
+<ul>
+<li>访问 3</li>
+<li>遍历 3 的左子树（空）</li>
+<li>遍历 3 的右子树（访问 6）</li>
+</ul>
+</li>
+</ol>
+<p><strong>前序遍历结果</strong>：1, 2, 4, 5, 3, 6</p>
+<p><strong>递归实现</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">void</span><span class="w"> </span><span class="nf">preorder</span><span class="p">(</span><span class="n">TreeNode</span><span class="w"> </span><span class="n">root</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">root</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">val</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34; &#34;</span><span class="p">);</span><span class="w">  </span><span class="c1">// 访问根</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">preorder</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">);</span><span class="w">               </span><span class="c1">// 遍历左子树</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">preorder</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">);</span><span class="w">              </span><span class="c1">// 遍历右子树</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>适用场景</strong>：</p>
+<ul>
+<li>复制一棵树（先创建根节点）</li>
+<li>序列化/反序列化树结构</li>
+<li>计算目录大小（先算当前目录，再算子目录）</li>
+</ul>
+<h5 id="2-中序遍历in-order">2. 中序遍历（In-order）
+</h5><p><strong>访问顺序</strong>：左子树 → 根节点 → 右子树</p>
+<p><strong>口诀</strong>：左根右</p>
+<p><strong>遍历过程</strong>：</p>
+<ol>
+<li>遍历左子树（以 2 为根）
+<ul>
+<li>遍历 2 的左子树（访问 4）</li>
+<li>访问 2</li>
+<li>遍历 2 的右子树（访问 5）</li>
+</ul>
+</li>
+<li>访问根 1</li>
+<li>遍历右子树（以 3 为根）
+<ul>
+<li>遍历 3 的左子树（空）</li>
+<li>访问 3</li>
+<li>遍历 3 的右子树（访问 6）</li>
+</ul>
+</li>
+</ol>
+<p><strong>中序遍历结果</strong>：4, 2, 5, 1, 3, 6</p>
+<p><strong>递归实现</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">void</span><span class="w"> </span><span class="nf">inorder</span><span class="p">(</span><span class="n">TreeNode</span><span class="w"> </span><span class="n">root</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">root</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">inorder</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">);</span><span class="w">                </span><span class="c1">// 遍历左子树</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">val</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34; &#34;</span><span class="p">);</span><span class="w">  </span><span class="c1">// 访问根</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">inorder</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">);</span><span class="w">               </span><span class="c1">// 遍历右子树</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>适用场景</strong>：</p>
+<ul>
+<li><strong>二叉搜索树（BST）的中序遍历结果是有序的</strong></li>
+<li>计算表达式树（中缀表达式）</li>
+<li>从小到大输出 BST 的所有节点</li>
+</ul>
+<p><strong>重要性质</strong>：</p>
+
+<blockquote>
+  <p>对于二叉搜索树，中序遍历得到<strong>升序序列</strong>。这是 BST 的核心性质，常用于验证一棵树是否为 BST。</p>
+
+</blockquote>
+
+<h5 id="3-后序遍历post-order">3. 后序遍历（Post-order）
+</h5><p><strong>访问顺序</strong>：左子树 → 右子树 → 根节点</p>
+<p><strong>口诀</strong>：左右根</p>
+<p><strong>遍历过程</strong>：</p>
+<ol>
+<li>遍历左子树（以 2 为根）
+<ul>
+<li>遍历 2 的左子树（访问 4）</li>
+<li>遍历 2 的右子树（访问 5）</li>
+<li>访问 2</li>
+</ul>
+</li>
+<li>遍历右子树（以 3 为根）
+<ul>
+<li>遍历 3 的左子树（空）</li>
+<li>遍历 3 的右子树（访问 6）</li>
+<li>访问 3</li>
+</ul>
+</li>
+<li>访问根 1</li>
+</ol>
+<p><strong>后序遍历结果</strong>：4, 5, 2, 6, 3, 1</p>
+<p><strong>递归实现</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">void</span><span class="w"> </span><span class="nf">postorder</span><span class="p">(</span><span class="n">TreeNode</span><span class="w"> </span><span class="n">root</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">root</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">postorder</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">);</span><span class="w">              </span><span class="c1">// 遍历左子树</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">postorder</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">);</span><span class="w">             </span><span class="c1">// 遍历右子树</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">val</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34; &#34;</span><span class="p">);</span><span class="w">  </span><span class="c1">// 访问根</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>适用场景</strong>：</p>
+<ul>
+<li>删除树（先删除子节点，再删除根节点）</li>
+<li>计算目录大小（先算子目录，根节点汇总）</li>
+<li>逆波兰表达式（后缀表达式）求值</li>
+</ul>
+<h4 id="四种遍历对比总结">四种遍历对比总结
+</h4><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>遍历方式</th>
+          <th>访问顺序</th>
+          <th>遍历结果</th>
+          <th>核心应用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>BFS</strong></td>
+          <td>层次遍历</td>
+          <td>1, 2, 3, 4, 5, 6</td>
+          <td>最短路径、层次打印</td>
+      </tr>
+      <tr>
+          <td><strong>先序</strong></td>
+          <td>根左右</td>
+          <td>1, 2, 4, 5, 3, 6</td>
+          <td>树复制、序列化</td>
+      </tr>
+      <tr>
+          <td><strong>中序</strong></td>
+          <td>左根右</td>
+          <td>4, 2, 5, 1, 3, 6</td>
+          <td>BST 排序、中缀表达式</td>
+      </tr>
+      <tr>
+          <td><strong>后序</strong></td>
+          <td>左右根</td>
+          <td>4, 5, 2, 6, 3, 1</td>
+          <td>删除树、后缀表达式</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="记忆技巧">记忆技巧
+</h4><p><strong>DFS 三种遍历的统一记忆法</strong>：</p>
+<p>所有 DFS 遍历都按<strong>左子树 → 右子树</strong>的顺序，区别只在<strong>根节点</strong>的位置：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>遍历</th>
+          <th>根的位置</th>
+          <th>记忆</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>先序</td>
+          <td>最前面（第一位）</td>
+          <td>根在最&quot;先&quot;</td>
+      </tr>
+      <tr>
+          <td>中序</td>
+          <td>中间位置</td>
+          <td>根在&quot;中&quot;间</td>
+      </tr>
+      <tr>
+          <td>后序</td>
+          <td>最后面（末位）</td>
+          <td>根在最&quot;后&quot;</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>快速判断遍历结果的方法</strong>：</p>
+<ol>
+<li>
+<p><strong>找根节点</strong>：</p>
+<ul>
+<li>先序：第一个元素是根</li>
+<li>后序：最后一个元素是根</li>
+<li>中序：根在中间，左边是左子树，右边是右子树</li>
+</ul>
+</li>
+<li>
+<p><strong>递归分解</strong>：</p>
+<ul>
+<li>确定根后，在中序中找到根的位置</li>
+<li>左边是左子树的中序，右边是右子树的中序</li>
+<li>根据子树长度，在先序/后序中划分对应部分</li>
+<li>递归处理子树</li>
+</ul>
+</li>
+</ol>
+<h4 id="典型笔试题">典型笔试题
+</h4><p><strong>题 1：已知先序和中序，重建二叉树</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">先序：1, 2, 4, 5, 3, 6
+</span></span><span class="line"><span class="cl">中序：4, 2, 5, 1, 3, 6
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>解法</strong>：</p>
+<ol>
+<li>先序第一个 1 是根</li>
+<li>在中序中找到 1，左边 [4,2,5] 是左子树，右边 [3,6] 是右子树</li>
+<li>左子树有 3 个节点，先序中 [2,4,5] 是左子树的先序</li>
+<li>递归构建左子树：先序第一个 2 是根，中序中 2 左边 [4]，右边 [5]</li>
+<li>同理构建右子树</li>
+</ol>
+<p><strong>题 2：已知前序和中序，求后序遍历</strong></p>
+<p><strong>题目</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">前序：1, 2, 4, 5, 3, 6
+</span></span><span class="line"><span class="cl">中序：4, 2, 5, 1, 3, 6
+</span></span><span class="line"><span class="cl">求：后序遍历结果
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>解法原理</strong>：</p>
+<p>后序遍历是<strong>左右根</strong>，所以根节点总是在最后。我们可以利用前序找根，利用中序分左右子树，然后<strong>递归求出后序</strong>。</p>
+<p><strong>步骤分析</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>步骤</th>
+          <th>操作</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>前序第一个元素是根</td>
+          <td>前序：<code>[1], 2, 4, 5, 3, 6</code> → 根 = 1</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>在中序中找到根的位置</td>
+          <td>中序：<code>[4, 2, 5], 1, [3, 6]</code></td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>划分左右子树</td>
+          <td>左子树中序 <code>[4,2,5]</code>（3个节点），右子树中序 <code>[3,6]</code>（2个节点）</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>划分前序中的子树</td>
+          <td>前序去掉根后：<code>[2, 4, 5, 3, 6]</code>，前3个是左子树前序 <code>[2,4,5]</code>，后2个是右子树前序 <code>[3,6]</code></td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>递归处理左子树</td>
+          <td>左子树前序 <code>[2,4,5]</code>，中序 <code>[4,2,5]</code></td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>递归处理右子树</td>
+          <td>右子树前序 <code>[3,6]</code>，中序 <code>[3,6]</code></td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td>组合后序</td>
+          <td>左子树后序 + 右子树后序 + 根</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>递归过程详细分解</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">原问题：
+</span></span><span class="line"><span class="cl">  前序 [1, 2, 4, 5, 3, 6]
+</span></span><span class="line"><span class="cl">  中序 [4, 2, 5, 1, 3, 6]
+</span></span><span class="line"><span class="cl">  根 = 1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">分解：
+</span></span><span class="line"><span class="cl">  左子树：前序 [2, 4, 5]，中序 [4, 2, 5]
+</span></span><span class="line"><span class="cl">  右子树：前序 [3, 6]，中序 [3, 6]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">处理左子树：
+</span></span><span class="line"><span class="cl">  前序 [2, 4, 5]，中序 [4, 2, 5]
+</span></span><span class="line"><span class="cl">  根 = 2
+</span></span><span class="line"><span class="cl">  左子树：前序 [4]，中序 [4] → 后序 [4]
+</span></span><span class="line"><span class="cl">  右子树：前序 [5]，中序 [5] → 后序 [5]
+</span></span><span class="line"><span class="cl">  左子树后序 = [4, 5, 2]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">处理右子树：
+</span></span><span class="line"><span class="cl">  前序 [3, 6]，中序 [3, 6]
+</span></span><span class="line"><span class="cl">  根 = 3
+</span></span><span class="line"><span class="cl">  左子树：空
+</span></span><span class="line"><span class="cl">  右子树：前序 [6]，中序 [6] → 后序 [6]
+</span></span><span class="line"><span class="cl">  右子树后序 = [6, 3]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">组合：
+</span></span><span class="line"><span class="cl">  后序 = 左子树后序 + 右子树后序 + 根
+</span></span><span class="line"><span class="cl">       = [4, 5, 2] + [6, 3] + [1]
+</span></span><span class="line"><span class="cl">       = [4, 5, 2, 6, 3, 1]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>答案</strong>：后序遍历结果为 <code>4, 5, 2, 6, 3, 1</code></p>
+<p><strong>Java 实现代码</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 根据前序和中序求后序</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kt">void</span><span class="w"> </span><span class="nf">buildPostorder</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">preorder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">preStart</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">preEnd</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">inorder</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">inStart</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">inEnd</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">postorder</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">preStart</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">preEnd</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">inStart</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">inEnd</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 前序第一个元素是根</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rootVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">preorder</span><span class="o">[</span><span class="n">preStart</span><span class="o">]</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 在中序中找到根的位置</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">rootIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">1</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inStart</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">inEnd</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">inorder</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">rootVal</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">rootIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">break</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 左子树节点数</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">leftSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rootIndex</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">inStart</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 递归构建左子树的后序（前序跳过根，取 leftSize 个；中序取左边 leftSize 个）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">buildPostorder</span><span class="p">(</span><span class="n">preorder</span><span class="p">,</span><span class="w"> </span><span class="n">preStart</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">preStart</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">leftSize</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                   </span><span class="n">inorder</span><span class="p">,</span><span class="w"> </span><span class="n">inStart</span><span class="p">,</span><span class="w"> </span><span class="n">rootIndex</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">1</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                   </span><span class="n">postorder</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 递归构建右子树的后序（前序取后面；中序取右边）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">buildPostorder</span><span class="p">(</span><span class="n">preorder</span><span class="p">,</span><span class="w"> </span><span class="n">preStart</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">leftSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">preEnd</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                   </span><span class="n">inorder</span><span class="p">,</span><span class="w"> </span><span class="n">rootIndex</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">1</span><span class="p">,</span><span class="w"> </span><span class="n">inEnd</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                   </span><span class="n">postorder</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c1">// 添加根节点（后序：左右根，根最后）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">postorder</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">rootVal</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>关键规律总结</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>遍历类型</th>
+          <th>根的位置</th>
+          <th>作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>前序</strong></td>
+          <td>第一个元素</td>
+          <td>用于<strong>确定根</strong></td>
+      </tr>
+      <tr>
+          <td><strong>中序</strong></td>
+          <td>根在中间，左右分割</td>
+          <td>用于<strong>确定左右子树范围</strong></td>
+      </tr>
+      <tr>
+          <td><strong>后序</strong></td>
+          <td>最后一个元素</td>
+          <td>根最后，<strong>递归拼接结果</strong></td>
+      </tr>
+  </tbody>
+</table></div>
+
+<blockquote>
+  <p><strong>核心技巧</strong>：前序找根，中序分左右，递归求子树后序，最后拼上根。</p>
+
+</blockquote>
+
+<p><strong>题 3：验证是否为 BST</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">boolean</span><span class="w"> </span><span class="nf">isValidBST</span><span class="p">(</span><span class="n">TreeNode</span><span class="w"> </span><span class="n">root</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">inorderCheck</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="p">.</span><span class="na">MIN_VALUE</span><span class="p">,</span><span class="w"> </span><span class="n">Long</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kt">boolean</span><span class="w"> </span><span class="nf">inorderCheck</span><span class="p">(</span><span class="n">TreeNode</span><span class="w"> </span><span class="n">node</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">min</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">max</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">val</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">min</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">node</span><span class="p">.</span><span class="na">val</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">max</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">inorderCheck</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span><span class="w"> </span><span class="n">min</span><span class="p">,</span><span class="w"> </span><span class="n">node</span><span class="p">.</span><span class="na">val</span><span class="p">)</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">inorderCheck</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span><span class="w"> </span><span class="n">node</span><span class="p">.</span><span class="na">val</span><span class="p">,</span><span class="w"> </span><span class="n">max</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="软件生命周期">软件生命周期
+</h3><h4 id="什么是软件生命周期">什么是软件生命周期
+</h4><p>软件生命周期（Software Development Life Cycle, SDLC）是指软件从概念提出到最终退役的全过程，包括规划、开发、运行和维护的各个阶段。</p>
+<h4 id="经典瀑布模型waterfall-model">经典瀑布模型（Waterfall Model）
+</h4><p>瀑布模型是最早的软件开发模型，将生命周期划分为线性顺序的阶段：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>阶段</th>
+          <th>主要任务</th>
+          <th>输出物</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>需求分析</strong></td>
+          <td>收集用户需求，确定系统功能和非功能需求</td>
+          <td>需求规格说明书（SRS）</td>
+      </tr>
+      <tr>
+          <td><strong>系统设计</strong></td>
+          <td>概要设计（架构）、详细设计（模块接口、算法）</td>
+          <td>设计文档、UML 图</td>
+      </tr>
+      <tr>
+          <td><strong>编码实现</strong></td>
+          <td>根据设计文档编写代码</td>
+          <td>源代码、单元测试</td>
+      </tr>
+      <tr>
+          <td><strong>测试验证</strong></td>
+          <td>集成测试、系统测试、验收测试</td>
+          <td>测试报告、Bug 列表</td>
+      </tr>
+      <tr>
+          <td><strong>部署运维</strong></td>
+          <td>软件发布、安装配置、运行维护</td>
+          <td>部署文档、运维手册</td>
+      </tr>
+      <tr>
+          <td><strong>退役</strong></td>
+          <td>系统下线、数据迁移、资源回收</td>
+          <td>退役报告</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="各阶段耗时与成本占比">各阶段耗时与成本占比
+</h4><p>根据软件工程统计数据（行业平均值）：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>阶段</th>
+          <th>耗时占比</th>
+          <th>成本占比</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>需求分析</strong></td>
+          <td>10% - 15%</td>
+          <td>5% - 10%</td>
+          <td>前期投入小但影响深远，需求错误后期修复成本极高</td>
+      </tr>
+      <tr>
+          <td><strong>系统设计</strong></td>
+          <td>15% - 20%</td>
+          <td>10% - 15%</td>
+          <td>架构设计决定系统质量，设计缺陷代价高昂</td>
+      </tr>
+      <tr>
+          <td><strong>编码实现</strong></td>
+          <td>20% - 30%</td>
+          <td>20% - 25%</td>
+          <td>实际写代码时间常被高估，实际占比并非最高</td>
+      </tr>
+      <tr>
+          <td><strong>测试验证</strong></td>
+          <td>25% - 35%</td>
+          <td>25% - 30%</td>
+          <td>现代软件测试比重持续增加，敏捷/DevOps 中占比更高</td>
+      </tr>
+      <tr>
+          <td><strong>部署运维</strong></td>
+          <td>15% - 25%</td>
+          <td>30% - 50%</td>
+          <td>运维是长期成本，随时间推移占比最高</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>关键规律</strong>：</p>
+
+<blockquote>
+  <p><strong>后期修复缺陷的成本是前期的 10-100 倍</strong></p>
+<p>需求阶段修复成本：1x
+设计阶段修复成本：3x-6x
+编码阶段修复成本：10x
+测试阶段修复成本：15x-30x
+运维阶段修复成本：30x-100x</p>
+
+</blockquote>
+
+<h4 id="现代开发模型的阶段调整">现代开发模型的阶段调整
+</h4><p><strong>敏捷开发（Agile）/ Scrum</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>特点</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>迭代周期</td>
+          <td>2-4 周的 Sprint，每个 Sprint 包含完整的小周期</td>
+      </tr>
+      <tr>
+          <td>需求占比</td>
+          <td>持续进行，占 20%-30%（需求不断细化）</td>
+      </tr>
+      <tr>
+          <td>测试占比</td>
+          <td>40%-50%（TDD、自动化测试、持续集成）</td>
+      </tr>
+      <tr>
+          <td>文档占比</td>
+          <td>降低，强调&quot;可工作的软件&quot;</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>DevOps 模式</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>特点</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>开发与运维融合</td>
+          <td>开发团队负责部分运维（You build it, you run it）</td>
+      </tr>
+      <tr>
+          <td>自动化占比高</td>
+          <td>CI/CD 流水线、自动化测试、基础设施即代码</td>
+      </tr>
+      <tr>
+          <td>运维前置</td>
+          <td>在开发阶段就考虑部署、监控、可观测性</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="各阶段成本详细构成">各阶段成本详细构成
+</h4><p><strong>需求分析阶段成本</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>成本项</th>
+          <th>占比</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>人员访谈、调研</td>
+          <td>40%</td>
+          <td>与用户沟通、业务理解</td>
+      </tr>
+      <tr>
+          <td>需求文档编写</td>
+          <td>30%</td>
+          <td>SRS、用例文档</td>
+      </tr>
+      <tr>
+          <td>需求评审、确认</td>
+          <td>20%</td>
+          <td>评审会议、签字确认</td>
+      </tr>
+      <tr>
+          <td>需求变更管理</td>
+          <td>10%</td>
+          <td>变更控制流程</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>设计阶段成本</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>成本项</th>
+          <th>占比</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>架构设计</td>
+          <td>40%</td>
+          <td>技术选型、架构模式、性能设计</td>
+      </tr>
+      <tr>
+          <td>详细设计</td>
+          <td>35%</td>
+          <td>数据库设计、接口设计、模块设计</td>
+      </tr>
+      <tr>
+          <td>设计评审</td>
+          <td>15%</td>
+          <td>架构评审、安全评审</td>
+      </tr>
+      <tr>
+          <td>原型开发</td>
+          <td>10%</td>
+          <td>POC 验证、技术预研</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>编码阶段成本</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>成本项</th>
+          <th>占比</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>实际编码</td>
+          <td>50%</td>
+          <td>写代码、代码审查</td>
+      </tr>
+      <tr>
+          <td>单元测试</td>
+          <td>25%</td>
+          <td>测试用例编写、执行</td>
+      </tr>
+      <tr>
+          <td>调试修复</td>
+          <td>20%</td>
+          <td>Bug 修复、联调</td>
+      </tr>
+      <tr>
+          <td>文档注释</td>
+          <td>5%</td>
+          <td>技术文档、代码注释</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>测试阶段成本</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>成本项</th>
+          <th>占比</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>测试用例设计</td>
+          <td>25%</td>
+          <td>用例编写、评审</td>
+      </tr>
+      <tr>
+          <td>测试执行</td>
+          <td>40%</td>
+          <td>功能测试、性能测试、安全测试</td>
+      </tr>
+      <tr>
+          <td>缺陷管理</td>
+          <td>25%</td>
+          <td>Bug 提交、跟踪、验证</td>
+      </tr>
+      <tr>
+          <td>测试报告</td>
+          <td>10%</td>
+          <td>测试总结、质量评估</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>运维阶段成本</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>成本项</th>
+          <th>占比</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>基础设施</td>
+          <td>30%</td>
+          <td>服务器、云服务、网络</td>
+      </tr>
+      <tr>
+          <td>人力运维</td>
+          <td>25%</td>
+          <td>监控、故障处理、变更管理</td>
+      </tr>
+      <tr>
+          <td>软件许可</td>
+          <td>20%</td>
+          <td>数据库、中间件、工具许可</td>
+      </tr>
+      <tr>
+          <td>安全合规</td>
+          <td>15%</td>
+          <td>安全审计、合规检查</td>
+      </tr>
+      <tr>
+          <td>容量规划</td>
+          <td>10%</td>
+          <td>扩容、性能优化</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="不同规模项目的差异">不同规模项目的差异
+</h4><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>项目规模</th>
+          <th>需求占比</th>
+          <th>设计占比</th>
+          <th>编码占比</th>
+          <th>测试占比</th>
+          <th>运维占比</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>小型项目（&lt; 3人月）</td>
+          <td>15%</td>
+          <td>10%</td>
+          <td>40%</td>
+          <td>25%</td>
+          <td>10%</td>
+      </tr>
+      <tr>
+          <td>中型项目（3-12人月）</td>
+          <td>15%</td>
+          <td>15%</td>
+          <td>30%</td>
+          <td>30%</td>
+          <td>10%</td>
+      </tr>
+      <tr>
+          <td>大型项目（&gt; 12人月）</td>
+          <td>20%</td>
+          <td>20%</td>
+          <td>25%</td>
+          <td>25%</td>
+          <td>10%（首年）</td>
+      </tr>
+      <tr>
+          <td>企业级系统</td>
+          <td>25%</td>
+          <td>25%</td>
+          <td>20%</td>
+          <td>20%</td>
+          <td>10%（首年）</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>观察</strong>：</p>
+<ul>
+<li>项目越大，前期（需求+设计）占比越高</li>
+<li>大型项目设计阶段投入增加可显著降低后期风险</li>
+<li>运维成本随时间线性增长，是长期最大支出</li>
+</ul>
+<h4 id="笔试常见考点">笔试常见考点
+</h4><p><strong>考点 1：软件生命周期包含哪些阶段？</strong></p>
+
+<blockquote>
+  <p>答：需求分析、系统设计、编码实现、测试验证、部署运维、退役。</p>
+
+</blockquote>
+
+<p><strong>考点 2：哪个阶段修复缺陷成本最低？</strong></p>
+
+<blockquote>
+  <p>答：需求分析阶段。需求错误的修复成本最低，运维阶段最高。</p>
+
+</blockquote>
+
+<p><strong>考点 3：为什么测试阶段成本占比越来越高？</strong></p>
+
+<blockquote>
+  <p>答：</p>
+<ol>
+<li>软件复杂度增加，测试用例数量指数级增长</li>
+<li>敏捷/DevOps 强调自动化测试和持续集成</li>
+<li>质量要求提高，安全测试、性能测试比重增加</li>
+<li>早期测试左移（Shift Left Testing）趋势</li>
+</ol>
+
+</blockquote>
+
+<p><strong>考点 4：瀑布模型 vs 敏捷开发的阶段差异</strong></p>
+
+<blockquote>
+  <p>答：</p>
+<ul>
+<li>瀑布模型：阶段线性、严格串行，文档驱动</li>
+<li>敏捷开发：迭代循环、快速交付，可工作软件驱动</li>
+<li>敏捷中需求和测试贯穿始终，而非集中在特定阶段</li>
+</ul>
+
+</blockquote>
+
+<h3 id="java-类型转换与运算">Java 类型转换与运算
+</h3><h4 id="题目char--int--double---的结果是什么类型">题目：<code>char + int + double + &quot;&quot;</code> 的结果是什么类型？
+</h4><p><strong>答案</strong>：最终结果是 <strong>String</strong> 类型。</p>
+<h4 id="逐步分析">逐步分析
+</h4><p>假设表达式为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;A&#39;</span><span class="p">;</span><span class="w">      </span><span class="c1">// ASCII 码为 65</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">10</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kt">double</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">2</span><span class="p">.</span><span class="na">5</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>第一步：<code>char + int</code></strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>操作</th>
+          <th>说明</th>
+          <th>结果类型</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>char + int</code></td>
+          <td>char 自动提升为 int（按 ASCII 码）</td>
+          <td>int</td>
+      </tr>
+      <tr>
+          <td>计算</td>
+          <td><code>'A'</code> (65) + 10 = 75</td>
+          <td>int</td>
+      </tr>
+  </tbody>
+</table></div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sc">&#39;A&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="w"> </span><span class="n">temp1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">10</span><span class="p">;</span><span class="w">   </span><span class="c1">// 65 + 10 = 75，类型为 int</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>第二步：<code>int + double</code></strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>操作</th>
+          <th>说明</th>
+          <th>结果类型</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>int + double</code></td>
+          <td>int 自动提升为 double</td>
+          <td>double</td>
+      </tr>
+      <tr>
+          <td>计算</td>
+          <td>75 + 2.5 = 77.5</td>
+          <td>double</td>
+      </tr>
+  </tbody>
+</table></div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kt">double</span><span class="w"> </span><span class="n">temp2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">75</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">2</span><span class="p">.</span><span class="na">5</span><span class="p">;</span><span class="w">   </span><span class="c1">// 75.0 + 2.5 = 77.5，类型为 double</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>第三步：<code>double + String</code></strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>操作</th>
+          <th>说明</th>
+          <th>结果类型</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>double + &quot;&quot;</code></td>
+          <td>遇到字符串，触发字符串拼接</td>
+          <td>String</td>
+      </tr>
+      <tr>
+          <td>计算</td>
+          <td>77.5 被转换为 &ldquo;77.5&rdquo;，再与 &quot;&quot; 拼接</td>
+          <td>String</td>
+      </tr>
+  </tbody>
+</table></div>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">String</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">77</span><span class="p">.</span><span class="na">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="p">;</span><span class="w">   </span><span class="c1">// &#34;77.5&#34;，类型为 String</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="完整执行流程">完整执行流程
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">char &#39;A&#39; (65)
+</span></span><span class="line"><span class="cl">    ↓
+</span></span><span class="line"><span class="cl">+ int 10
+</span></span><span class="line"><span class="cl">    ↓
+</span></span><span class="line"><span class="cl">= int 75
+</span></span><span class="line"><span class="cl">    ↓
+</span></span><span class="line"><span class="cl">+ double 2.5
+</span></span><span class="line"><span class="cl">    ↓
+</span></span><span class="line"><span class="cl">= double 77.5
+</span></span><span class="line"><span class="cl">    ↓
+</span></span><span class="line"><span class="cl">+ String &#34;&#34;
+</span></span><span class="line"><span class="cl">    ↓
+</span></span><span class="line"><span class="cl">= String &#34;77.5&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="关键知识点总结">关键知识点总结
+</h4><p><strong>1. 数值类型的自动提升规则</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>操作数类型</th>
+          <th>提升规则</th>
+          <th>结果类型</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>byte/short/char</code> 之间运算</td>
+          <td>全部提升为 int</td>
+          <td>int</td>
+      </tr>
+      <tr>
+          <td><code>int + long</code></td>
+          <td>int 提升为 long</td>
+          <td>long</td>
+      </tr>
+      <tr>
+          <td><code>int + float</code></td>
+          <td>int 提升为 float</td>
+          <td>float</td>
+      </tr>
+      <tr>
+          <td><code>int + double</code></td>
+          <td>int 提升为 double</td>
+          <td>double</td>
+      </tr>
+      <tr>
+          <td><code>float + double</code></td>
+          <td>float 提升为 double</td>
+          <td>double</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>口诀</strong>：向表示范围大的类型提升，避免精度丢失。</p>
+<p><strong>2. 字符串拼接的优先级</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 情况 1：字符串在左边</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="s">&#34;&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d</span><span class="w">    </span><span class="c1">// 结果：&#34;A102.5&#34;，全部转为字符串拼接</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 情况 2：字符串在右边（原题情况）</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">c</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="w">    </span><span class="c1">// 结果：&#34;77.5&#34;，先数值运算再转字符串</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 情况 3：字符串在中间</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">c</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d</span><span class="w">    </span><span class="c1">// 结果：&#34;752.5&#34;，c+i=75，再与&#34;&#34;拼接得&#34;75&#34;，再与2.5拼接</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>核心规则</strong>：</p>
+<ul>
+<li>只要表达式中出现字符串（<code>+</code> 两侧有 String），<code>+</code> 就变成<strong>字符串拼接运算符</strong></li>
+<li>拼接时，非字符串操作数会调用 <code>String.valueOf()</code> 转为字符串</li>
+</ul>
+<p><strong>3. 运算顺序从左到右</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 表达式按从左到右顺序结合</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="n">c</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">((</span><span class="n">c</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&#34;&#34;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>4. 如果字符串在前面</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="s">&#34;&#34;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">d</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>执行过程：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;&#34; + &#39;A&#39;  →  &#34;A&#34;（String）
+</span></span><span class="line"><span class="cl">&#34;A&#34; + 10  →  &#34;A10&#34;（String）
+</span></span><span class="line"><span class="cl">&#34;A10&#34; + 2.5 →  &#34;A102.5&#34;（String）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="变式练习">变式练习
+</h4><p><strong>变式 1</strong>：<code>10 + 20 + &quot;30&quot; + 40</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">10 + 20 = 30（int）
+</span></span><span class="line"><span class="cl">30 + &#34;30&#34; = &#34;3030&#34;（String）
+</span></span><span class="line"><span class="cl">&#34;3030&#34; + 40 = &#34;303040&#34;（String）
+</span></span><span class="line"><span class="cl">// 结果：&#34;303040&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>变式 2</strong>：<code>&quot;&quot; + 'A' + 1</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;&#34; + &#39;A&#39; = &#34;A&#34;（String）
+</span></span><span class="line"><span class="cl">&#34;A&#34; + 1 = &#34;A1&#34;（String）
+</span></span><span class="line"><span class="cl">// 结果：&#34;A1&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>变式 3</strong>：<code>'A' + 1 + &quot;&quot;</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#39;A&#39; + 1 = 66（int，65+1）
+</span></span><span class="line"><span class="cl">66 + &#34;&#34; = &#34;66&#34;（String）
+</span></span><span class="line"><span class="cl">// 结果：&#34;66&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>变式 4</strong>：<code>1 + 2.0f + 3L</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1 + 2.0f = 3.0f（float）
+</span></span><span class="line"><span class="cl">3.0f + 3L = 6.0f（float，long 提升为 float）
+</span></span><span class="line"><span class="cl">// 结果：6.0f（float）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="笔试答题要点">笔试答题要点
+</h4><p><strong>问</strong>：<code>char + int + double + &quot;&quot;</code> 的结果类型？</p>
+<p><strong>答</strong>：</p>
+
+<blockquote>
+  <p>最终结果是 <strong>String</strong> 类型。</p>
+<p>分析过程：</p>
+<ol>
+<li><code>char + int</code>：char 提升为 int，结果为 int</li>
+<li><code>int + double</code>：int 提升为 double，结果为 double</li>
+<li><code>double + &quot;&quot;</code>：遇到字符串触发拼接，double 转为 String，最终结果为 String</li>
+</ol>
+
+</blockquote>
+
+<h3 id="因果图与判定表">因果图与判定表
+</h3><h4 id="什么是因果图">什么是因果图
+</h4><p><strong>因果图（Cause-Effect Graph）</strong> 是一种用于<strong>黑盒测试</strong>的用例设计方法，通过分析输入条件（原因）和输出结果（结果）之间的逻辑关系，系统地生成测试用例。</p>
+<p><strong>核心思想</strong>：</p>
+<ul>
+<li>将程序的输入条件视为<strong>因（Cause）</strong></li>
+<li>将程序的输出动作或结果视为<strong>果（Effect）</strong></li>
+<li>分析因与果之间的<strong>逻辑关系</strong>（与、或、非、恒等、约束等）</li>
+<li>将因果图转换为<strong>判定表</strong>，进而生成测试用例</li>
+</ul>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li>多输入条件组合复杂的情况</li>
+<li>需要检查条件之间的约束关系</li>
+<li>业务规则复杂、条件之间存在依赖的系统</li>
+</ul>
+<h4 id="因果图的图形符号">因果图的图形符号
+</h4><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>符号</th>
+          <th>名称</th>
+          <th>含义</th>
+          <th>图示</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>Ci</code></td>
+          <td>原因节点</td>
+          <td>输入条件，取值为 0（假）或 1（真）</td>
+          <td>圆形</td>
+      </tr>
+      <tr>
+          <td><code>Ei</code></td>
+          <td>结果节点</td>
+          <td>输出结果，取值为 0 或 1</td>
+          <td>圆形</td>
+      </tr>
+      <tr>
+          <td><code>∧</code></td>
+          <td>与（AND）</td>
+          <td>所有原因都为真时，结果为真</td>
+          <td>原因 → ∧ → 结果</td>
+      </tr>
+      <tr>
+          <td><code>∨</code></td>
+          <td>或（OR）</td>
+          <td>任一原因为真时，结果为真</td>
+          <td>原因 → ∨ → 结果</td>
+      </tr>
+      <tr>
+          <td><code>¬</code></td>
+          <td>非（NOT）</td>
+          <td>原因取反</td>
+          <td>原因 → ¬ → 结果</td>
+      </tr>
+      <tr>
+          <td><code>=</code></td>
+          <td>恒等</td>
+          <td>原因直接决定结果</td>
+          <td>原因 = 结果</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="因果图的约束关系">因果图的约束关系
+</h4><p>约束用于描述原因之间或结果之间的限制条件：</p>
+<p><strong>1. 原因之间的约束</strong>（输入约束）：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>约束</th>
+          <th>符号</th>
+          <th>含义</th>
+          <th>示例</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>E（互斥）</strong></td>
+          <td>E</td>
+          <td>至多一个为真，可以同时为假</td>
+          <td>单选按钮</td>
+      </tr>
+      <tr>
+          <td><strong>I（包含）</strong></td>
+          <td>I</td>
+          <td>至少一个为真，可以同时为真</td>
+          <td>多选必填</td>
+      </tr>
+      <tr>
+          <td><strong>O（唯一）</strong></td>
+          <td>O</td>
+          <td>必须且只能一个为真</td>
+          <td>单选必填</td>
+      </tr>
+      <tr>
+          <td><strong>R（要求）</strong></td>
+          <td>R</td>
+          <td>一个为真，另一个也必须为真</td>
+          <td>联动条件</td>
+      </tr>
+      <tr>
+          <td><strong>M（强制）</strong></td>
+          <td>M</td>
+          <td>一个为真，另一个必须为假</td>
+          <td>互斥条件</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>2. 结果之间的约束</strong>（输出约束）：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>约束</th>
+          <th>符号</th>
+          <th>含义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>R（要求）</strong></td>
+          <td>R</td>
+          <td>一个结果为真，另一个也必须为真</td>
+      </tr>
+      <tr>
+          <td><strong>M（强制）</strong></td>
+          <td>M</td>
+          <td>一个结果为真，另一个必须为假</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="什么是判定表">什么是判定表
+</h4><p><strong>判定表（Decision Table）</strong> 是将因果图转换为表格形式，列出所有可能的条件组合及对应的结果，是生成测试用例的直接依据。</p>
+<p><strong>判定表的结构</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>桩</th>
+          <th>规则 1</th>
+          <th>规则 2</th>
+          <th>规则 3</th>
+          <th>&hellip;</th>
+          <th>规则 n</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>条件桩</strong></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>条件 1</td>
+          <td>T</td>
+          <td>T</td>
+          <td>F</td>
+          <td>&hellip;</td>
+          <td>F</td>
+      </tr>
+      <tr>
+          <td>条件 2</td>
+          <td>T</td>
+          <td>F</td>
+          <td>T</td>
+          <td>&hellip;</td>
+          <td>F</td>
+      </tr>
+      <tr>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+      </tr>
+      <tr>
+          <td><strong>动作桩</strong></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>动作 1</td>
+          <td>√</td>
+          <td>√</td>
+          <td>×</td>
+          <td>&hellip;</td>
+          <td>×</td>
+      </tr>
+      <tr>
+          <td>动作 2</td>
+          <td>×</td>
+          <td>√</td>
+          <td>√</td>
+          <td>&hellip;</td>
+          <td>×</td>
+      </tr>
+      <tr>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+          <td>&hellip;</td>
+      </tr>
+  </tbody>
+</table></div>
+<ul>
+<li><strong>条件桩</strong>：列出所有输入条件</li>
+<li><strong>动作桩</strong>：列出所有输出结果</li>
+<li><strong>规则列</strong>：每一列代表一组条件组合及对应动作</li>
+</ul>
+<h4 id="因果图与判定表的转换步骤">因果图与判定表的转换步骤
+</h4><p><strong>步骤 1：识别原因和结果</strong></p>
+<p>分析需求规格说明书，提取：</p>
+<ul>
+<li>所有输入条件（原因）</li>
+<li>所有输出结果（结果）</li>
+</ul>
+<p><strong>步骤 2：分析因果关系</strong></p>
+<ul>
+<li>哪些原因组合会产生哪些结果</li>
+<li>原因之间是否存在约束</li>
+</ul>
+<p><strong>步骤 3：画出因果图</strong></p>
+<p>使用图形符号表示因果关系和约束。</p>
+<p><strong>步骤 4：转换为判定表</strong></p>
+<p>将因果图转换为判定表，每一列对应一个测试用例。</p>
+<p><strong>步骤 5：简化判定表</strong></p>
+<ul>
+<li>合并相似的规则（使用&quot;-&ldquo;表示无关条件）</li>
+<li>去除不可能的组合（考虑约束条件）</li>
+</ul>
+<p><strong>步骤 6：生成测试用例</strong></p>
+<p>每一列对应一个测试用例。</p>
+<h4 id="实例演示">实例演示
+</h4><p><strong>示例：文件修改系统</strong></p>
+<p><strong>需求</strong>：</p>
+<ul>
+<li>第一列字符必须是 A 或 B</li>
+<li>第二列字符必须是数字</li>
+<li>两列都正确时，修改文件</li>
+<li>第一列错误时，输出提示 M1</li>
+<li>第二列错误时，输出提示 M2</li>
+</ul>
+<p><strong>步骤 1：识别原因和结果</strong></p>
+<p><strong>原因（输入条件）</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>编号</th>
+          <th>条件</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>C1</td>
+          <td>第一列是 A</td>
+          <td>字符为 &lsquo;A&rsquo;</td>
+      </tr>
+      <tr>
+          <td>C2</td>
+          <td>第一列是 B</td>
+          <td>字符为 &lsquo;B&rsquo;</td>
+      </tr>
+      <tr>
+          <td>C3</td>
+          <td>第二列是数字</td>
+          <td>字符在 &lsquo;0&rsquo;-&lsquo;9&rsquo; 之间</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>结果（输出动作）</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>编号</th>
+          <th>结果</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>E1</td>
+          <td>修改文件</td>
+          <td>两列都正确</td>
+      </tr>
+      <tr>
+          <td>E2</td>
+          <td>输出 M1</td>
+          <td>第一列错误</td>
+      </tr>
+      <tr>
+          <td>E3</td>
+          <td>输出 M2</td>
+          <td>第二列错误</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>步骤 2：分析因果关系</strong></p>
+<ul>
+<li>第一列只能是 A 或 B（互斥约束 O）</li>
+<li>第一列正确 = C1 或 C2（恒等/或关系）</li>
+<li>两列都正确时修改文件：<code>(C1 ∨ C2) ∧ C3 → E1</code></li>
+<li>第一列错误时输出 M1：<code>¬(C1 ∨ C2) → E2</code></li>
+<li>第二列错误时输出 M2：<code>¬C3 → E3</code></li>
+</ul>
+<p><strong>步骤 3：因果图</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">         ┌─── C1（第一列是A）
+</span></span><span class="line"><span class="cl">         │
+</span></span><span class="line"><span class="cl">    ┌─── O ───┐（互斥：只能选一个）
+</span></span><span class="line"><span class="cl">    │         │
+</span></span><span class="line"><span class="cl">C1 ─┤         ├─→ E1（修改文件）
+</span></span><span class="line"><span class="cl">    │         │
+</span></span><span class="line"><span class="cl">C2 ─┘         └─→ 与 C3 ──→ E1
+</span></span><span class="line"><span class="cl">              │
+</span></span><span class="line"><span class="cl">C3 ───────────┘（第二列是数字）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">约束：
+</span></span><span class="line"><span class="cl">- C1 和 C2 是 O 约束（唯一）：必须且只能一个为真
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>步骤 4：转换为判定表</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>条件/动作</th>
+          <th>规则 1</th>
+          <th>规则 2</th>
+          <th>规则 3</th>
+          <th>规则 4</th>
+          <th>规则 5</th>
+          <th>规则 6</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>C1: 第一列 A</td>
+          <td>T</td>
+          <td>T</td>
+          <td>F</td>
+          <td>F</td>
+          <td>T</td>
+          <td>F</td>
+      </tr>
+      <tr>
+          <td>C2: 第一列 B</td>
+          <td>F</td>
+          <td>F</td>
+          <td>T</td>
+          <td>T</td>
+          <td>F</td>
+          <td>T</td>
+      </tr>
+      <tr>
+          <td>C3: 第二列数字</td>
+          <td>T</td>
+          <td>F</td>
+          <td>T</td>
+          <td>F</td>
+          <td>T</td>
+          <td>T</td>
+      </tr>
+      <tr>
+          <td>E1: 修改文件</td>
+          <td>√</td>
+          <td>×</td>
+          <td>√</td>
+          <td>×</td>
+          <td>√</td>
+          <td>√</td>
+      </tr>
+      <tr>
+          <td>E2: 输出 M1</td>
+          <td>×</td>
+          <td>×</td>
+          <td>×</td>
+          <td>√</td>
+          <td>×</td>
+          <td>×</td>
+      </tr>
+      <tr>
+          <td>E3: 输出 M2</td>
+          <td>×</td>
+          <td>√</td>
+          <td>×</td>
+          <td>√</td>
+          <td>×</td>
+          <td>×</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>分析</strong>：</p>
+<ul>
+<li>规则 1：A + 数字 → 修改文件</li>
+<li>规则 2：A + 非数字 → 输出 M2</li>
+<li>规则 3：B + 数字 → 修改文件</li>
+<li>规则 4：非 A 非 B + 非数字 → 输出 M1、M2</li>
+<li>规则 5：A + 数字 → 修改文件（与规则 1 重复）</li>
+<li>规则 6：B + 数字 → 修改文件（与规则 3 重复）</li>
+</ul>
+<p><strong>步骤 5：简化判定表</strong></p>
+<p>考虑 O 约束（C1 和 C2 只能一个为真，且至少一个为真）：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>条件/动作</th>
+          <th>规则 1</th>
+          <th>规则 2</th>
+          <th>规则 3</th>
+          <th>规则 4</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>C1: 第一列 A</td>
+          <td>T</td>
+          <td>T</td>
+          <td>F</td>
+          <td>F</td>
+      </tr>
+      <tr>
+          <td>C2: 第一列 B</td>
+          <td>F</td>
+          <td>F</td>
+          <td>T</td>
+          <td>F</td>
+      </tr>
+      <tr>
+          <td>C3: 第二列数字</td>
+          <td>T</td>
+          <td>F</td>
+          <td>T</td>
+          <td>F</td>
+      </tr>
+      <tr>
+          <td>E1: 修改文件</td>
+          <td>√</td>
+          <td>×</td>
+          <td>√</td>
+          <td>×</td>
+      </tr>
+      <tr>
+          <td>E2: 输出 M1</td>
+          <td>×</td>
+          <td>×</td>
+          <td>×</td>
+          <td>√</td>
+      </tr>
+      <tr>
+          <td>E3: 输出 M2</td>
+          <td>×</td>
+          <td>√</td>
+          <td>×</td>
+          <td>√</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>简化后（合并规则 1/规则 3）</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>条件/动作</th>
+          <th>规则 1</th>
+          <th>规则 2</th>
+          <th>规则 3</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>C1: 第一列 A</td>
+          <td>T</td>
+          <td>T</td>
+          <td>F</td>
+      </tr>
+      <tr>
+          <td>C2: 第一列 B</td>
+          <td>F</td>
+          <td>F</td>
+          <td>F</td>
+      </tr>
+      <tr>
+          <td>C3: 第二列数字</td>
+          <td>T</td>
+          <td>F</td>
+          <td>F</td>
+      </tr>
+      <tr>
+          <td>E1: 修改文件</td>
+          <td>√</td>
+          <td>×</td>
+          <td>×</td>
+      </tr>
+      <tr>
+          <td>E2: 输出 M1</td>
+          <td>×</td>
+          <td>×</td>
+          <td>√</td>
+      </tr>
+      <tr>
+          <td>E3: 输出 M2</td>
+          <td>×</td>
+          <td>√</td>
+          <td>×</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>进一步优化（使用&rdquo;-&ldquo;表示无关）</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>条件/动作</th>
+          <th>规则 1</th>
+          <th>规则 2</th>
+          <th>规则 3</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>第一列正确（A或B）</td>
+          <td>T</td>
+          <td>T</td>
+          <td>F</td>
+      </tr>
+      <tr>
+          <td>第二列数字</td>
+          <td>T</td>
+          <td>F</td>
+          <td>-</td>
+      </tr>
+      <tr>
+          <td>E1: 修改文件</td>
+          <td>√</td>
+          <td>×</td>
+          <td>×</td>
+      </tr>
+      <tr>
+          <td>E2: 输出 M1</td>
+          <td>×</td>
+          <td>×</td>
+          <td>√</td>
+      </tr>
+      <tr>
+          <td>E3: 输出 M2</td>
+          <td>×</td>
+          <td>√</td>
+          <td>×</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>步骤 6：生成测试用例</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>用例</th>
+          <th>输入</th>
+          <th>预期结果</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>A5</td>
+          <td>修改文件</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>A#</td>
+          <td>输出 M2</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>X5</td>
+          <td>输出 M1</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>X#</td>
+          <td>输出 M1、M2</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="因果图与判定表的优缺点">因果图与判定表的优缺点
+</h4><p><strong>优点</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>优点</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>系统化</td>
+          <td>系统地覆盖所有条件组合，避免遗漏</td>
+      </tr>
+      <tr>
+          <td>发现隐藏缺陷</td>
+          <td>能够发现条件组合触发的隐藏 Bug</td>
+      </tr>
+      <tr>
+          <td>减少冗余</td>
+          <td>通过约束简化，减少无效测试用例</td>
+      </tr>
+      <tr>
+          <td>文档化</td>
+          <td>清晰的测试依据，便于维护</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>缺点</strong>：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>缺点</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>组合爆炸</td>
+          <td>条件多时（&gt;5个），组合数呈指数增长（2^n）</td>
+      </tr>
+      <tr>
+          <td>耗时</td>
+          <td>分析复杂业务规则需要较多时间</td>
+      </tr>
+      <tr>
+          <td>不适合所有场景</td>
+          <td>输入输出关系简单时，性价比不高</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="笔试常见考点-1">笔试常见考点
+</h4><p><strong>考点 1：因果图的约束类型</strong></p>
+
+<blockquote>
+  <p>问：因果图中 E 约束和 O 约束的区别？</p>
+<p>答：</p>
+<ul>
+<li>E 约束（互斥）：至多一个为真，可以同时为假</li>
+<li>O 约束（唯一）：必须且只能一个为真，不能同时为假</li>
+</ul>
+
+</blockquote>
+
+<p><strong>考点 2：判定表的组成</strong></p>
+
+<blockquote>
+  <p>问：判定表由哪几部分组成？</p>
+<p>答：条件桩、动作桩、规则列。条件桩列出所有输入条件，动作桩列出所有输出动作，规则列表示条件组合与对应动作。</p>
+
+</blockquote>
+
+<p><strong>考点 3：简化判定表的方法</strong></p>
+
+<blockquote>
+  <p>问：如何简化判定表？</p>
+<p>答：</p>
+<ol>
+<li>使用&rdquo;-&ldquo;表示无关条件，合并相似规则</li>
+<li>根据约束关系去除不可能的组合</li>
+<li>合并产生相同动作的规则</li>
+</ol>
+
+</blockquote>
+
+<p><strong>考点 4：因果图 vs 等价类划分 vs 边界值分析</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>方法</th>
+          <th>适用场景</th>
+          <th>关注点</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>等价类划分</td>
+          <td>输入条件独立</td>
+          <td>减少用例数量，每个等价类选一个代表</td>
+      </tr>
+      <tr>
+          <td>边界值分析</td>
+          <td>输入范围明确</td>
+          <td>边界上的错误概率高</td>
+      </tr>
+      <tr>
+          <td>因果图</td>
+          <td>条件之间有依赖</td>
+          <td>条件组合的逻辑关系</td>
+      </tr>
+      <tr>
+          <td>判定表</td>
+          <td>条件组合复杂</td>
+          <td>系统化列出所有组合</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="题目汇总">题目汇总
+</h2><p>本篇总结富途和平安两家公司近期笔试题目及解析，涵盖算法、数据库、网络等方向。</p>
+<h3 id="算法题">算法题
+</h3><ul>
+<li>
+<p>题目 1：</p>
+<ul>
+<li>描述：</li>
+<li>解法：</li>
+</ul>
+</li>
+<li>
+<p>题目 2：</p>
+<ul>
+<li>描述：</li>
+<li>解法：</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据库与系统设计">数据库与系统设计
+</h3><ul>
+<li>题目 1：
+<ul>
+<li>描述：</li>
+<li>解法：</li>
+</ul>
+</li>
+</ul>
+<h3 id="计算机网络">计算机网络
+</h3><ul>
+<li>题目 1：
+<ul>
+<li>描述：</li>
+<li>解法：</li>
+</ul>
+</li>
+</ul>
+<h2 id="经验总结">经验总结
+</h2><ul>
+<li>注意题目阅读理解，避免遗漏条件。</li>
+<li>编程题建议先写伪代码，理清思路。</li>
+<li>选择题多为基础知识，需系统复习。</li>
+</ul>
+<hr>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2026-04-30
+        </span>
+    </section></footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2026 Chen1shark
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.34.2">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+    
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.23187c9e10e2dd8b5dcdf101dbaef779ec71560aa497dbe0c502c13aa0c3e22b.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<script>
+    
+
+
+    
+    
+    const live2d_path = 'https://fastly.jsdelivr.net/npm/live2d-widgets@1.0.0-rc.6/dist/';
+    
+    const cssPath = "/waifu/waifu.css"
+    const tipsJsonPath = "/waifu/waifu-tips.json"
+
+    
+    
+    function loadExternalResource(url, type) {
+    return new Promise((resolve, reject) => {
+        let tag;
+
+        if (type === 'css') {
+        tag = document.createElement('link');
+        tag.rel = 'stylesheet';
+        tag.href = url;
+        }
+        else if (type === 'js') {
+        tag = document.createElement('script');
+        tag.type = 'module';
+        tag.src = url;
+        }
+        if (tag) {
+        tag.onload = () => resolve(url);
+        tag.onerror = () => reject(url);
+        document.head.appendChild(tag);
+        }
+    });
+    }
+
+    (async () => {
+    
+    
+    if (screen.width < 768) return;
+
+    
+    
+    const OriginalImage = window.Image;
+    window.Image = function(...args) {
+        const img = new OriginalImage(...args);
+        img.crossOrigin = "anonymous";
+        return img;
+    };
+    window.Image.prototype = OriginalImage.prototype;
+    
+    
+    await Promise.all([
+        loadExternalResource(cssPath, 'css'),
+        loadExternalResource(live2d_path + 'waifu-tips.js', 'js')
+    ]);
+    
+    
+    initWidget({
+        waifuPath: tipsJsonPath,
+        
+        cubism2Path: live2d_path + 'live2d.min.js',
+        cubism5Path: 'https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js',
+        tools: ['hitokoto', 'asteroids', 'switch-model', 'switch-texture', 'photo', 'info', 'quit'],
+        logLevel: 'warn',
+        drag: false,
+    });
+    })();
+
+    console.log(`\n%cLive2D%cWidget%c\n`, 'padding: 8px; background: #cd3e45; font-weight: bold; font-size: large; color: white;', 'padding: 8px; background: #ff5450; font-size: large; color: #eee;', '');
+
+    
+
+   
+</script>
+    </body>
+</html>
