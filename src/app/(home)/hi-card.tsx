@@ -14,7 +14,7 @@ export default function HiCard() {
 
 	return (
 		<HomeDraggableLayer cardKey='hiCard' x={x} y={y} width={styles.width} height={styles.height}>
-			<Card order={styles.order} width={styles.width} height={styles.height} x={x} y={y} className='relative flex flex-col items-center justify-center text-center max-sm:static max-sm:translate-0'>
+			<Card order={styles.order} width={styles.width} height={styles.height} x={x} y={y} className='relative flex flex-col items-center justify-center text-center max-sm:min-h-[260px] max-sm:translate-0'>
 				{siteContent.enableChristmas && (
 					<>
 						<img
@@ -31,7 +31,7 @@ export default function HiCard() {
 						/>
 					</>
 				)}
-				<div className='flex h-[112px] w-[112px] items-center justify-center overflow-hidden rounded-full border-2 border-white/80 bg-white/45 shadow-[0_16px_32px_-10px_#c7d7df]'>
+				<div className='flex h-[112px] w-[112px] items-center justify-center overflow-hidden rounded-full border-2 border-white/80 bg-white/45 shadow-[0_16px_32px_-10px_#c7d7df] max-sm:h-24 max-sm:w-24'>
 					<img
 						src='/images/avatar.png'
 						alt={`${username} 的头像`}
@@ -41,7 +41,7 @@ export default function HiCard() {
 						}}
 					/>
 				</div>
-				<h1 className='font-averia mt-4 text-[30px] leading-none font-medium'>{username}</h1>
+				<h1 className='font-averia mt-4 text-[30px] leading-none font-medium max-sm:text-[28px]'>{username}</h1>
 				<p className='text-secondary mt-3 max-w-[280px] text-sm leading-6'>{siteContent.meta.description}</p>
 			</Card>
 		</HomeDraggableLayer>

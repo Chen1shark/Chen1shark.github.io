@@ -29,9 +29,9 @@ export default function SearchCard() {
 
 	return (
 		<HomeDraggableLayer cardKey='categoryCard' x={x} y={y} width={styles.width} height={styles.height}>
-			<Card order={styles.order} width={styles.width} height={styles.height} x={x} y={y} className='flex items-center p-5'>
+			<Card order={styles.order} width={styles.width} height={styles.height} x={x} y={y} className='flex items-center p-5 max-sm:h-auto max-sm:min-h-0'>
 				<form onSubmit={handleSubmit} className='relative w-full'>
-					<div className='flex items-center gap-3 rounded-xl border bg-white/50 px-4 py-2'>
+					<div className='flex items-center gap-3 rounded-xl border bg-white/50 px-4 py-2.5'>
 						<Search className='text-secondary h-4 w-4 shrink-0' />
 						<input
 							value={keyword}

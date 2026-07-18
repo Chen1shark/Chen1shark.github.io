@@ -32,6 +32,18 @@ export default function Card({ children, order, width, height, x, y, className }
 		)
 	}, [x, y, show])
 
+	if (show && maxSM && init) {
+		return (
+			<motion.div
+				className={cn('card squircle !relative !top-auto !left-auto w-[calc(100vw-32px)] max-w-[420px] rounded-[32px] p-5', className)}
+				initial={{ opacity: 0, y: 12 }}
+				animate={{ opacity: 1, y: 0 }}
+				whileTap={{ scale: 0.98 }}>
+				{children}
+			</motion.div>
+		)
+	}
+
 	if (show)
 		return (
 			<motion.div

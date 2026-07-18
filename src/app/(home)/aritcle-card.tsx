@@ -21,7 +21,7 @@ export default function ArticleCard() {
 
 	return (
 		<HomeDraggableLayer cardKey='articleCard' x={x} y={y} width={styles.width} height={styles.height}>
-			<Card order={styles.order} width={styles.width} height={styles.height} x={x} y={y} className='space-y-2 max-sm:static'>
+			<Card order={styles.order} width={styles.width} height={styles.height} x={x} y={y} className='space-y-2 max-sm:min-h-[138px]'>
 				{siteContent.enableChristmas && (
 					<>
 						<img

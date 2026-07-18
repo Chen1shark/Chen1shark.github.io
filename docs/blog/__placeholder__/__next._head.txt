@@ -2,6 +2,6 @@
 2:I[62839,["/_next/static/chunks/42d698763b657c0f.js","/_next/static/chunks/1bcde11053ca9c33.js"],"ViewportBoundary"]
 4:I[62839,["/_next/static/chunks/42d698763b657c0f.js","/_next/static/chunks/1bcde11053ca9c33.js"],"MetadataBoundary"]
 5:"$Sreact.suspense"
-0:{"buildId":"x_c166DZc63-TRvH7yQZ4","rsc":["$","$1","h",{"children":[null,["$","$L2",null,{"children":"$@3"}],["$","div",null,{"hidden":true,"children":["$","$L4",null,{"children":["$","$5",null,{"name":"Next.Metadata","children":"$@6"}]}]}],null]}],"loading":null,"isPartial":false}
+0:{"buildId":"6-hj_JstZE1ngRpNaT15k","rsc":["$","$1","h",{"children":[null,["$","$L2",null,{"children":"$@3"}],["$","div",null,{"hidden":true,"children":["$","$L4",null,{"children":["$","$5",null,{"name":"Next.Metadata","children":"$@6"}]}]}],null]}],"loading":null,"isPartial":false}
 3:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 6:[["$","title","0",{"children":"Chen1shark"}],["$","meta","1",{"name":"description","content":"记录工作日志、学习笔记与项目实践，持续沉淀自己的技术知识。"}],["$","meta","2",{"property":"og:title","content":"Chen1shark"}],["$","meta","3",{"property":"og:description","content":"记录工作日志、学习笔记与项目实践，持续沉淀自己的技术知识。"}],["$","meta","4",{"name":"twitter:card","content":"summary"}],["$","meta","5",{"name":"twitter:title","content":"Chen1shark"}],["$","meta","6",{"name":"twitter:description","content":"记录工作日志、学习笔记与项目实践，持续沉淀自己的技术知识。"}]]

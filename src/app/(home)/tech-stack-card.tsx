@@ -32,7 +32,7 @@ export default function TechStackCard() {
 
 	return (
 		<HomeDraggableLayer cardKey='techStackCard' x={x} y={y} width={styles.width} height={styles.height}>
-			<Card order={styles.order} width={styles.width} height={styles.height} x={x} y={y} className='max-sm:static max-sm:translate-0'>
+			<Card order={styles.order} width={styles.width} height={styles.height} x={x} y={y} className='max-sm:min-h-[168px] max-sm:translate-0'>
 				<div className='flex items-center justify-between'>
 					<div>
 						<h2 className='text-base font-medium'>常用标签</h2>
@@ -41,7 +41,7 @@ export default function TechStackCard() {
 					<Hash className='text-brand h-7 w-7' />
 				</div>
 
-				<div className='mt-5 flex flex-wrap gap-2'>
+				<div className='mt-5 flex flex-wrap gap-2 max-sm:mt-4'>
 					{tags.length > 0 ? (
 						tags.map(item => (
 							<Link

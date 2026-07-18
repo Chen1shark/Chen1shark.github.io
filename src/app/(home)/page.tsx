@@ -22,15 +22,27 @@ export default function Home() {
 			{siteContent.enableChristmas && <SnowfallBackground zIndex={0} count={!maxSM ? 125 : 20} />}
 
 			<div className='max-sm:flex max-sm:flex-col max-sm:items-center max-sm:gap-6 max-sm:pt-28 max-sm:pb-20'>
-				{cardStyles.techStackCard?.enabled !== false && <TechStackCard />}
-				{cardStyles.hiCard?.enabled !== false && <HiCard />}
-				{!maxSM && cardStyles.clockCard?.enabled !== false && <ClockCard />}
-				{!maxSM && cardStyles.calendarCard?.enabled !== false && <CalendarCard />}
-				{cardStyles.socialButtons?.enabled !== false && <SocialButtons />}
-				{!maxSM && cardStyles.categoryCard?.enabled !== false && <SearchCard />}
-				{cardStyles.articleCard?.enabled !== false && <AritcleCard />}
-				{cardStyles.hatCard?.enabled !== false && <HatCard />}
-				{cardStyles.beianCard?.enabled !== false && <BeianCard />}
+				{maxSM ? (
+					<>
+						{cardStyles.hiCard?.enabled !== false && <HiCard />}
+						{cardStyles.categoryCard?.enabled !== false && <SearchCard />}
+						{cardStyles.articleCard?.enabled !== false && <AritcleCard />}
+						{cardStyles.techStackCard?.enabled !== false && <TechStackCard />}
+						{cardStyles.socialButtons?.enabled !== false && <SocialButtons />}
+					</>
+				) : (
+					<>
+						{cardStyles.techStackCard?.enabled !== false && <TechStackCard />}
+						{cardStyles.hiCard?.enabled !== false && <HiCard />}
+						{cardStyles.clockCard?.enabled !== false && <ClockCard />}
+						{cardStyles.calendarCard?.enabled !== false && <CalendarCard />}
+						{cardStyles.socialButtons?.enabled !== false && <SocialButtons />}
+						{cardStyles.categoryCard?.enabled !== false && <SearchCard />}
+						{cardStyles.articleCard?.enabled !== false && <AritcleCard />}
+						{cardStyles.hatCard?.enabled !== false && <HatCard />}
+						{cardStyles.beianCard?.enabled !== false && <BeianCard />}
+					</>
+				)}
 			</div>
 
 			{siteContent.enableChristmas && <SnowfallBackground zIndex={2} count={!maxSM ? 125 : 20} />}
