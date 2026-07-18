@@ -1,0 +1,57 @@
+{
+	"meta": {
+		"title": "Chen1shark",
+		"description": "记录工作日志、学习笔记与项目实践，持续沉淀自己的技术知识。",
+		"username": "Chen1shark"
+	},
+	"theme": {
+		"colorBrand": "#2fcbe7",
+		"colorPrimary": "#5B423F",
+		"colorSecondary": "#8b7667",
+		"colorBrandSecondary": "#eec25e",
+		"colorBg": "#d4e8f3",
+		"colorBorder": "#ffffff",
+		"colorCard": "#ffffff99",
+		"colorArticle": "#ffffffcc"
+	},
+	"backgroundColors": [
+		"#f7da3987",
+		"#8fdbe9",
+		"#fffef8"
+	],
+	"backgroundImages": [
+		{
+			"id": "",
+			"url": ""
+		}
+	],
+	"currentBackgroundImageId": "",
+	"socialButtons": [
+		{
+			"id": "github",
+			"type": "github",
+			"value": "https://github.com/Chen1shark/",
+			"label": "Github",
+			"order": 1
+		},
+		{
+			"id": "email",
+			"type": "email",
+			"value": "1943086187@qq.com",
+			"label": "联系邮箱",
+			"order": 2
+		}
+	],
+	"clockShowSeconds": false,
+	"summaryInContent": false,
+	"isCachePem": false,
+	"hideEditButton": true,
+	"enableCategories": true,
+	"currentHatIndex": 3,
+	"hatFlipped": false,
+	"enableChristmas": false,
+	"beian": {
+		"text": "",
+		"link": ""
+	}
+}

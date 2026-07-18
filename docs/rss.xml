@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+	<channel xmlns:atom="http://www.w3.org/2005/Atom">
+		<title>Chen1shark</title>
+		<link>https://chen1shark.github.io</link>
+		<atom:link href="https://chen1shark.github.io/rss.xml" rel="self" type="application/rss+xml" />
+		<description>记录工作日志、学习笔记与项目实践，持续沉淀自己的技术知识。</description>
+		<language>zh-CN</language>
+		<docs>https://www.rssboard.org/rss-specification</docs>
+		<ttl>60</ttl>
+		<lastBuildDate>Sat, 18 Jul 2026 17:41:07 GMT</lastBuildDate>
+		
+	</channel>
+</rss>
