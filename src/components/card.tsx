@@ -32,7 +32,7 @@ export default function Card({ children, order, width, height, x, y, className }
 		)
 	}, [x, y, show])
 
-	if (show && maxSM && init) {
+	if (show && maxSM && init && !className?.includes('mobile-fixed-card')) {
 		return (
 			<motion.div
 				className={cn('card squircle !relative !top-auto !left-auto w-[calc(100vw-32px)] max-w-[420px] rounded-[32px] p-5', className)}
