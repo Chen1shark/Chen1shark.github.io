@@ -80,6 +80,8 @@ export default function NavCard() {
 		setShow(true)
 	}, [])
 
+	if (maxSM && pathname === '/') return null
+
 	let form = useMemo(() => {
 		if (pathname == '/') return 'full'
 		else return 'icons'
