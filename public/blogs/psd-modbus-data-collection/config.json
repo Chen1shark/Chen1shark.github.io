@@ -1,0 +1,8 @@
+{
+  "title": "2026-07-30 工作日志：PSD采集模块学习与Modbus采集流程梳理",
+  "tags": ["Modbus", "PSD", "数据采集", "一致性哈希"],
+  "date": "2026-07-30T09:00",
+  "summary": "梳理 PSD 数据采集模块结构、Modbus TCP 采集流程、异常码排查方法以及多实例采集分片机制。",
+  "hidden": false,
+  "category": "工作日志"
+}
