@@ -1,5 +1,5 @@
 {
-  "title": "2026-07-29 工作日志：Modbus 协议学习与 Input Register 读取实践",
+  "title": "2026-07-29：Modbus 协议学习与 Input Register 读取实践",
   "tags": ["Java", "Modbus", "j2mod", "工业通信"],
   "date": "2026-07-29T09:00",
   "summary": "记录使用 Java 与 j2mod 读取 Modbus TCP 输入寄存器的实践，以及开发环境、功能码和连接问题的排查过程。",

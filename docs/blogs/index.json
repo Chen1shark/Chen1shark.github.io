@@ -1,61 +1,106 @@
 [
   {
+    "slug": "row-level-operation-permissions",
+    "title": "2026-08-14：列表行级操作权限机制辨析",
+    "tags": ["Java", "权限设计", "RBAC", "前后端协作"],
+    "date": "2026-08-14T09:00",
+    "summary": "梳理功能入口、数据范围与行级操作权限的边界，以及列表按钮能力字段的设计方式。",
+    "hidden": false,
+    "category": "工作日志"
+  },
+  {
+    "slug": "dictionary-to-business-table",
+    "title": "2026-08-13：配置字典迁移为独立业务表",
+    "tags": ["Java", "数据库设计", "数据迁移", "MyBatis-Plus"],
+    "date": "2026-08-13T09:00",
+    "summary": "记录配置项从通用字典迁移为独立业务表时的数据模型、批量翻译和一致性校验。",
+    "hidden": false,
+    "category": "工作日志"
+  },
+  {
+    "slug": "workflow-task-center-integration",
+    "title": "2026-08-12：工作流与任务中心接入联调",
+    "tags": ["Java", "工作流", "消息队列", "分布式事务"],
+    "date": "2026-08-12T09:00",
+    "summary": "记录工作流与任务中心联调中的处理人类型、异步待办和事务一致性问题。",
+    "hidden": false,
+    "category": "工作日志"
+  },
+  {
+    "slug": "business-module-review-and-fixes",
+    "title": "2026-08-10：业务模块功能评审与修复",
+    "tags": ["Java", "MyBatis-Plus", "SQL", "代码评审", "数据导出"],
+    "date": "2026-08-10T09:00",
+    "summary": "记录业务模块代码评审中发现的返回模型、逻辑删除、统计口径和数值转换问题。",
+    "hidden": false,
+    "category": "工作日志"
+  },
+  {
+    "slug": "workflow-state-transition-design",
+    "title": "2026-08-07：业务流程状态流转设计",
+    "tags": ["Java", "工作流", "BPMN", "状态机"],
+    "date": "2026-08-07T09:00",
+    "summary": "记录流程图、流程引擎与业务代码的职责划分，以及正常推进、撤回、驳回和改派的建模取舍。",
+    "hidden": false,
+    "category": "工作日志"
+  },
+  {
     "slug": "maintenance-work-order-development",
-    "title": "2026-08-06 工作日志：维修工单模块设计评审与基础功能开发",
-    "tags": ["Java", "Spring Boot", "维修工单", "工作流", "Excel"],
+    "title": "2026-08-06：业务工单模块设计评审与基础功能开发",
+    "tags": ["Java", "Spring Boot", "业务建模", "工作流", "Excel"],
     "date": "2026-08-06T09:00",
-    "summary": "记录维修工单模块设计评审，以及工单新增、分页详情、工序模板上传解析与下载等基础功能开发。",
+    "summary": "记录通用业务工单的基础功能开发，以及接口一致性、字典映射、响应模型和文件名编码问题。",
     "hidden": false,
     "category": "工作日志"
   },
   {
     "slug": "maintenance-work-order-database",
-    "title": "2026-08-05 工作日志：维修工单模块数据库表设计",
-    "tags": ["数据库设计", "维修工单", "SQL", "工作流"],
+    "title": "2026-08-05：业务工单模块的数据建模实践",
+    "tags": ["数据库设计", "业务建模", "SQL", "工作流"],
     "date": "2026-08-05T09:00",
-    "summary": "记录维修工单模块的需求澄清、数据表分层设计、审计字段规范和审批结构调整过程。",
+    "summary": "记录模板、实例和执行快照的数据分层，以及审计字段与工作流数据职责的设计取舍。",
     "hidden": false,
     "category": "工作日志"
   },
   {
     "slug": "pagination-api-performance",
-    "title": "2026-08-04 工作日志：分页接口性能诊断与优化",
+    "title": "2026-08-04：分页接口性能诊断与优化",
     "tags": ["Java", "Arthas", "分页查询", "N+1 查询", "SQL"],
     "date": "2026-08-04T09:00",
-    "summary": "记录管理后台分页接口的性能诊断、慢 SQL 分析、N+1 查询修复，以及受权限约束时的优化取舍。",
+    "summary": "记录分页接口的调用链诊断、SQL 结构分析、N+1 查询修复和证据化验证方法。",
     "hidden": false,
     "category": "工作日志"
   },
   {
     "slug": "attendance-api-performance",
-    "title": "2026-08-03 工作日志：排班考勤系统接口性能排查与优化实践",
+    "title": "2026-08-03：业务统计接口性能排查与优化实践",
     "tags": ["Java", "Arthas", "性能优化", "SQL"],
     "date": "2026-08-03T09:00",
-    "summary": "记录排班考勤系统慢接口的耗时分析、远程调用瓶颈识别，以及内存聚合和 SQL 优化方案的验证过程。",
+    "summary": "记录业务统计接口的耗时分析、外部调用瓶颈识别，以及预聚合和 SQL 优化方案的验证过程。",
     "hidden": false,
     "category": "工作日志"
   },
   {
     "slug": "multi-technical-issues",
-    "title": "2026-07-31 工作日志：多项技术问题整理",
+    "title": "2026-07-31：多项技术问题整理",
     "tags": ["Java", "Spring Boot", "N+1 查询", "性能优化"],
     "date": "2026-07-31T09:00",
-    "summary": "整理数据采集服务依赖、运行环境与鉴权链路，并记录分页接口 N+1 查询问题的定位和优化过程。",
+    "summary": "整理服务依赖、运行环境和接口联调的通用排查方法，并记录 N+1 查询的定位与优化过程。",
     "hidden": false,
     "category": "工作日志"
   },
   {
     "slug": "psd-modbus-data-collection",
-    "title": "2026-07-30 工作日志：PSD采集模块学习与Modbus采集流程梳理",
-    "tags": ["Modbus", "PSD", "数据采集", "一致性哈希"],
+    "title": "2026-07-30：设备数据采集与 Modbus 联调",
+    "tags": ["Modbus", "数据采集", "工业通信", "一致性哈希"],
     "date": "2026-07-30T09:00",
-    "summary": "梳理 PSD 数据采集模块结构、Modbus TCP 采集流程、异常码排查方法以及多实例采集分片机制。",
+    "summary": "梳理通用设备数据采集流程、Modbus TCP 异常码排查方法和多实例任务分配原理。",
     "hidden": false,
     "category": "工作日志"
   },
   {
     "slug": "modbus-input-register-practice",
-    "title": "2026-07-29 工作日志：Modbus 协议学习与 Input Register 读取实践",
+    "title": "2026-07-29：Modbus 协议学习与 Input Register 读取实践",
     "tags": ["Java", "Modbus", "j2mod", "工业通信"],
     "date": "2026-07-29T09:00",
     "summary": "记录使用 Java 与 j2mod 读取 Modbus TCP 输入寄存器的实践，以及开发环境、功能码和连接问题的排查过程。",
