@@ -32,7 +32,13 @@ export default function TechStackCard() {
 
 	return (
 		<HomeDraggableLayer cardKey='techStackCard' x={x} y={y} width={styles.width} height={styles.height}>
-			<Card order={styles.order} width={styles.width} height={styles.height} x={x} y={y} className='max-sm:min-h-[168px] max-sm:translate-0'>
+			<Card
+				order={styles.order}
+				width={styles.width}
+				height={styles.height}
+				x={x}
+				y={y}
+				className='overflow-hidden px-6 py-4 max-sm:min-h-[168px] max-sm:translate-0 max-sm:p-5'>
 				<div className='flex items-center justify-between'>
 					<div>
 						<h2 className='text-base font-medium'>常用标签</h2>
@@ -41,13 +47,13 @@ export default function TechStackCard() {
 					<Hash className='text-brand h-7 w-7' />
 				</div>
 
-				<div className='mt-5 flex flex-wrap gap-2 max-sm:mt-4'>
+				<div className='mt-3 flex flex-wrap gap-1.5 max-sm:mt-4 max-sm:gap-2'>
 					{tags.length > 0 ? (
 						tags.map(item => (
 							<Link
 								key={item.tag}
 								href={`/blog?tag=${encodeURIComponent(item.tag)}`}
-								className='flex items-center gap-2 rounded-xl bg-white/45 px-3 py-2 text-sm transition-colors hover:bg-white/70 hover:text-brand'>
+								className='flex max-w-full items-center gap-2 whitespace-nowrap rounded-xl bg-white/45 px-3 py-1.5 text-sm transition-colors hover:bg-white/70 hover:text-brand max-sm:py-2'>
 								<span>#{item.tag}</span>
 								<span className='text-secondary text-xs'>{item.count}</span>
 							</Link>
