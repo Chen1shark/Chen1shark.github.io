@@ -1,6 +1,6 @@
-# GitHub Pages 手动部署
+# GitHub Pages 部署
 
-这个项目使用 Next.js，不建议把构建结果输出到 `public`。`public` 是源码里的静态资源输入目录；这里把静态站点生成到 `docs`，再让 GitHub Pages 从 `main` 分支的 `/docs` 目录发布。
+这个项目使用 Next.js。文章源码放在 `public/blogs`，静态站点构建到 `docs`。`.github/workflows/deploy-pages.yml` 会在每次推送 `main` 后自动构建并发布 GitHub Pages。
 
 ## 第一次部署
 
@@ -25,12 +25,10 @@ git push -u origin main
 
 4. 打开 GitHub 仓库的 `Settings -> Pages`：
 
-- Source 选择 `Deploy from a branch`
-- Branch 选择 `main`
-- Folder 选择 `/docs`
+- Source 选择 `GitHub Actions`
 - 保存
 
-发布完成后，访问地址通常是：
+推送 `main` 后可以在仓库的 `Actions` 页面查看 `Deploy blog to GitHub Pages`。发布完成后，访问地址通常是：
 
 ```text
 https://chen1shark.github.io/
@@ -38,13 +36,25 @@ https://chen1shark.github.io/
 
 ## 以后更新文章
 
-每次改完文章或页面后，执行：
+文章必须放在：
+
+```text
+public/blogs/<slug>/index.md
+public/blogs/<slug>/config.json
+```
+
+并在 `public/blogs/index.json` 中加入相同的 `<slug>`。提交并推送 `main` 后，GitHub Actions 会自动构建和发布：
 
 ```powershell
-.\build-pages.cmd
 git add .
 git commit -m "更新博客"
 git push
 ```
 
-注意：只改了文章但没有重新执行 `.\build-pages.cmd`，`docs` 里的静态网页不会更新。
+如果需要在本地检查静态构建，可以执行：
+
+```powershell
+.\build-pages.cmd
+```
+
+`public` 是源码和静态资源输入目录，不要直接把新文章只放进 `docs`；`docs` 会在构建时重新生成。
