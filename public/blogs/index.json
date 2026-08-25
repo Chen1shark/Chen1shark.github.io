@@ -1,5 +1,50 @@
 [
   {
+    "slug": "scheduling-work-hours-code-reading",
+    "title": "2026-08-21：存量业务模块代码导读",
+    "tags": ["Java", "代码阅读", "分布式锁", "工作流", "业务建模"],
+    "date": "2026-08-21T09:00",
+    "summary": "记录存量业务模块中批量导入、位置采集、主动申报、工作流和分布式锁的静态代码走读结论。",
+    "hidden": false,
+    "category": "工作日志"
+  },
+  {
+    "slug": "multi-technical-issues-2026-08-20",
+    "title": "2026-08-20：多项技术问题整理",
+    "tags": ["Java", "数据快照", "定时任务", "业务建模", "技术调研"],
+    "date": "2026-08-20T09:00",
+    "summary": "整理延迟生效配置保存与任务应用的收口问题，以及一组关联业务模块的初步调研结论。",
+    "hidden": false,
+    "category": "工作日志"
+  },
+  {
+    "slug": "deferred-settings-scheduler-integration",
+    "title": "2026-08-19：延迟生效配置落地与调度接入",
+    "tags": ["Java", "Spring Boot", "定时任务", "分布式调度", "服务注册"],
+    "date": "2026-08-19T09:00",
+    "summary": "记录延迟生效配置从本地定时触发迁移到统一调度，以及任务执行端未注册问题的排查过程。",
+    "hidden": false,
+    "category": "工作日志"
+  },
+  {
+    "slug": "deferred-settings-query-design",
+    "title": "2026-08-18：延迟生效配置的回显与查询接口设计",
+    "tags": ["Java", "API 设计", "数据快照", "定时任务", "前后端协作"],
+    "date": "2026-08-18T09:00",
+    "summary": "记录延迟生效配置中当前数据、待生效快照、查询回显和接口拆分的设计权衡。",
+    "hidden": false,
+    "category": "工作日志"
+  },
+  {
+    "slug": "business-record-module-development",
+    "title": "2026-08-17：业务记录模块开发与排错",
+    "tags": ["Java", "Spring Boot", "MyBatis-Plus", "接口设计", "并发控制"],
+    "date": "2026-08-17T09:00",
+    "summary": "记录通用业务记录模块在删除授权、聚合详情、状态流转和并发防护方面的设计与排错过程。",
+    "hidden": false,
+    "category": "工作日志"
+  },
+  {
     "slug": "row-level-operation-permissions",
     "title": "2026-08-14：列表行级操作权限机制辨析",
     "tags": ["Java", "权限设计", "RBAC", "前后端协作"],
